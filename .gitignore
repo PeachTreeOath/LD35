@@ -70,3 +70,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Windows binaries
+*.exe
+*.pdb
+test_Data/
+
+# vi swap file
+*.swp
