@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 		// Don't bounce if velocity is too small
 		if (body.velocity.magnitude > minVelocityValue) {
 			if (transform.position.y < groundYValue && body.velocity.y < 0) {
-				Bounce ();	
+			//	Bounce ();	
 			}	
 		}
 	}
