@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    GameController gc;
+
 	// Once player velocity is lower than this number, stop gameplay
 	public float minVelocityValue;
 
@@ -11,11 +13,16 @@ public class Player : MonoBehaviour
 	private Rigidbody2D body;
 	private GroundPlatform groundPlatform;
 
+    void Awake() {
+        gc = GameController.instance;
+    }
+
 	public void Init ()
 	{
 		cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 		locationFromCam = cam.transform.position - transform.position;
 		body = GetComponent<Rigidbody2D> ();
+        gc.test();        
 		groundPlatform = GameObject.Find("GroundPlatform").GetComponent<GroundPlatform>();
 	}
 
