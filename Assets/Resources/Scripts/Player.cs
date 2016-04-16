@@ -56,5 +56,6 @@ public class Player : MonoBehaviour
 	private void Stop()
 	{
 		//TODO: Detect when stop and transition to score dialog
+		Application.LoadLevel ("TitleScreen");
 	}
 }
