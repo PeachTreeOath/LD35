@@ -4,8 +4,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    GameController gc;
-	PlayerStat playerStat = null; 
+	GameController gc;
+	PlayerStat playerStat = null;
 
 	// Once player distance from prevPosition is below this
 	public float minDistanceTraveled = 0.5f;
@@ -17,16 +17,16 @@ public class Player : MonoBehaviour
     private float flightTime = 0;
 	private bool isStopped;
 
-    void Awake() {
-        gc = GameController.instance;
-		playerStat = this.GetComponentInParent<PlayerStat>(); 
-    }
+	void Awake ()
+	{
+		gc = GameController.instance;
+		playerStat = this.GetComponentInParent<PlayerStat> (); 
+	}
 
 	public void Init ()
 	{
 		body = GetComponent<Rigidbody2D> ();
-		prevPosition = transform.position;
-        gc.test();        
+		prevPosition = transform.position;    
 	}
 
 	// Use this for initialization
@@ -53,9 +53,7 @@ public class Player : MonoBehaviour
 
 		if (dist < minDistanceTraveled) {
 			stopTimeElapsed += Time.deltaTime;
-		}
-		else
-		{
+		} else {
 			stopTimeElapsed = 0;
 		}
 		// Stop movement if too slow for too long
@@ -71,9 +69,9 @@ public class Player : MonoBehaviour
 
 	void LateUpdate ()
 	{
-        //pass the player position to the game controller and let that decide which other components to shuffle
-        //Does this need to be in late update??
-        gc.UpdatePlayerPos(transform);
+		//pass the player position to the game controller and let that decide which other components to shuffle
+		//Does this need to be in late update??
+		gc.UpdatePlayerPos (transform);
 	}
 
 	public void Fire (float angle, float force)
@@ -82,25 +80,23 @@ public class Player : MonoBehaviour
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
 	}
-		
-	private void Stop()
+
+	private void Stop ()
 	{
-		gc.ShowScorePanel ();
+		gc.ShowScorePanel (playerStat.maxDist, playerStat.maxAltitude, playerStat.totalDuration, playerStat.maxVelocity);
 		//TODO: Detect when stop and transition to score dialog
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work
 		//playerStat.DisplayRunStats();
 	}
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.tag == "Obstacle")
-        {
-            Obstacle obstacle = collider.gameObject.GetComponent<Obstacle>();
-            if (obstacle != null)
-            {
-                body.AddForce(obstacle.velocityChange);
-                obstacle.Remove();
-            }
-        }
-    }
+	void OnTriggerEnter2D (Collider2D collider)
+	{
+		if (collider.tag == "Obstacle") {
+			Obstacle obstacle = collider.gameObject.GetComponent<Obstacle> ();
+			if (obstacle != null) {
+				body.AddForce (obstacle.velocityChange);
+				obstacle.Remove ();
+			}
+		}
+	}
 }
