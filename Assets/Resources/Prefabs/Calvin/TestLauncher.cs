@@ -3,10 +3,8 @@ using System.Collections;
 
 public class TestLauncher : MonoBehaviour
 {
-	public float force;
 	public GameObject playerPrefab;
-	private bool isShot;
-
+    
 	// Use this for initialization
 	void Start ()
 	{
@@ -16,13 +14,15 @@ public class TestLauncher : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetButtonDown ("Fire1") && !isShot) {
-			GameObject obj = (GameObject)Instantiate (playerPrefab, transform.position, Quaternion.identity);
-			Player player = obj.GetComponent<Player> ();
-			player.Init ();
-			player.Fire (transform.rotation.eulerAngles.z, force);
-
-			isShot = true;
-		}
+		
 	}
+
+    public void LaunchPlayer(float angle, float power)
+    {
+        GameObject obj = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        Player player = obj.GetComponent<Player>();
+
+        player.Init();
+        player.Fire(Mathf.Deg2Rad * angle, power);
+    }
 }
