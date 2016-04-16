@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 	private Vector3 locationFromCam;
 	private Camera cam;
 	private GroundPlatform groundPlatform;
-	private CanvasGroup scoreCanvas;
+	private ScorePanel scoreCanvas;
 
 	void Awake ()
 	{
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
 			groundPlatform = GameObject.Find ("GroundPlatform").GetComponent<GroundPlatform> ();
 			cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
-			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<CanvasGroup> ();
+			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 		}
 		Debug.Log ("GameController level loaded");
 	}
@@ -64,11 +64,9 @@ public class GameController : MonoBehaviour
 		groundPlatform.MoveToPlayer (x);
 	}
 
-	public void ShowScorePanel ()
+	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
 	{
-		scoreCanvas.alpha = 1;
-		scoreCanvas.blocksRaycasts = true;
-		scoreCanvas.interactable = true;
+		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
 	}
 
 	public void GoToShop ()
