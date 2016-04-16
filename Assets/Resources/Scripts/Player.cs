@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
 	private void Stop()
 	{
 		//TODO: Detect when stop and transition to score dialog
-		SceneManager.LoadScene("TitleScene");
+		//SceneManager.LoadScene("TitleScene"); lol why does this not work
+		Application.LoadLevel ("TitleScreen");
 	}
 }

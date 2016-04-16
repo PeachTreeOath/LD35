@@ -15,7 +15,7 @@ public class GroundPlatform : MonoBehaviour {
 		
 	}
 
-	public void ResetPosition(float x)
+	public void MoveToPlayer(float x)
 	{
 		transform.position = new Vector2 (x, groundYLevel);
 	}
