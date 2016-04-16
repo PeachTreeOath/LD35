@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
 	public static GameController instance { get { return m_instance; } }
 
 	private static GameController m_instance;
-
 	private Vector3 locationFromCam;
 	private Camera cam;
 	private GroundPlatform groundPlatform;
@@ -17,8 +16,7 @@ public class GameController : MonoBehaviour
     private LevelGenerator levelGen;
     private LevelTile currentLevelTile;
     private LevelTile nextLevelTile;
-
-
+    private GameObject player; //current player obj in the game
 
 	void Awake ()
 	{
@@ -34,16 +32,10 @@ public class GameController : MonoBehaviour
 			groundPlatform = GameObject.Find ("GroundPlatform").GetComponent<GroundPlatform> ();
 			cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
-			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<CanvasGroup> ();
+			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 		}
 		Debug.Log ("GameController level loaded");
 	}
-
-	public void test ()
-	{
-		Debug.Log ("Yolo");
-	}
-
 
 	// Use this for initialization
 	void Start ()
@@ -61,8 +53,16 @@ public class GameController : MonoBehaviour
 	
 	}
 
+    public void setPlayer(GameObject p) {
+        this.player = p;
+    }
+
+    public GameObject getPlayerObj() {
+        return player;
+    }
+
 	//Input is new player position.  This figures out positions of other objects such as camera and bg.
-	public void updatePlayerPos (Transform playerPos)
+	public void UpdatePlayerPos (Transform playerPos)
 	{
 		float x = playerPos.transform.position.x + locationFromCam.x;
 		float y = 0;
@@ -73,23 +73,18 @@ public class GameController : MonoBehaviour
 		cam.transform.position = new Vector3 (x, y, z);
 		groundPlatform.MoveToPlayer (x);
 	}
-		
 
-	public void showScorePanel()
-
+	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
 	{
-		scoreCanvas.alpha = 1;
-		scoreCanvas.blocksRaycasts = true;
-		scoreCanvas.interactable = true;
+		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
 	}
 
-
-	public void GoToShop()
+	public void GoToShop ()
 	{
-		
+		SceneManager.LoadScene ("Shop");
 	}
 
-	public void GoToGame()
+	public void GoToGame ()
 	{
 		SceneManager.LoadScene ("Game");
 	}

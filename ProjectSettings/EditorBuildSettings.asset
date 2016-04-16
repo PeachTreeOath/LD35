@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Menus/Scenes/TitleScreen.unity
   - enabled: 1
     path: Assets/Resources/Scenes/Game.unity
+  - enabled: 1
+    path: Assets/Menus/Scenes/Shop.unity

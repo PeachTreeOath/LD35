@@ -6,11 +6,10 @@ public class PlayerStat : MonoBehaviour {
 	private Vector2 startPos; 
 	private Vector2 prevPos; 
 
-	private float maxDist = 0f; 
-	private float maxAltitude = 0f; 
-	private float totalDuration = 0f; 
-	private float maxVelocity = 0f;
-
+	public float maxDist = 0f; 
+	public float maxAltitude = 0f; 
+	public float totalDuration = 0f; 
+	public float maxVelocity = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +28,7 @@ public class PlayerStat : MonoBehaviour {
 			maxAltitude = transform.position.y - startPos.y; 
 		prevPos = transform.position; 
 	}
-
-
+		
 	public void SetRunDuration (float time){
 		totalDuration = time;
 	}
@@ -48,6 +46,5 @@ public class PlayerStat : MonoBehaviour {
 
 	public void DisplayRunStats(){
 		Debug.Log ("dist = " + maxDist + "; alt = " + maxAltitude + "; duration = " + totalDuration + "; vel = " + maxVelocity);
-
 	}
 }
