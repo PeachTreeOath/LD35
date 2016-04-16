@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Player : MonoBehaviour
@@ -66,6 +67,6 @@ public class Player : MonoBehaviour
 	private void Stop()
 	{
 		//TODO: Detect when stop and transition to score dialog
-		Application.LoadLevel ("TitleScreen");
+		SceneManager.LoadScene("TitleScene");
 	}
 }
