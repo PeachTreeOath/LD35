@@ -23,6 +23,9 @@ public class PurchaseAvatar : MonoBehaviour {
             // TODO: increase avatar inventory in singleton
         }
         */
+        int bankroll;
+        bankroll = (GameObject.Find("Singletons").GetComponent<Bank>()).TotalMoney;
+        Debug.Log(string.Format(@"bankroll: {0}", bankroll));
         Debug.Log(@"avatarString: " + avatarString);
         Debug.Log(string.Format(@"avatarEnum: {0}", avatarEnum));
 

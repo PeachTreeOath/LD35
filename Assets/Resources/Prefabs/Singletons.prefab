@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 491946}
   - 114: {fileID: 11402034}
   - 114: {fileID: 11467682}
+  - 114: {fileID: 11462904}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Untagged
@@ -40,6 +41,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de31c32ccd3be2b49bf471bcbdfe343e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11462904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bd17d45fd0f5f418bac8cf6ad86de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11467682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d273fff19d06549877399637668270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
+  InitialMoney: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
