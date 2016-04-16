@@ -25,8 +25,8 @@ public class PlayerStat : MonoBehaviour {
 		float curVelocity = Vector2.Distance(transform.position, prevPos)/Time.deltaTime;
 		if (curVelocity > maxVelocity)
 			maxVelocity = curVelocity; 
-		if (transform.position.y > maxAltitude)
-			maxAltitude = transform.position.y; 
+		if ((transform.position.y - startPos.y)> maxAltitude)
+			maxAltitude = transform.position.y - startPos.y; 
 		prevPos = transform.position; 
 	}
 
