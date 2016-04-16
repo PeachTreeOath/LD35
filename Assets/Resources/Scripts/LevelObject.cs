@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Obstacle : LevelObject {
-    public Vector2 velocityChange;
+public class LevelObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,11 +12,4 @@ public class Obstacle : LevelObject {
 	void Update () {
 	
 	}
-
-    public void Remove()
-    {
-        Destroy(gameObject); //temporary
-    }
-
-
 }

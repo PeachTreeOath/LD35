@@ -8,7 +8,6 @@ public class GameController : MonoBehaviour
     
 	public static GameController instance { get { return m_instance; } }
 
-
 	private static GameController m_instance;
 
 	private Vector3 locationFromCam;
@@ -18,6 +17,7 @@ public class GameController : MonoBehaviour
     private LevelGenerator levelGen;
     private LevelTile currentLevelTile;
     private LevelTile nextLevelTile;
+
 
 
 	void Awake ()
@@ -49,7 +49,11 @@ public class GameController : MonoBehaviour
 	void Start ()
 	{
 		OnLevelWasLoaded (Application.loadedLevel);
-	}
+
+        LevelGenerator levelGen = GetComponent<LevelGenerator>();
+        currentLevelTile = levelGen.genLevelTile();
+        nextLevelTile = levelGen.genLevelTile();
+    }
 	
 	// Update is called once per frame
 	void Update ()
