@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
         } else {
 		    groundPlatform = GameObject.Find("GroundPlatform").GetComponent<GroundPlatform>();
 		    cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
+			locationFromCam = cam.transform.position - GameObject.Find("Launcher").transform.position;
         }
         Debug.Log("GameController level loaded");
     }
@@ -47,15 +48,13 @@ public class GameController : MonoBehaviour {
 
     //Input is new player position.  This figures out positions of other objects such as camera and bg.
     public void updatePlayerPos(Transform playerPos) {
-
-		locationFromCam = cam.transform.position - transform.position;
-		float x = transform.position.x + locationFromCam.x;
+		float x = playerPos.transform.position.x + locationFromCam.x;
 		float y = 0;
 		float z = cam.transform.position.z;
-		if (transform.position.y > 0) {
-			y = transform.position.y;	
+		if (playerPos.transform.position.y > 0) {
+			y = playerPos.transform.position.y;	
 		}
 		cam.transform.position = new Vector3 (x, y, z);
-        groundPlatform.ResetPosition(x); //awful
+        groundPlatform.MoveToPlayer(x);
     }
 }
