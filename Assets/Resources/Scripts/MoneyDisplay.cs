@@ -9,7 +9,7 @@ public class MoneyDisplay : MonoBehaviour {
 
     private float displayAmount = 0;
 
-    public float Velocity = 50f;
+    public float velocity = 2;
 
     void Awake()
     {
@@ -27,8 +27,8 @@ public class MoneyDisplay : MonoBehaviour {
         int roundedAmount = Mathf.RoundToInt(displayAmount);
         if(roundedAmount != bank.MoneyThisRun)
         {
-            float direction = Mathf.Sign(bank.MoneyThisRun - displayAmount);
-            displayAmount += Time.smoothDeltaTime * Velocity * direction;
+			float difference = bank.MoneyThisRun - displayAmount;
+			displayAmount += Time.smoothDeltaTime * difference * velocity;
 
             roundedAmount = Mathf.RoundToInt(displayAmount);
         }
