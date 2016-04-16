@@ -74,8 +74,6 @@ public class Player : MonoBehaviour
 		//TODO: Detect when stop and transition to score dialog
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work
 		playerStat.DisplayRunStats();
-		Application.LoadLevel ("TitleScreen");
-
 	}
 
     void OnTriggerEnter2D(Collider2D collider)
