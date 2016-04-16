@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
 	private Camera cam;
 	private GroundPlatform groundPlatform;
 	private CanvasGroup scoreCanvas;
+    private LevelGenerator levelGen;
+    private LevelTile currentLevelTile;
+    private LevelTile nextLevelTile;
 
 
 	void Awake ()
