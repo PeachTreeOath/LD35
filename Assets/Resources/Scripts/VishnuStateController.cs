@@ -21,7 +21,7 @@ public class VishnuStateController : MonoBehaviour {
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from
-    private Dictionary<Avatar, Ability> abilities;
+    private Dictionary<Avatar, Ability> abilities = new Dictionary<Avatar, Ability>();
 
 
     private static VishnuStateController m_instance;
