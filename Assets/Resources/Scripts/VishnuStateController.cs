@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,6 +10,10 @@ public class VishnuStateController : MonoBehaviour {
     public static VishnuStateController instance { get { return m_instance; } }
 
     public enum Avatar { MATSYA, KURMA, VARAHA, NARASIMHA, VAMANA, PARASHURAMA, RAMA, KRISHNA, BUDDHA, KALKI };
+
+    [SerializeField]
+    private AbilityData abilityDataRef; //source to load abilites from
+    private Dictionary<Avatar, Ability> abilities;
 
 
     private static VishnuStateController m_instance;
@@ -27,7 +32,24 @@ public class VishnuStateController : MonoBehaviour {
         if (m_instance == null) {
             m_instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadAbilityData();
+        }else if(m_instance != null && m_instance != this) {
+            Debug.Log("Deleting singleton Dup.  Someone screwed up");
+            Destroy(gameObject);
+            return;
         }
+    }
+
+    private void LoadAbilityData() {
+        if(abilityDataRef == null) {
+            Debug.LogError("No ability data specified!");
+            return;
+        }
+
+        foreach(AvatarAbilityEntry ent in abilityDataRef.getAll()){
+            abilities[ent.avatar] = ent.abilities; 
+        }
+        Debug.Log("Abilities loaded!");
     }
 
     // Use this for initialization

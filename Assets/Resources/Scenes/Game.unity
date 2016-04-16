@@ -466,6 +466,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11464636, guid: 04565b2a37cf33f45a146ad3eb719ec4, type: 2}
+      propertyPath: avatarAbilites.Array.size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 429792, guid: 04565b2a37cf33f45a146ad3eb719ec4, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
