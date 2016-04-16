@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
 			Invoke ("Stop", 1f);
 		}
 		prevPosition = transform.position;
+
+		//LOL DAVE PLS
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			body.velocity = Vector2.zero;
+		}
 	}
 
 	void LateUpdate ()
