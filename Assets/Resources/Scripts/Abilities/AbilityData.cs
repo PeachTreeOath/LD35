@@ -43,6 +43,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -66,6 +67,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -89,6 +91,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -112,6 +115,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -135,6 +139,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -158,6 +163,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -181,6 +187,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -204,6 +211,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -227,6 +235,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
         ////
@@ -250,6 +259,7 @@ public class AbilityData {
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
         e = new AvatarAbilityEntry();
+        e.construct(aType, a);
         entries.Add(e);
         ///////
 
