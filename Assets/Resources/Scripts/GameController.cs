@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 	private Camera cam;
 	private GroundPlatform groundPlatform;
 	private ScorePanel scoreCanvas;
+    private GameObject player; //current player obj in the game
 
 	void Awake ()
 	{
@@ -50,6 +51,14 @@ public class GameController : MonoBehaviour
 	{
 	
 	}
+
+    public void setPlayer(GameObject p) {
+        this.player = p;
+    }
+
+    public GameObject getPlayerObj() {
+        return player;
+    }
 
 	//Input is new player position.  This figures out positions of other objects such as camera and bg.
 	public void UpdatePlayerPos (Transform playerPos)

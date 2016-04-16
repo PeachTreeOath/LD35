@@ -16,7 +16,7 @@ public class PicksUpMoney : MonoBehaviour {
             Money money = collider.gameObject.GetComponent<Money>();
             if (money != null)
             {
-                bank.Add(money.value);
+				bank.Add(money.GetValue());
                 money.Collect();
             }  
         }

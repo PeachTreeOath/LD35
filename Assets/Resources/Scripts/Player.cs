@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private Vector2 prevPosition;
 	private Rigidbody2D body;
 	private float stopTimeElapsed;
+    private float flightTime = 0;
 	private bool isStopped;
 
 	void Awake ()
@@ -32,13 +33,24 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+        gc.setPlayer(this.gameObject);
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
 		float dist = Vector2.Distance (transform.position, prevPosition);
+
+        flightTime += Time.deltaTime;
+        //FIXME temp transition test code
+        if(flightTime > 2.0) {
+            Debug.Log("TEMP ASCENTION");
+            VishnuStateController.instance.transitionToNextAvatar(1);
+            flightTime = 0;
+        }
+        //FIXME temp transition test code
+
+
 
 		if (dist < minDistanceTraveled) {
 			stopTimeElapsed += Time.deltaTime;
@@ -65,6 +77,7 @@ public class Player : MonoBehaviour
 
 	public void Fire (float angle, float force)
 	{
+        flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
 	}
