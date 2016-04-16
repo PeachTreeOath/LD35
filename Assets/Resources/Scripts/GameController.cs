@@ -79,8 +79,8 @@ public class GameController : MonoBehaviour
 
 	public void GoToShop()
 	{
-		
-	}
+        SceneManager.LoadScene ("Shop");
+    }
 
 	public void GoToGame()
 	{
