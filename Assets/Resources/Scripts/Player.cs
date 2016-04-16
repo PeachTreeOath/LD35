@@ -8,10 +8,7 @@ public class Player : MonoBehaviour
 	// Once player velocity is lower than this number, stop gameplay
 	public float minVelocityValue;
 
-	private Camera cam;
-	private Vector3 locationFromCam;
 	private Rigidbody2D body;
-	private GroundPlatform groundPlatform;
 
     void Awake() {
         gc = GameController.instance;
@@ -19,11 +16,8 @@ public class Player : MonoBehaviour
 
 	public void Init ()
 	{
-		cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
-		locationFromCam = cam.transform.position - transform.position;
 		body = GetComponent<Rigidbody2D> ();
         gc.test();        
-		groundPlatform = GameObject.Find("GroundPlatform").GetComponent<GroundPlatform>();
 	}
 
 	// Use this for initialization
@@ -43,15 +37,9 @@ public class Player : MonoBehaviour
 
 	void LateUpdate ()
 	{
-		float x = transform.position.x + locationFromCam.x;
-		float y = 0;
-		float z = cam.transform.position.z;
-		if (transform.position.y > 0) {
-			y = transform.position.y;	
-		}
-		cam.transform.position = new Vector3 (x, y, z);
-
-		groundPlatform.ResetPosition (x);
+        //pass the player position to the game controller and let that decide which other components to shuffle
+        //Does this need to be in late update??
+        gc.updatePlayerPos(transform);
 	}
 
 	public void Fire (float angle, float force)
