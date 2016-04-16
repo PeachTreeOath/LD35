@@ -29,10 +29,8 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 		// Don't bounce if velocity is too small
-		if (body.velocity.magnitude > minVelocityValue) {
-			if (transform.position.y < groundYValue && body.velocity.y < 0) {
-			//	Bounce ();	
-			}	
+		if (body.velocity.x < minVelocityValue) {
+			//Stop ();
 		}
 	}
 
@@ -46,14 +44,5 @@ public class Player : MonoBehaviour
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
 	}
-
-	private void Bounce ()
-	{
-		body.velocity = new Vector2 (body.velocity.x, -body.velocity.y);
-	}
-
-	private void Stop ()
-	{
-		body.velocity = new Vector2 (body.velocity.x, -body.velocity.y);
-	}
+		
 }
