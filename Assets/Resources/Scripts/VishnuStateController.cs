@@ -9,7 +9,7 @@ public class VishnuStateController : MonoBehaviour {
     public static VishnuStateController instance { get { return m_instance; } }
 
     [SerializeField]
-    public enum Avatar { MATSYA, KURMA, VARAHA, NARASIMHA, VAMANA, PARASHURAMA, RAMA, KRISHNA, BUDDHA, KALKI };
+    public enum Avatar { NONE, MATSYA, KURMA, VARAHA, NARASIMHA, VAMANA, PARASHURAMA, RAMA, KRISHNA, BUDDHA, KALKI };
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from

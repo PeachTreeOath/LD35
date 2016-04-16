@@ -28,6 +28,7 @@ GameObject:
   - 222: {fileID: 22250814}
   - 114: {fileID: 11464882}
   - 114: {fileID: 11409058}
+  - 114: {fileID: 11410426}
   m_Layer: 5
   m_Name: ShiftGrid Icon
   m_TagString: Untagged
@@ -87,6 +88,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11410426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181209d9a457c1f4cb6bb9addeddf79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11464882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +197,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225.1, y: 67.9}
+  m_AnchoredPosition: {x: -32, y: 67.89999}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
