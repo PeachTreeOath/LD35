@@ -9,11 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 419970}
   - 212: {fileID: 21214160}
-  - 114: {fileID: 11423356}
   - 58: {fileID: 5850702}
+  - 114: {fileID: 11467910}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Money
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
---- !u!114 &11423356
+--- !u!114 &11467910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,10 +52,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 104344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383b3f7b1e7985f44b1f94dcc54b5a87, type: 3}
+  m_Script: {fileID: 11500000, guid: 40bee1595b53b054d856731be8119f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 10
+  velocityChange: {x: 0, y: 500}
 --- !u!212 &21214160
 SpriteRenderer:
   m_ObjectHideFlags: 1
