@@ -34,12 +34,6 @@ public class GameController : MonoBehaviour
 		Debug.Log ("GameController level loaded");
 	}
 
-	public void test ()
-	{
-		Debug.Log ("Yolo");
-	}
-
-
 	// Use this for initialization
 	void Start ()
 	{

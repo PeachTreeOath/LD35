@@ -26,8 +26,7 @@ public class Player : MonoBehaviour
 	public void Init ()
 	{
 		body = GetComponent<Rigidbody2D> ();
-		prevPosition = transform.position;
-		gc.test ();        
+		prevPosition = transform.position;    
 	}
 
 	// Use this for initialization
