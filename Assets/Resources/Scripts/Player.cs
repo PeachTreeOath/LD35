@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private Vector2 prevPosition;
 	private Rigidbody2D body;
 	private float stopTimeElapsed;
+	private bool isStopped;
 
     void Awake() {
         gc = GameController.instance;
@@ -46,7 +47,8 @@ public class Player : MonoBehaviour
 			stopTimeElapsed = 0;
 		}
 		// Stop movement if too slow for too long
-		if (stopTimeElapsed > timeToStop) {
+		if (!isStopped && stopTimeElapsed > timeToStop) {
+			isStopped = true;
 			body.velocity = Vector2.zero;
 			playerStat.SetEndDistance (transform.position);
 			playerStat.SetRunDuration (Time.time);
