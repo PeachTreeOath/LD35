@@ -13,7 +13,7 @@ GameObject:
   - 50: {fileID: 5059542}
   - 58: {fileID: 5852578}
   m_Layer: 0
-  m_Name: TestVishnu
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundYValue: -4.5
+  minVelocityValue: 1
 --- !u!212 &21222958
 SpriteRenderer:
   m_ObjectHideFlags: 1
