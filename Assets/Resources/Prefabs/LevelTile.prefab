@@ -39,6 +39,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d5d8ae43754484caa67f7d664e42f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xMin: -5
+  xMax: 10
+  yMin: -2
+  yMax: 5
+  objectsPerTile: 10
+  skyObjectPrefabs:
+  - {fileID: 11467910, guid: 80c1b3246cad9a94d81e9696040bb6c2, type: 2}
+  - {fileID: 11453030, guid: 48c5543849442c442a467223aaafb4c9, type: 2}
+  groundObjectPrefabs: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
