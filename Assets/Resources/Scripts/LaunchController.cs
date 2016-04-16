@@ -5,7 +5,7 @@ using System.Collections;
 public class LaunchController : MonoBehaviour {
     private Text angleText;
     private Text powerText;
-    private TestLauncher testLauncher;
+    private Launcher launcher;
 
     private const float MAX_ANGLE = 90f;
     private const float MIN_ANGLE = 0f;
@@ -32,7 +32,7 @@ public class LaunchController : MonoBehaviour {
 
 	void Start () {
         GameObject canvas = GameObject.Find("Canvas");
-        testLauncher = GameObject.Find("TestLauncher").GetComponent<TestLauncher>();
+        launcher = GameObject.Find("Launcher").GetComponent<Launcher>();
 
         Text[] textValue = canvas.GetComponentsInChildren<Text>();
         angleText = textValue[1];
@@ -121,7 +121,7 @@ public class LaunchController : MonoBehaviour {
         {
             //don't need to save the power here since we are going to launch immediately
             isPowerSet = true;
-            testLauncher.LaunchPlayer(angleSelected, powerDisplayed * 10);
+            launcher.LaunchPlayer(angleSelected, powerDisplayed * 10);
         }
 
         

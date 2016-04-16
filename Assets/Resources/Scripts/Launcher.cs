@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestLauncher : MonoBehaviour
+public class Launcher : MonoBehaviour
 {
 	public GameObject playerPrefab;
     
