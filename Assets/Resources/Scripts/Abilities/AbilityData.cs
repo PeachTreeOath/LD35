@@ -22,6 +22,7 @@ public class AbilityData : ScriptableObject{
         List<AvatarAbilityEntry> entries = new List<AvatarAbilityEntry>();
 
         Ability a;
+        AvatarAbilityEntry e;
         VishnuStateController.Avatar aType;
 
         ////
@@ -44,7 +45,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.KURMA;
@@ -66,7 +70,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.VARAHA;
@@ -88,7 +95,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.NARASIMHA;
@@ -110,7 +120,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.VAMANA;
@@ -132,7 +145,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.PARASHURAMA;
@@ -154,7 +170,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.RAMA;
@@ -176,7 +195,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.KRISHNA;
@@ -198,7 +220,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.BUDDHA;
@@ -220,7 +245,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
         ////
         aType = VishnuStateController.Avatar.KALKI;
@@ -242,7 +270,10 @@ public class AbilityData : ScriptableObject{
         a.jumpForceMult = 0;
         a.magnetoForceMult = 0;
         a.diveForceMult = 0;
-        entries.Add(ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a));
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", a);
+        e = ScriptableObject.CreateInstance<AvatarAbilityEntry>().construct(aType, a);
+        CustomAssetUtility.AddAssetToDB("Assets/Resources/Scripts/Abilities", e);
+        entries.Add(e);
         ///////
 
 
