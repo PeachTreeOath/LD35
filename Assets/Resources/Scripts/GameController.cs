@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 	private GroundPlatform groundPlatform;
 	private CanvasGroup scoreCanvas;
 
+
 	void Awake ()
 	{
 		if (m_instance == null) {
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour
 	{
 		Debug.Log ("Yolo");
 	}
+
 
 	// Use this for initialization
 	void Start ()
@@ -64,13 +66,16 @@ public class GameController : MonoBehaviour
 		cam.transform.position = new Vector3 (x, y, z);
 		groundPlatform.MoveToPlayer (x);
 	}
+		
 
-	public void showScorePanel ()
+	public void showScorePanel()
+
 	{
 		scoreCanvas.alpha = 1;
 		scoreCanvas.blocksRaycasts = true;
 		scoreCanvas.interactable = true;
 	}
+
 
 	public void GoToShop()
 	{
@@ -81,4 +86,5 @@ public class GameController : MonoBehaviour
 	{
 		SceneManager.LoadScene ("Game");
 	}
+
 }

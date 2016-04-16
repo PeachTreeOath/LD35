@@ -5,6 +5,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     GameController gc;
+	PlayerStat playerStat = null; 
 
 	// Once player distance from prevPosition is below this
 	public float minDistanceTraveled = 0.5f;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
 
     void Awake() {
         gc = GameController.instance;
+		playerStat = this.GetComponentInParent<PlayerStat>(); 
     }
 
 	public void Init ()
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
 		// Stop movement if too slow for too long
 		if (stopTimeElapsed > timeToStop) {
 			body.velocity = Vector2.zero;
+			playerStat.SetEndDistance (transform.position);
+			playerStat.SetRunDuration (Time.time);
 			Invoke ("Stop", 1f);
 		}
 		prevPosition = transform.position;
@@ -69,8 +73,9 @@ public class Player : MonoBehaviour
 		gc.showScorePanel ();
 		//TODO: Detect when stop and transition to score dialog
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work
+		playerStat.DisplayRunStats();
+		Application.LoadLevel ("TitleScreen");
 
-		//Application.LoadLevel ("TitleScreen");
 	}
 
     void OnTriggerEnter2D(Collider2D collider)
