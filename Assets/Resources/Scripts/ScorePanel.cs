@@ -6,21 +6,33 @@ using System;
 public class ScorePanel : MonoBehaviour
 {
 	public float Velocity = 50f;
+
+	// Multiply values by this to 
+	public float distModifier;
+	public float altModifier;
+	public float durModifier;
+	public float spdModifier;
+
 	private Text[] textArr;
 	private Bank bank;
 
+	// The UI Text fields
 	private Text coinValue;
 	private Text distValue;
 	private Text altValue;
 	private Text durValue;
 	private Text spdValue;
 	private Text totalValue;
+
+	// The target value
 	private float coin;
 	private float dist;
 	private float alt;
 	private float dur;
 	private float vel;
 	private float total;
+
+	// Currently displayed value
 	private float dispCoin;
 	private float dispDist;
 	private float dispAlt;
