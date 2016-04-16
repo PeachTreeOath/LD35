@@ -48,6 +48,5 @@ public class PlayerStat : MonoBehaviour {
 
 	public void DisplayRunStats(){
 		Debug.Log ("dist = " + maxDist + "; alt = " + maxAltitude + "; duration = " + totalDuration + "; vel = " + maxVelocity);
-
 	}
 }
