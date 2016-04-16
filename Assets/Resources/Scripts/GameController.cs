@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour {
 	private Vector3 locationFromCam;
 	private Camera cam;
 	private GroundPlatform groundPlatform;
+	private CanvasGroup scoreCanvas;
 
     void Awake() {
         if(m_instance == null) {
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour {
 		    groundPlatform = GameObject.Find("GroundPlatform").GetComponent<GroundPlatform>();
 		    cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find("Launcher").transform.position;
+			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<CanvasGroup>();
         }
         Debug.Log("GameController level loaded");
     }
@@ -57,4 +59,11 @@ public class GameController : MonoBehaviour {
 		cam.transform.position = new Vector3 (x, y, z);
         groundPlatform.MoveToPlayer(x);
     }
+
+	public void showScorePanel()
+	{
+		scoreCanvas.alpha = 1;
+		scoreCanvas.blocksRaycasts = true;
+		scoreCanvas.interactable = true;
+	}
 }
