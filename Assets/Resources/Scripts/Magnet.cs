@@ -6,7 +6,12 @@ public class Magnet : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider)
     {
         Magnetized magnetized = collider.gameObject.GetComponent<Magnetized>();
-        magnetized.magnet = gameObject;
+        if(magnetized == null) {
+            magnetized = collider.gameObject.AddComponent<Magnetized>();
+        }
+
+        GameObject parent = transform.parent.gameObject;
+        magnetized.magnet = parent != null ? parent : gameObject;
     }
 
     protected void ResizeRadius()
