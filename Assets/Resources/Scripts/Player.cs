@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 	{
         //pass the player position to the game controller and let that decide which other components to shuffle
         //Does this need to be in late update??
-        gc.updatePlayerPos(transform);
+        gc.UpdatePlayerPos(transform);
 	}
 
 	public void Fire (float angle, float force)
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 		
 	private void Stop()
 	{
-		gc.showScorePanel ();
+		gc.ShowScorePanel ();
 		//TODO: Detect when stop and transition to score dialog
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work
 		//playerStat.DisplayRunStats();
