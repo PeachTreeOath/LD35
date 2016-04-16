@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,13 +10,6 @@ public class VishnuStateController : MonoBehaviour {
 
     [SerializeField]
     public enum Avatar { MATSYA, KURMA, VARAHA, NARASIMHA, VAMANA, PARASHURAMA, RAMA, KRISHNA, BUDDHA, KALKI };
-
-    //Allows us to create and use scriptable object data
-    [MenuItem("Assets/Create/AbilityData")]
-    public static void CreateAsset() {
-        //dont ever use this
-        //CustomAssetUtility.CreateAsset<AbilityData>();
-    }
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from

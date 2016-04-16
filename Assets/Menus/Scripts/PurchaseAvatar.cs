@@ -13,13 +13,18 @@ public class PurchaseAvatar : MonoBehaviour {
 	
 	}
 
-    public void Purchase(string avatar)
+    public void Purchase(string avatarString)
     {
+        VishnuStateController.Avatar avatarEnum;
+        avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString);
         /* if(currency >= cost)
         {
             // TODO: decrease currency by avatar cost
             // TODO: increase avatar inventory in singleton
         }
         */
+        Debug.Log(@"avatarString: " + avatarString);
+        Debug.Log(string.Format(@"avatarEnum: {0}", avatarEnum));
+
     }
 }
