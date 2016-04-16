@@ -51,6 +51,11 @@ public class GameController : MonoBehaviour
 	
 	}
 
+    public GameObject getPlayerObj() {
+        return null;
+        //return playerObj; //TODO
+    }
+
 	//Input is new player position.  This figures out positions of other objects such as camera and bg.
 	public void UpdatePlayerPos (Transform playerPos)
 	{
