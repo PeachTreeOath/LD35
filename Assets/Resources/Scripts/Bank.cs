@@ -4,8 +4,9 @@ using System.Collections;
 public class Bank : MonoBehaviour {
     public int InitialMoney = 0;
 
-    public int MoneyThisRun { get; protected set; }
-    public int TotalMoney { get; protected set; }
+	public int MoneyThisRun;
+
+	public int TotalMoney;
 
     void Awake()
     {
@@ -14,7 +15,7 @@ public class Bank : MonoBehaviour {
 
     void OnLevelWasLoaded()
     {
-        MoneyThisRun = 0;
+       // MoneyThisRun = 0;
     }
 
     public void Add(int amount)
