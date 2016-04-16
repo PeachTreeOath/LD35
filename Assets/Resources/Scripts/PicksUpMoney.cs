@@ -9,15 +9,16 @@ public class PicksUpMoney : MonoBehaviour {
         bank = GameObject.Find("Singletons").GetComponent<Bank>();
     }
 
-    void onCollisionEnter(Collision collisionInfo)
+    void OnTriggerEnter2D(Collision2D collision)
     {
-        if (collisionInfo.collider.tag == "Money")
+        Debug.Log("enter the trigger!");
+        if (collision.collider.tag == "Money")
         {
-            Money money = collisionInfo.collider.gameObject.GetComponent<Money>();
+            Money money = collision.collider.gameObject.GetComponent<Money>();
             if (money != null)
             {
                 bank.money += money.value;
-            }
+            }  
         }
     }
 }
