@@ -73,7 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4174470cd2487041a5c68c00d3edb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minVelocityValue: 3
+  minDistanceTraveled: 0.015
+  timeToStop: 1
 --- !u!212 &21222958
 SpriteRenderer:
   m_ObjectHideFlags: 1

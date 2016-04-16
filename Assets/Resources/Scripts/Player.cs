@@ -5,10 +5,13 @@ public class Player : MonoBehaviour
 {
     GameController gc;
 
-	// Once player velocity is lower than this number, stop gameplay
-	public float minVelocityValue;
-
+	// Once player distance from prevPosition is below this
+	public float minDistanceTraveled = 0.5f;
+	// Once player is below min velocity for this long, stop gameplay
+	public float timeToStop = 1f;
+	private Vector2 prevPosition;
 	private Rigidbody2D body;
+	private float stopTimeElapsed;
 
     void Awake() {
         gc = GameController.instance;
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour
 	public void Init ()
 	{
 		body = GetComponent<Rigidbody2D> ();
+		prevPosition = transform.position;
         gc.test();        
 	}
 
@@ -29,10 +33,21 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		// Don't bounce if velocity is too small
-		if (body.velocity.x < minVelocityValue) {
-			Stop ();
+		float dist = Vector2.Distance (transform.position, prevPosition);
+		Debug.Log (dist);
+		if (dist < minDistanceTraveled) {
+			stopTimeElapsed += Time.deltaTime;
 		}
+		else
+		{
+			stopTimeElapsed = 0;
+		}
+		// Stop movement if too slow for too long
+		if (stopTimeElapsed > timeToStop) {
+			body.velocity = Vector2.zero;
+			Invoke ("Stop", 1f);
+		}
+		prevPosition = transform.position;
 	}
 
 	void LateUpdate ()
