@@ -5,7 +5,6 @@ using System;
 
 public class ScorePanel : MonoBehaviour
 {
-
 	public float Velocity = 50f;
 	private Text[] textArr;
 	private Bank bank;
@@ -49,7 +48,7 @@ public class ScorePanel : MonoBehaviour
 		int roundedAmount = Mathf.RoundToInt (dispCoin);
 		if (roundedAmount != coin) {
 			float direction = Mathf.Sign (coin - dispCoin);
-			dispCoin += Time.smoothDeltaTime * Velocity * direction;
+			dispCoin = Mathf.Clamp (dispCoin + (Time.smoothDeltaTime * coin), 0, coin);
 			roundedAmount = Mathf.RoundToInt (dispCoin);
 		}
 		coinValue.text = string.Format ("${0}", roundedAmount);
@@ -57,7 +56,7 @@ public class ScorePanel : MonoBehaviour
 		roundedAmount = Mathf.RoundToInt (dispDist);
 		if (roundedAmount != dist) {
 			float direction = Mathf.Sign (dist - dispDist);
-			dispDist += Time.smoothDeltaTime * Velocity * direction;
+			dispDist = Mathf.Clamp (dispDist + (Time.smoothDeltaTime * dist), 0, dist);
 			roundedAmount = Mathf.RoundToInt (dispDist);
 		}
 		distValue.text = string.Format ("${0}", roundedAmount);
@@ -65,7 +64,7 @@ public class ScorePanel : MonoBehaviour
 		roundedAmount = Mathf.RoundToInt (dispAlt);
 		if (roundedAmount != alt) {
 			float direction = Mathf.Sign (alt - dispAlt);
-			dispAlt += Time.smoothDeltaTime * Velocity * direction;
+			dispAlt = Mathf.Clamp (dispAlt + (Time.smoothDeltaTime * alt), 0, alt);
 			roundedAmount = Mathf.RoundToInt (dispAlt);
 		}
 		altValue.text = string.Format ("${0}", roundedAmount);
@@ -73,7 +72,7 @@ public class ScorePanel : MonoBehaviour
 		roundedAmount = Mathf.RoundToInt (dispDur);
 		if (roundedAmount != dur) {
 			float direction = Mathf.Sign (dur - dispDur);
-			dispDur += Time.smoothDeltaTime * Velocity * direction;
+			dispDur = Mathf.Clamp (dispDur + (Time.smoothDeltaTime * dur), 0, dur);
 			roundedAmount = Mathf.RoundToInt (dispDur);
 		}
 		durValue.text = string.Format ("${0}", roundedAmount);
@@ -81,15 +80,14 @@ public class ScorePanel : MonoBehaviour
 		roundedAmount = Mathf.RoundToInt (dispVel);
 		if (roundedAmount != vel) {
 			float direction = Mathf.Sign (vel - dispVel);
-			dispVel += Time.smoothDeltaTime * Velocity * direction;
+			dispVel = Mathf.Clamp (dispVel + (Time.smoothDeltaTime * vel), 0, vel);
 			roundedAmount = Mathf.RoundToInt (dispVel);
 		}
 		spdValue.text = string.Format ("${0}", roundedAmount);
 
 		roundedAmount = Mathf.RoundToInt (dispTotal);
 		if (roundedAmount != total) {
-			float direction = Mathf.Sign (vel - dispTotal);
-			dispTotal += Time.smoothDeltaTime * Velocity * direction;
+			dispTotal = Mathf.Clamp (dispTotal + (Time.smoothDeltaTime * total), 0, total);
 			roundedAmount = Mathf.RoundToInt (dispTotal);
 		}
 		totalValue.text = string.Format ("${0}", roundedAmount);
@@ -113,6 +111,8 @@ public class ScorePanel : MonoBehaviour
 		panel.Find ("AltText").GetComponent<Text> ().text = Convert.ToString (alt);
 		panel.Find ("DurText").GetComponent<Text> ().text = Convert.ToString (dur);
 		panel.Find ("SpdText").GetComponent<Text> ().text = Convert.ToString (vel);
+
+		CalculateTotalValue ();
 	}
 
 	private void CalculateTotalValue ()
