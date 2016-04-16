@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-	// Determines ground level to bounce off of
-	public float groundYValue;
 	// Once player velocity is lower than this number, stop gameplay
 	public float minVelocityValue;
 
@@ -36,7 +34,13 @@ public class Player : MonoBehaviour
 
 	void LateUpdate ()
 	{
-		cam.transform.position = transform.position + locationFromCam;
+		float x = transform.position.x + locationFromCam.x;
+		float y = 0;
+		float z = cam.transform.position.z;
+		if (transform.position.y > 0) {
+			y = transform.position.y;	
+		}
+		cam.transform.position = new Vector3 (x, y, z);
 	}
 
 	public void Fire (float angle, float force)
