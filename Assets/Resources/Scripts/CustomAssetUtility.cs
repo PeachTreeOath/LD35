@@ -24,11 +24,18 @@ public static class CustomAssetUtility {
 
     //if you call ScriptableObject.CreateInstance this will need to be invoked for persistance
     public static void AddAssetToDB(string folder, ScriptableObject obj) {
-
-        string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(folder + "/" + obj.name + ".asset");
-        Debug.Log("Adding object asset: " + assetPathAndName);
-        AssetDatabase.CreateAsset(obj, assetPathAndName);
-        AssetDatabase.SaveAssets();
+        if (!AssetDatabase.Contains(obj)) {
+            Debug.Log("Folder is " + folder);
+            string name = obj.name;
+            if(name == null || name.Length == 0) {
+                name = "assetObj";
+            }
+            Debug.Log("Object is " + name);
+            string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(folder + "/" + name + ".asset");
+            Debug.Log("Adding object asset: " + assetPathAndName);
+            AssetDatabase.CreateAsset(obj, assetPathAndName);
+            AssetDatabase.SaveAssets();
+        }
 
     }
 
