@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 //General state for the game
 public class GameController : MonoBehaviour {
@@ -20,15 +21,23 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    void OnLevelWasLoaded(int level) {
+        if(SceneManager.GetActiveScene().name.Equals("TitleScreen")){
+            //no cam to load?
+        } else {
+		    groundPlatform = GameObject.Find("GroundPlatform").GetComponent<GroundPlatform>();
+		    cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
+        }
+        Debug.Log("GameController level loaded");
+    }
+
     public void test() {
         Debug.Log("Yolo");
     }
 
 	// Use this for initialization
 	void Start () {
-		groundPlatform = GameObject.Find("GroundPlatform").GetComponent<GroundPlatform>();
-		cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
-        Debug.Log("GameController started");	
+        OnLevelWasLoaded(Application.loadedLevel);
 	}
 	
 	// Update is called once per frame
