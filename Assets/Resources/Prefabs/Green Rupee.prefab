@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11453030}
   - 61: {fileID: 6177064}
   - 50: {fileID: 5077168}
+  - 114: {fileID: 11451640}
   m_Layer: 8
   m_Name: Green Rupee
   m_TagString: Money
@@ -62,6 +63,21 @@ BoxCollider2D:
   m_Offset: {x: -0.003627777, y: -0.0035963058}
   serializedVersion: 2
   m_Size: {x: 0.1296908, y: 0.24447846}
+--- !u!114 &11451640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9248ac30931cbf488617d8d60d9a975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnet: {fileID: 0}
+  stiffness: 100
+  damping: 50
+  minimumDistance: 2.5
 --- !u!114 &11453030
 MonoBehaviour:
   m_ObjectHideFlags: 1
