@@ -493,7 +493,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251999586
@@ -528,13 +528,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'LD35
-
-    AVATARS
-
-    OF
-
-    VISHNU'
+  m_Text: VISHNU LAUNCH
 --- !u!222 &1251999587
 CanvasRenderer:
   m_ObjectHideFlags: 0
