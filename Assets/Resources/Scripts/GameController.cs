@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 	private Vector3 locationFromCam;
 	private Camera cam;
 	private GroundPlatform groundPlatform;
-	private CanvasGroup scoreCanvas;
+	private ScorePanel scoreCanvas;
     private LevelGenerator levelGen;
     private LevelTile currentLevelTile;
     private LevelTile nextLevelTile;
