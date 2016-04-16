@@ -102,6 +102,7 @@ public class VishnuStateController : MonoBehaviour {
     public void transitionToNextAvatar(int nextIndex, float msDelay = 0) {
         curAvatarIndex = nextIndex; //TODO factor in time
         Ability newAbilities = abilities[getCurrentAvatar()];
+        changePlayerAttributes(newAbilities);
         Debug.Log("Avatar transition complete");
     }
 

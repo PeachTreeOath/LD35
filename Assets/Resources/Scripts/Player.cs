@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+        gc.setPlayer(this.gameObject);
 	}
 
 	// Update is called once per frame
