@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21235582}
   - 114: {fileID: 11453030}
   - 61: {fileID: 6177064}
+  - 50: {fileID: 5062842}
   m_Layer: 0
   m_Name: Green Rupee
   m_TagString: Money
@@ -25,11 +26,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7296486, y: -2.7385302, z: 0}
+  m_LocalPosition: {x: -6.74, y: -3.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5062842
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116800}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6177064
 BoxCollider2D:
   m_ObjectHideFlags: 1
