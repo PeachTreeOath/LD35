@@ -9,286 +9,102 @@ using System;
 public class AbilityData {
 
     [SerializeField]
-    public List<AvatarAbilityEntry> ents;
+    public List<AvatarAbilityEntry> ents = new List<AvatarAbilityEntry>();
 
     AbilityData() {
-        ents = getAll();
+        AddEntry(
+           AvatarAbilityEntry.For(VishnuStateController.Avatar.NONE)
+           .Set(Ability.AtLevel(1)
+               .Drag(0))
+           .Set(Ability.AtLevel(10)
+               .Drag(10))
+       );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.MATSYA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.KURMA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.VARAHA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.NARASIMHA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.VAMANA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.PARASHURAMA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.RAMA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.KRISHNA)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
+
+        AddEntry(
+           AvatarAbilityEntry.For(VishnuStateController.Avatar.BUDDHA)
+           .Set(Ability.AtLevel(1)
+               .Drag(0))
+           .Set(Ability.AtLevel(10)
+               .Drag(10))
+       );
+
+        AddEntry(
+            AvatarAbilityEntry.For(VishnuStateController.Avatar.KALKI)
+            .Set(Ability.AtLevel(1)
+                .Drag(0))
+            .Set(Ability.AtLevel(10)
+                .Drag(10))
+        );
     }
 
+    public void AddEntry(AvatarAbilityEntry entry) { ents.Add(entry);  }
+
     public List<AvatarAbilityEntry> getAll() {
-        List<AvatarAbilityEntry> entries = new List<AvatarAbilityEntry>();
-
-        Ability a;
-        AvatarAbilityEntry e;
-        VishnuStateController.Avatar aType;
-
-        ////////////////////////////////////////////////////////////////
-        aType = VishnuStateController.Avatar.NONE;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-
-        ////
-        aType = VishnuStateController.Avatar.MATSYA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.KURMA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.VARAHA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.NARASIMHA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.VAMANA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.PARASHURAMA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.RAMA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.KRISHNA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.BUDDHA;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-        ////
-        aType = VishnuStateController.Avatar.KALKI;
-        a = new Ability();
-        a.launchForce = 0;
-        a.mass = 0;
-        a.drag = 0;
-        a.liftForce = 0;
-        a.bounciness = 0;
-        a.jumpForce = 0;
-        a.magnetoForce = 0;
-        a.diveForce = 0;
-        //ability mods
-        a.launchForceMult = 0;
-        a.massMult = 0;
-        a.dragMult = 0;
-        a.liftForceMult = 0;
-        a.bouncinessMult = 0;
-        a.jumpForceMult = 0;
-        a.magnetoForceMult = 0;
-        a.diveForceMult = 0;
-        e = new AvatarAbilityEntry();
-        e.construct(aType, a);
-        entries.Add(e);
-        ///////
-
-
-        return entries;
+        return ents;
     }
 
 }

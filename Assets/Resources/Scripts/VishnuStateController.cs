@@ -58,7 +58,7 @@ public class VishnuStateController : MonoBehaviour {
         }
 
         foreach(AvatarAbilityEntry ent in abilityDataRef.getAll()){
-            abilities[ent.avatar] = ent.abilities; 
+            abilities[ent.avatar] = ent.GetAbilityAtLevel(5); 
         }
         Debug.Log("Abilities loaded!");
     }
