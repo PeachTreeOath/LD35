@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 
 [Serializable]
-public class Ability : ScriptableObject {
+public class Ability {
 
     //base ability values
     [SerializeField]

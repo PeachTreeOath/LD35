@@ -15,7 +15,8 @@ public class VishnuStateController : MonoBehaviour {
     //Allows us to create and use scriptable object data
     [MenuItem("Assets/Create/AbilityData")]
     public static void CreateAsset() {
-        CustomAssetUtility.CreateAsset<AbilityData>();
+        //dont ever use this
+        //CustomAssetUtility.CreateAsset<AbilityData>();
     }
 
     [SerializeField]

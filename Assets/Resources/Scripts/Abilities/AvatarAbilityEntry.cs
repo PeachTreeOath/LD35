@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 
 [Serializable]
-public class AvatarAbilityEntry : ScriptableObject {
+public class AvatarAbilityEntry {
 
     [SerializeField]
     public VishnuStateController.Avatar avatar;
