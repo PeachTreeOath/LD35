@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 		float dist = Vector2.Distance (transform.position, prevPosition);
-		Debug.Log (dist);
+
 		if (dist < minDistanceTraveled) {
 			stopTimeElapsed += Time.deltaTime;
 		}
