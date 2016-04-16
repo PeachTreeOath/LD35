@@ -119,8 +119,7 @@ public class LaunchController : MonoBehaviour {
 
         //handle inputs
         if (Input.GetButtonDown("Fire1") && !isAngleSet)
-        {
-
+		{
             angleSelected = angleDisplayed;
             isAngleSet = true;
         }
@@ -130,8 +129,6 @@ public class LaunchController : MonoBehaviour {
             isPowerSet = true;
             launcher.LaunchPlayer(angleSelected, powerDisplayed * 10);
         }
-
-        
 
     }
 }
