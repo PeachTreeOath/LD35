@@ -70,4 +70,17 @@ public class Player : MonoBehaviour
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work
 		Application.LoadLevel ("TitleScreen");
 	}
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Obstacle")
+        {
+            Obstacle obstacle = collider.gameObject.GetComponent<Obstacle>();
+            if (obstacle != null)
+            {
+                body.AddForce(obstacle.velocityChange);
+                obstacle.Remove();
+            }
+        }
+    }
 }

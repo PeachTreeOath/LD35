@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bee1595b53b054d856731be8119f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityChange: {x: 0, y: 0}
+  velocityChange: {x: 0, y: 1000}
 --- !u!1001 &717902236
 Prefab:
   m_ObjectHideFlags: 0
