@@ -1,26 +1,21 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class AvatarAbilityEntry : ScriptableObject {
 
+    [SerializeField]
     public VishnuStateController.Avatar avatar;
+    [SerializeField]
     public Ability abilities;
 
-    public AvatarAbilityEntry() {
-        //name = "AvatarAbility";
-    }
 
-    public AvatarAbilityEntry(VishnuStateController.Avatar avatar, Ability abilities) {
+    public AvatarAbilityEntry construct(VishnuStateController.Avatar avatar, Ability abilities) {
         this.avatar = avatar;
         this.abilities = abilities;
+        return this;
     }
 
-
-    //This is not ready for primetime yet
-    [MenuItem("Assets/Create/AvatarAbilityEntry")]
-    public static void CreateAsset() {
-        CustomAssetUtility.CreateAsset<AvatarAbilityEntry>();
-    }
 }

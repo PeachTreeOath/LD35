@@ -9,7 +9,14 @@ public class VishnuStateController : MonoBehaviour {
     //Singleton accessor for this obj. I think this will work...
     public static VishnuStateController instance { get { return m_instance; } }
 
+    [SerializeField]
     public enum Avatar { MATSYA, KURMA, VARAHA, NARASIMHA, VAMANA, PARASHURAMA, RAMA, KRISHNA, BUDDHA, KALKI };
+
+    //Allows us to create and use scriptable object data
+    [MenuItem("Assets/Create/AbilityData")]
+    public static void CreateAsset() {
+        CustomAssetUtility.CreateAsset<AbilityData>();
+    }
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from
