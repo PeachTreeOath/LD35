@@ -18,6 +18,7 @@ public class Ability {
 
     public float liftForce;
     public float bounciness;
+	public float buddhaBounciness;
     public float moneyGain;
     public float jumpForce;
     public float diveForce;
@@ -47,6 +48,7 @@ public class Ability {
     public Ability Drag(float value) { drag = value; return this; }
     public Ability LiftForce(float value) { liftForce = value; return this; }
     public Ability Bounciness(float value) { bounciness = value; return this; }
+	public Ability BuddhaBounciness(float value) { buddhaBounciness = value; return this; }
     public Ability MoneyGain(float value) { moneyGain = value;  return this; }
     public Ability JumpForce(float value) { jumpForce = value; return this; }
     public Ability DiveForce(float value) { diveForce = value; return this; }
@@ -67,6 +69,7 @@ public class Ability {
         ability.drag = Mathf.Lerp(min.drag, max.drag, t);
         ability.liftForce = Mathf.Lerp(min.liftForce, max.liftForce, t);
         ability.bounciness = Mathf.Lerp(min.bounciness, max.bounciness, t);
+		ability.buddhaBounciness = Mathf.Lerp(min.buddhaBounciness, max.bounciness, t);
         ability.jumpForce = Mathf.Lerp(min.jumpForce, max.jumpForce, t);
         ability.diveForce = Mathf.Lerp(min.diveForce, max.diveForce, t);
         ability.magnetRange = Mathf.Lerp(min.magnetRange, max.magnetRange, t);

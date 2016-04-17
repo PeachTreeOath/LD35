@@ -1,37 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bounciness : MonoBehaviour {
+public class Bounciness : MonoBehaviour
+{
 
-    public PhysicsMaterial2D groundMaterial;
+	private BoxCollider2D platform;
+	public float initialBounciness = 0.4f;
+	private float bounciness = 0;
+	public float newBounciness;
+	private float statToPhysicsMult = 1;
+	private bool disableBounce;
 
-    private float? initialBounciness = null;
+	public float Value {
+		get { return bounciness; }
+		set {
+			bounciness = value;
+			UpdateBounciness ();
+		}
+	}
 
-    private float bounciness = 0;
-    private float statToPhysicsMult = 1;
+	public bool NoBounce {
+		get { return disableBounce; }
+		set {
+			bool prevValue = disableBounce;
+			disableBounce = value;
 
-    public float Value
-    {
-        get { return bounciness; }
-        set
-        {
-            bounciness = value;
-            UpdateBounciness();
-        }
-    }
+			if (prevValue != disableBounce) {
+				UpdateBounciness ();
+			}
+		}
+	}
 
-    void Start() {
-        UpdateInitialBounciness();
-    }
+	void Start ()
+	{
+		//  UpdateInitialBounciness();
+		platform = GameObject.Find ("GroundPlatform").GetComponent<BoxCollider2D> ();
+	}
 
-	void UpdateBounciness() {
-        UpdateInitialBounciness();
-        groundMaterial.bounciness = (float)initialBounciness + bounciness * statToPhysicsMult;
-    }
+	void UpdateBounciness ()
+	{
+		if (platform == null) {
+			platform = GameObject.Find ("GroundPlatform").GetComponent<BoxCollider2D> ();
+		}
 
-    void UpdateInitialBounciness()
-    {
-        if (initialBounciness == null)
-            initialBounciness = groundMaterial.bounciness;
-    }
+		PhysicsMaterial2D newGroundMaterial = new PhysicsMaterial2D ();
+		newBounciness = initialBounciness + bounciness * statToPhysicsMult;
+		newBounciness = NoBounce ? 0f : newBounciness;
+		newGroundMaterial.bounciness = newBounciness;
+		platform.sharedMaterial = newGroundMaterial;
+	}
 }

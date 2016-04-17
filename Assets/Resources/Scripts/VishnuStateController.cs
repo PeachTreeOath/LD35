@@ -28,13 +28,11 @@ public class VishnuStateController : MonoBehaviour
 
 	;
 
-	public enum State
-	{
+	public enum State {
 		PRE_FLIGHT,
 		FLIGHT,
-		NONE}
-
-	;
+		NONE
+    };
 
 	private State state = State.NONE;
 	private bool pendingUpdate = false;
@@ -260,7 +258,8 @@ public class VishnuStateController : MonoBehaviour
 		rb.drag = a.drag * a.dragMult;
 
 		player.GetComponentInChildren<Magnet> ().Range = a.magnetRange;
-        player.GetComponent<Bounciness>().Value = a.bounciness;
+		player.GetComponent<Bounciness>().Value = GetBounciness() + a.buddhaBounciness;
+        player.GetComponent<DiveKick>().Value = a.diveKick;
     }
 
 	public void changePlayerSprite (Avatar avatar)
