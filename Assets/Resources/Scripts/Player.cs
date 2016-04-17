@@ -65,8 +65,7 @@ public class Player : MonoBehaviour
 			playerStat.SetRunDuration (Time.time - launchTime);
 			Invoke ("Stop", 1f);
 		}
-		prevPosition = transform.position;
-
+			
 		//LOL DAVE PLS
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			body.velocity = Vector2.zero;
@@ -75,9 +74,8 @@ public class Player : MonoBehaviour
 
 	void LateUpdate ()
 	{
-		//pass the player position to the game controller and let that decide which other components to shuffle
-		//Does this need to be in late update??
 		gc.UpdatePlayerPos (transform.position, prevPosition);
+		prevPosition = transform.position;
 	}
 
 	public void Fire (float angle, float force)
