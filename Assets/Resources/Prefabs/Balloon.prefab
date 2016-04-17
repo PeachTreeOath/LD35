@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 413840}
   - 212: {fileID: 21269830}
-  - 114: {fileID: 11435554}
   - 58: {fileID: 5897050}
+  - 114: {fileID: 11481244}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -44,7 +44,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
---- !u!114 &11435554
+--- !u!114 &11481244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bee1595b53b054d856731be8119f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityChange: {x: 0, y: 0}
+  velocityChange: {x: 0, y: 500}
 --- !u!212 &21269830
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -98,12 +98,25 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D collider)
 	{
-		if (collider.tag == "Obstacle") {
-			Obstacle obstacle = collider.gameObject.GetComponent<Obstacle> ();
-			if (obstacle != null) {
-				body.AddForce (obstacle.velocityChange);
-				obstacle.Remove ();
+        ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector>();
+		if (obstacleVector != null) {
+			if (obstacleVector != null) {
+				body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
+				obstacleVector.Remove ();
 			}
 		}
-	}
+
+        ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar>();
+        if (obstacleScalar != null)
+        {
+            if (obstacleScalar != null)
+            {
+                Vector2 playerVel = body.velocity;
+                Vector2 scalarVector = new Vector2(obstacleScalar.scalar * playerVel.x, obstacleScalar.scalar * playerVel.y);
+                
+                body.AddForce(scalarVector, ForceMode2D.Impulse);
+                obstacleScalar.Remove();
+            }
+        }
+    }
 }
