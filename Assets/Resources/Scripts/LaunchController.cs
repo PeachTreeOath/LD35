@@ -43,6 +43,7 @@ public class LaunchController : MonoBehaviour {
         powerText = textValue[2];
         
 		powerCircle = spriteValue[1]; 
+		powerCircle.enabled = false;
 		arrow = spriteValue [2]; 
 
 		lastTick = Time.time;
@@ -123,6 +124,7 @@ public class LaunchController : MonoBehaviour {
 		{
             angleSelected = angleDisplayed;
             isAngleSet = true;
+			powerCircle.enabled = true;
         }
         else if (Input.GetButtonDown("Fire1") && !isPowerSet)
         {
