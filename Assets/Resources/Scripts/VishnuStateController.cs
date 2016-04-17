@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Resources.Scripts;
+using System;
 
 //Use this for checking/transitioning vishnu's avatar
 public class VishnuStateController : MonoBehaviour {
@@ -18,6 +19,7 @@ public class VishnuStateController : MonoBehaviour {
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from
     private Dictionary<Avatar, AvatarAbilityEntry> abilityEntries = new Dictionary<Avatar, AvatarAbilityEntry>();
+    private Dictionary<Avatar, Sprite> avatarSprites = new Dictionary<Avatar, Sprite>();
 
     private Dictionary<Avatar, AvatarInstance> avatarInstances = new Dictionary<Avatar, AvatarInstance>();
     private AvatarInstance noneAvatarInstance = null;
@@ -63,10 +65,20 @@ public class VishnuStateController : MonoBehaviour {
             return;
         }
 
+        abilityEntries.Clear();
         foreach(AvatarAbilityEntry ent in abilityDataRef.getAll()){
             abilityEntries[ent.avatar] = ent; 
         }
         Debug.Log("Abilities loaded!");
+    }
+
+    private void LoadSprites()
+    {
+        avatarSprites.Clear();
+        foreach(Avatar avatar in Enum.GetValues(typeof(Avatar))) {
+            string textureName = GetSpriteTextureName(avatar);
+            avatarSprites[avatar] = Resources.Load<Sprite>(textureName);
+        }
     }
 
     public AvatarInstance getAvatarInstanceForSlot(int slot)
@@ -119,6 +131,7 @@ public class VishnuStateController : MonoBehaviour {
             int level = 1; //TODO get level of current inventory
             avatarInstances[avatar] = new AvatarInstance(abilityEntries[avatar], level);
         }
+        transitionToNextAvatar(0);
 
         state = State.PRE_FLIGHT;
     }
@@ -172,8 +185,11 @@ public class VishnuStateController : MonoBehaviour {
     //Using a numerical index, start a transition from the current index to the next
     public void transitionToNextAvatar(int nextIndex, float msDelay = 0) {
         curAvatarIndex = nextIndex; //TODO factor in time
-        Ability newAbilities = getCurrentAvatarInstance().abilities;
-        changePlayerAttributes(newAbilities);
+
+        AvatarInstance avatarInstance = getCurrentAvatarInstance();
+        changePlayerAttributes(avatarInstance.abilities);
+        changePlayerSprite(avatarInstance.avatar);
+        
         Debug.Log("Avatar transition complete");
     }
 
@@ -195,6 +211,30 @@ public class VishnuStateController : MonoBehaviour {
         rb.drag = a.drag * a.dragMult;
 
 
+    }
+
+    public void changePlayerSprite(Avatar avatar)
+    {
+        GameObject player = GameController.instance.getPlayerObj();
+        SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
+
+        sr.sprite = avatarSprites[avatar];
+    }
+
+    public string GetSpriteTextureName(Avatar avatar)
+    {
+        switch (avatar)
+        {
+            case Avatar.BUDDHA: return "Textures/Buddah";
+            case Avatar.RAMA: return "Textures/Rama";
+            case Avatar.PARASHURAMA: return "Textures/VishnuAxe";
+            case Avatar.MATSYA: return "Textures/VishnuFish";
+            case Avatar.KURMA: return "Textures/VishnuTurtle";
+            case Avatar.VARAHA: return "Textures/Boar";
+            case Avatar.VAMANA: return "Textures/Vishnu";
+
+            default: return "Textures/Vishnu";
+        }
     }
 
 }

@@ -8,7 +8,7 @@ namespace Assets.Resources.Scripts
 {
     public class AvatarInstance
     {
-        private VishnuStateController.Avatar avatar;
+        public VishnuStateController.Avatar avatar { get; private set; }
 
         private float maxLevelEnergy = 0;
         private float energyRemaining = 0;
@@ -18,7 +18,7 @@ namespace Assets.Resources.Scripts
 
         public float EnergyRemaining { get { return Math.Max(energyRemaining, 0f); } }
         public bool IsAvailable {  get { return EnergyRemaining > 0; } }
-        
+
         public AvatarInstance(AvatarAbilityEntry entry, int level)
         {
             avatar = entry.avatar;
@@ -27,18 +27,6 @@ namespace Assets.Resources.Scripts
             maxLevelEnergy = entry.GetAbilityAtLevel(entry.GetMaxAbilityLevel()).energy;
             energyRemaining = abilities.energy;
             drainRate = abilities.drainRate;
-        }        
-
-        public string GetSpriteTextureName() { 
-            switch(avatar) {
-                case VishnuStateController.Avatar.BUDDHA: return "Textures/";
-                case VishnuStateController.Avatar.PARASHURAMA: return "Textures/VishnuAxe";
-                case VishnuStateController.Avatar.MATSYA: return "Textures/VishnuFish";
-                case VishnuStateController.Avatar.KURMA: return "Textures/VishnuTurtle";
-                case VishnuStateController.Avatar.VARAHA: return "Textures/Boar";
-
-                default: return "Textures/Vishnu"; 
-            }
         }
 
         public void Update()
