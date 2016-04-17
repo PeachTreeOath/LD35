@@ -7,7 +7,7 @@ public class ShiftGridIcon : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SetEnergy(new Energy(500, 100, 100));
+       // SetEnergy(new Energy(500, 100, 100));
     }
 	
 	// Update is called once per frame

@@ -19,17 +19,16 @@ public class MoneyDisplay : MonoBehaviour {
 
     void Start()
     {
-        displayAmount = bank.MoneyThisRun;
+		displayAmount = bank.TotalMoney;
     }
 
     void LateUpdate()
     {
         int roundedAmount = Mathf.RoundToInt(displayAmount);
-        if(roundedAmount != bank.MoneyThisRun)
+		if(roundedAmount != bank.TotalMoney)
         {
-			float difference = bank.MoneyThisRun - displayAmount;
+			float difference = bank.TotalMoney - displayAmount;
 			displayAmount += Time.smoothDeltaTime * difference * velocity;
-
             roundedAmount = Mathf.RoundToInt(displayAmount);
         }
 

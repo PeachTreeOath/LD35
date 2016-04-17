@@ -51,7 +51,7 @@ public class ScorePanel : MonoBehaviour
 		durValue = panel.Find ("DurValue").GetComponent<Text> ();
 		spdValue = panel.Find ("SpdValue").GetComponent<Text> ();
 		totalValue = panel.Find ("TotalValue").GetComponent<Text> ();
-		coin = bank.MoneyThisRun;
+
 	}
 	
 	// Update is called once per frame
@@ -112,6 +112,7 @@ public class ScorePanel : MonoBehaviour
 		group.blocksRaycasts = true;
 		group.interactable = true;
 
+		coin = bank.MoneyThisRun;
 		dist = Mathf.RoundToInt (maxDist * distModifier);
 		alt = Mathf.RoundToInt (maxAltitude * altModifier);
 		dur = Mathf.RoundToInt (duration * durModifier);
@@ -137,7 +138,7 @@ public class ScorePanel : MonoBehaviour
 
 		int intChange = Mathf.RoundToInt (totalChange);
 
-		bank.MoneyThisRun += intChange;
+		bank.Add(intChange);
 		total = intChange + coin;
 	}
 }
