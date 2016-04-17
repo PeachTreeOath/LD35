@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Money
   - Obstacle
+  - FriendlyObstacle
   layers:
   - Default
   - TransparentFX
