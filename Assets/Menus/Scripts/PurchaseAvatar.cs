@@ -3,8 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
-public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler {
+public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
     public int cost;
     public int amount;
     private Text costText;
@@ -13,8 +15,33 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler {
     private Inventory inventory;
     private VishnuStateController.Avatar avatarEnum;
     private string avatarString;
+    Dictionary<VishnuStateController.Avatar, AvatarPassiveStats> avatarPassives;
+    struct AvatarPassiveStats
+    {
+        public string stat1;
+        public string stat2;
+        public string desc;
+
+        public AvatarPassiveStats(string value1, string value2, string value3)
+        {
+            stat1 = value1;
+            stat2 = value2;
+            desc = value3;
+        }
+    }
 
     void Start () {
+        avatarPassives = new Dictionary<VishnuStateController.Avatar, AvatarPassiveStats>();
+        avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats("StatBounce", "StatObs", "Not slowed in water");
+        avatarPassives[VishnuStateController.Avatar.KURMA] = new AvatarPassiveStats("StatAir", "StatObs", "Prevents momentum loss");
+        avatarPassives[VishnuStateController.Avatar.VARAHA] = new AvatarPassiveStats("StatLaunch", "StatObs", "Runs on the ground");
+        avatarPassives[VishnuStateController.Avatar.NARASIMHA] = new AvatarPassiveStats("StatBounce", "StatMagnet", "Eats animals for power");
+        avatarPassives[VishnuStateController.Avatar.VAMANA] = new AvatarPassiveStats("StatBounce", "StatAir", "Floats with umbrella");
+        avatarPassives[VishnuStateController.Avatar.PARASHURAMA] = new AvatarPassiveStats("StatLaunch", "StatMagnet", "Dives down with attack");
+        avatarPassives[VishnuStateController.Avatar.RAMA] = new AvatarPassiveStats("StatMagnet", "StatObs", "Jumps upward");
+        avatarPassives[VishnuStateController.Avatar.KRISHNA] = new AvatarPassiveStats("StatLaunch", "StatAir", "Increase money gained");
+        avatarPassives[VishnuStateController.Avatar.BUDDHA] = new AvatarPassiveStats("StatLaunch", "StatMagnet", "Big bounce");
+        avatarPassives[VishnuStateController.Avatar.KALKI] = new AvatarPassiveStats("", "", "Completes the game");
         avatarString = transform.FindChild("Avatar").GetComponent<Text>().text;
         avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString.ToUpper());
         inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
@@ -61,6 +88,34 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler {
 	public void OnPointerEnter(PointerEventData dataName)
 	{
 		Debug.Log ("Im in " + gameObject.name);
-	}
+        VishnuStateController.Avatar avatarHover = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(gameObject.name.ToUpper());
+        try
+        {
+            GameObject.Find("ActiveDescription").GetComponent<Text>().text = "Description\n" + avatarPassives[avatarHover].desc;
+            HighlightPower(avatarPassives[avatarHover].stat1, Color.cyan);
+            HighlightPower(avatarPassives[avatarHover].stat2, Color.cyan);
+            
+        }
+        catch (Exception)
+        {
+            Debug.Log("Exception in " + gameObject.name);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData dataName)
+    {
+        Debug.Log("Exiting " + gameObject.name);
+        GameObject.Find("ActiveDescription").GetComponent<Text>().text = "Description";
+        HighlightPower("StatLaunch", Color.black);
+        HighlightPower("StatBounce", Color.black);
+        HighlightPower("StatAir", Color.black);
+        HighlightPower("StatObs", Color.black);
+        HighlightPower("StatMagnet", Color.black);
+    }
+
+    private void HighlightPower(string stat, Color color)
+    {
+        GameObject.Find(stat).GetComponent<Text>().color = color;
+    }
 
 }
