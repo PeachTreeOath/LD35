@@ -34,29 +34,27 @@ public class VishnuStateController : MonoBehaviour {
     private List<Avatar> avatarSlot = new List<Avatar>(); //0-based index for each slot.
 
     
-    
+    void SetInitialState()
+    {
+        List<Avatar> newSpheres = new List<Avatar>();
+        newSpheres.Add(Avatar.BUDDHA);
+        newSpheres.Add(Avatar.PARASHURAMA);
+
+        updateAvatars(newSpheres);
+    }
 
     void Awake() {
         if (m_instance == null) {
             m_instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAbilityData();
-            DEBUG_ADD_AVATAR(); //TODO REMOVER
-        }else if(m_instance != null && m_instance != this) {
+            SetInitialState();
+        }
+        else if(m_instance != null && m_instance != this) {
             Debug.Log("Deleting singleton Dup.  Someone screwed up");
             Destroy(gameObject);
             return;
         }
-    }
-
-    //FIXME delete references to this before release!
-    private void DEBUG_ADD_AVATAR() {
-        Debug.Log("Performing debug add avatars!");
-        List<Avatar> newSpheres = new List<Avatar>();
-        newSpheres.Add(Avatar.BUDDHA);
-        newSpheres.Add(Avatar.KALKI);
-        newSpheres.Add(Avatar.PARASHURAMA);
-        updateAvatars(newSpheres);
     }
 
     private void LoadAbilityData() {
@@ -198,7 +196,5 @@ public class VishnuStateController : MonoBehaviour {
 
 
     }
-
-
 
 }

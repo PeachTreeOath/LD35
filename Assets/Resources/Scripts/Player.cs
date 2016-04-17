@@ -41,16 +41,13 @@ public class Player : MonoBehaviour
 	{
 		float dist = Vector2.Distance (transform.position, prevPosition);
 
-		flightTime += Time.deltaTime;
-		//FIXME temp transition test code
-		if (flightTime > 2.0) {
-			Debug.Log ("TEMP ASCENTION");
-			VishnuStateController.instance.transitionToNextAvatar (1);
-			flightTime = 0;
-		}
-		//FIXME temp transition test code
-
-
+        flightTime += Time.deltaTime;
+        //FIXME temp transition test code
+        if(flightTime > 2.0) {
+            //Debug.Log("TEMP ASCENTION");
+            //VishnuStateController.instance.transitionToNextAvatar(1);
+            flightTime = 0;
+        }
 
 		if (dist < minDistanceTraveled) {
 			stopTimeElapsed += Time.deltaTime;
