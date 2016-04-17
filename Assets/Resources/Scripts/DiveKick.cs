@@ -17,7 +17,8 @@ public class DiveKick : MonoBehaviour
 	{
 		NONE,
 		DIVING,
-		RECOVERING
+		RECOVERING,
+		ROLLING
 
 	}
 
@@ -103,6 +104,15 @@ public class DiveKick : MonoBehaviour
 		}
 
 		return false;
+	}
+
+	public void RollingOnGround(float deltaTime)
+	{
+		state = State.ROLLING;
+		float scalar = -1f * deltaTime;
+		Vector2 playerVel = body.velocity;
+		Vector2 scalarVector = new Vector2 (scalar * playerVel.x, scalar * playerVel.y);
+		body.AddForce (scalarVector, ForceMode2D.Impulse);
 	}
 
 	private void Recover()
