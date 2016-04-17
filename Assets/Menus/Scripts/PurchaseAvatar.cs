@@ -20,7 +20,7 @@ public class PurchaseAvatar : MonoBehaviour {
     }
 	
 	void LateUpdate () {
-        costText.text = string.Format(@"{0}", cost);
+        costText.text = string.Format(@"${0}", cost);
         amountText.text = string.Format(@"{0}", amount);
 	}
 
