@@ -13,8 +13,8 @@ public class Ability {
 
     //base ability values
     public float launchForce;
-    public float mass;
-    public float drag;
+    public float mass = 1;
+    public float drag = 0.5f;
     public float liftForce;
     public float bounciness;
     public float jumpForce;
