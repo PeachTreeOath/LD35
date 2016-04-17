@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class PurchaseAvatar : MonoBehaviour {
     public int cost;
@@ -11,12 +12,16 @@ public class PurchaseAvatar : MonoBehaviour {
     private Inventory inventory;
 
     void Start () {
-        cost = 1;
-        amount = 0;
         costText = transform.Find("Cost").GetComponent<Text>();
         amountText = transform.Find("Amount").GetComponent<Text>();
         inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
         bank = GameObject.Find("Singletons").GetComponent<Bank>();
+    }
+
+    void Awake()
+    {
+        amount = inventory.GetAvatarInventory(VishnuStateController.Avatar.MATSYA);
+        cost = amount + 1;
     }
 	
 	void LateUpdate () {
@@ -26,15 +31,16 @@ public class PurchaseAvatar : MonoBehaviour {
 
     public void Purchase(string avatarString)
     {
+        Debug.Log(@"Entered Purchase: " + avatarString);
         VishnuStateController.Avatar avatarEnum;
         avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString);
-
         if (bank.TotalMoney > cost)
         {
-            cost += inventory.GetAvatarInventory(avatarEnum)+1;
+            cost += inventory.GetAvatarInventory(avatarEnum) + 1;
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
             amount = inventory.GetAvatarInventory(avatarEnum);
         }
+
     }
 }
