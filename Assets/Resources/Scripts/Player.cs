@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 	private float flightTime = 0;
 	private bool isStopped;
 	private float launchTime;
+	private DiveKick dk;
 
 	void Awake ()
 	{
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
 	public void Init ()
 	{
 		body = GetComponent<Rigidbody2D> ();
+		dk = GetComponent<DiveKick> ();
 		prevPosition = transform.position;
         gc.setPlayer(this.gameObject);
     }
@@ -149,6 +151,14 @@ public class Player : MonoBehaviour
         if (continueProcessing)
             OnObstacleEnter(collider);
     }
+
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Ground") {
+			dk.RollingOnGround(Time.deltaTime);
+		}
+	}
 
     bool OnObstacleEnter(Collider2D collider) { 
 		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
