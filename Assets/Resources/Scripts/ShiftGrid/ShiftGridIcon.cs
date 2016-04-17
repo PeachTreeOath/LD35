@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class ShiftGridIcon : MonoBehaviour {
 
+    public int slot;
+
 	// Use this for initialization
 	void Start () {
-       // SetEnergy(new Energy(500, 100, 100));
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+        AvatarInstance instance = VishnuStateController.instance.getAvatarInstanceForSlot(slot);
+        SetEnergy(instance.getEnergy());
     }
 
     public void SetEnergy(Energy energy) {

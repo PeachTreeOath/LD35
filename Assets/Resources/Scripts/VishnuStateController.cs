@@ -16,7 +16,7 @@ public class VishnuStateController : MonoBehaviour {
     private AbilityData abilityDataRef; //source to load abilites from
     private Dictionary<Avatar, AvatarAbilityEntry> abilityEntries = new Dictionary<Avatar, AvatarAbilityEntry>();
 
-    private Dictionary<Avatar, AvatarInstance> instances = new Dictionary<Avatar, AvatarInstance>();
+    private Dictionary<Avatar, AvatarInstance> avatarInstances = new Dictionary<Avatar, AvatarInstance>();
 
     private static VishnuStateController m_instance;
     private int curAvatarIndex;
@@ -65,9 +65,16 @@ public class VishnuStateController : MonoBehaviour {
         Debug.Log("Abilities loaded!");
     }
 
-    // Use this for initialization
-    void Start() {
+    public AvatarInstance getAvatarInstanceForSlot(int slot)
+    {
+        //TODO index out of range!
+        Avatar avatar = avatarSlot[slot];
+        AvatarInstance avatarInstance = avatarInstances[avatar];
 
+        if(!avatarInstance.IsAvailable)
+            return avatarInstances[Avatar.NONE];
+        else 
+            return avatarInstance;
     }
 
     // Update is called once per frame
@@ -87,12 +94,15 @@ public class VishnuStateController : MonoBehaviour {
         avatarSlot.AddRange(orderedAvatars);
         curAvatarIndex = 0;
 
-        instances.Clear();
+        avatarInstances.Clear();
         foreach(Avatar avatar in orderedAvatars)
         {
             int level = 1; //TODO get level of current inventory
-            instances[avatar] = new AvatarInstance(abilityEntries[avatar], 1);
+            avatarInstances[avatar] = new AvatarInstance(abilityEntries[avatar], level);
         }
+
+        int levelOfNone = 1; //TODO we could calculate some aggregate level of this, so it gets better as your stats go up
+        avatarInstances[Avatar.NONE] = new AvatarInstance(abilityEntries[Avatar.NONE], levelOfNone);
     }
 
     public Avatar getCurrentAvatar() {
@@ -102,7 +112,7 @@ public class VishnuStateController : MonoBehaviour {
     //Using a numerical index, start a transition from the current index to the next
     public void transitionToNextAvatar(int nextIndex, float msDelay = 0) {
         curAvatarIndex = nextIndex; //TODO factor in time
-        Ability newAbilities = instances[getCurrentAvatar()].abilities;
+        Ability newAbilities = avatarInstances[getCurrentAvatar()].abilities;
         changePlayerAttributes(newAbilities);
         Debug.Log("Avatar transition complete");
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Resources.Scripts
 {
-    class AvatarInstance
+    public class AvatarInstance
     {
         private float maxLevelEnergy = 0;
         private float energyRemaining = 0;
@@ -29,6 +29,11 @@ namespace Assets.Resources.Scripts
         public void Update()
         {
             energyRemaining -= drainRate * Time.deltaTime; 
+        }
+
+        public Energy getEnergy()
+        {
+            return new Energy(maxLevelEnergy, abilities.energy, EnergyRemaining);
         }
     }
 }
