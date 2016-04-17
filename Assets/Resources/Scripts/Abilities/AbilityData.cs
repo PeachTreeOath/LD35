@@ -50,8 +50,10 @@ public class AbilityData {
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.PARASHURAMA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(

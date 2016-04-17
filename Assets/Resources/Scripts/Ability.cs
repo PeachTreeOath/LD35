@@ -9,7 +9,7 @@ public class Ability {
     public float cost;
 
     public float energy;
-    public float drainRate = 50;
+    public float drainRate = 25;
 
     //base ability values
     public float launchForce;

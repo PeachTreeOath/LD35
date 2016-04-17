@@ -15,6 +15,7 @@ public class VishnuStateController : MonoBehaviour {
     public enum State { PRE_FLIGHT, FLIGHT, NONE };
 
     private State state = State.NONE;
+    private bool pendingUpdate = false;
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from
@@ -50,6 +51,7 @@ public class VishnuStateController : MonoBehaviour {
             m_instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAbilityData();
+            LoadSprites();
             SetInitialState();
         }
         else if(m_instance != null && m_instance != this) {
@@ -72,8 +74,7 @@ public class VishnuStateController : MonoBehaviour {
         Debug.Log("Abilities loaded!");
     }
 
-    private void LoadSprites()
-    {
+    private void LoadSprites() {
         avatarSprites.Clear();
         foreach(Avatar avatar in Enum.GetValues(typeof(Avatar))) {
             string textureName = GetSpriteTextureName(avatar);
@@ -81,8 +82,7 @@ public class VishnuStateController : MonoBehaviour {
         }
     }
 
-    public AvatarInstance getAvatarInstanceForSlot(int slot)
-    {
+    public AvatarInstance getAvatarInstanceForSlot(int slot) {
         if (state == State.NONE || slot < 0 || slot >= avatarSlot.Count)
             return getAvatarInstance(Avatar.NONE);
 
@@ -90,14 +90,12 @@ public class VishnuStateController : MonoBehaviour {
         return getAvatarInstance(avatar);
     }
 
-    public AvatarInstance getCurrentAvatarInstance()
-    {
+    public AvatarInstance getCurrentAvatarInstance() {
         Avatar currentAvatar = getCurrentAvatar();
         return getAvatarInstance(currentAvatar);
     }
 
-    public AvatarInstance getAvatarInstance(Avatar avatar)
-    {
+    public AvatarInstance getAvatarInstance(Avatar avatar) {
         if(avatar == Avatar.NONE)
         {
             if (noneAvatarInstance == null) UpdateNoneAvatarInstance();
@@ -111,14 +109,12 @@ public class VishnuStateController : MonoBehaviour {
             return avatarInstance;
     }
 
-    public void UpdateNoneAvatarInstance()
-    {  
+    public void UpdateNoneAvatarInstance() {  
         int levelOfNone = 1; //TODO we could calculate some aggregate level of this, so it gets better as your stats go up
         noneAvatarInstance = new AvatarInstance(abilityEntries[Avatar.NONE], levelOfNone);
     }
 
-    public void PreFlight()
-    {
+    public void PreFlight() {
         if (state != State.NONE)
         {
             Debug.LogError("Attempting to start a flight without ending the previous flight!");
@@ -131,23 +127,28 @@ public class VishnuStateController : MonoBehaviour {
             int level = 1; //TODO get level of current inventory
             avatarInstances[avatar] = new AvatarInstance(abilityEntries[avatar], level);
         }
-        transitionToNextAvatar(0);
+        TransitionToNextAvatar(0);
 
         state = State.PRE_FLIGHT;
     }
 
-    public void StartFlight()
-    {
+    public void StartFlight() {
         if(state != State.PRE_FLIGHT) {
             Debug.LogError("Attempting to start a flight without runing PreFlight()!");
             return;
         }
 
-        state = State.PRE_FLIGHT;
+        if(pendingUpdate)
+        {
+            doPlayerUpdate();
+            pendingUpdate = false;
+        }
+        
+
+        state = State.FLIGHT;
     }
 
-    public void StopFlight()
-    {
+    public void StopFlight() {
         if(state != State.FLIGHT) {
             Debug.LogError("Attempting to end a flight without running StartFlight()!");
             return;
@@ -183,14 +184,26 @@ public class VishnuStateController : MonoBehaviour {
     }
 
     //Using a numerical index, start a transition from the current index to the next
-    public void transitionToNextAvatar(int nextIndex, float msDelay = 0) {
+    public void TransitionToNextAvatar(int nextIndex) {
         curAvatarIndex = nextIndex; //TODO factor in time
 
+        if (state == State.FLIGHT)
+        {
+            doPlayerUpdate();
+            Debug.Log("Avatar transition complete");
+        }
+        else
+        {
+            Debug.Log("Avatar transition deferred");
+            pendingUpdate = true;
+        }
+    }
+
+    private void doPlayerUpdate()
+    {
         AvatarInstance avatarInstance = getCurrentAvatarInstance();
         changePlayerAttributes(avatarInstance.abilities);
         changePlayerSprite(avatarInstance.avatar);
-        
-        Debug.Log("Avatar transition complete");
     }
 
     //Set the given abilites to apply to the active player

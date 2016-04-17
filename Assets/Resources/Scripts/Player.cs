@@ -27,8 +27,9 @@ public class Player : MonoBehaviour
 	public void Init ()
 	{
 		body = GetComponent<Rigidbody2D> ();
-		prevPosition = transform.position;    
-	}
+		prevPosition = transform.position;
+        gc.setPlayer(this.gameObject);
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -85,6 +86,7 @@ public class Player : MonoBehaviour
 
 	private void Stop ()
 	{
+        VishnuStateController.instance.StopFlight();
 		gc.ShowScorePanel (playerStat.maxDist, playerStat.maxAltitude, playerStat.totalDuration, playerStat.maxVelocity);
 		//TODO: Detect when stop and transition to score dialog
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work

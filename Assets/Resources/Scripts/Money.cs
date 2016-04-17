@@ -66,8 +66,6 @@ public class Money : LevelObject
 			sr.material.SetColor ("_Color", Color.gray);
 			break; 
 		}
-			
-		Debug.Log ("value =" + value); 
 	}
 
 	public void Collect()
