@@ -89,7 +89,9 @@ public class DiveKick : MonoBehaviour
 		if (collider.tag == "FriendlyObstacle") {
 			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 			if (obstacleVector != null) {
-				body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
+				float savedX = body.velocity.x;
+				body.velocity = Vector2.zero;
+				body.AddForce (new Vector2(savedX, obstacleVector.velocityChange.y), ForceMode2D.Impulse);
 				obstacleVector.Remove ();
 			}
 			ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> ();
