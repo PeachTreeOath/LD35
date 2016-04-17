@@ -134,6 +134,7 @@ public class LaunchController : MonoBehaviour {
             launcher.LaunchPlayer(angleSelected, powerDisplayed * 10);
             VishnuStateController.instance.StartFlight();
 			GameController.instance.ShowTutorialPhase (Tutorial.Phase.SWITCH);
+			GameObject.Find ("VishnuStart").GetComponent<SpriteRenderer> ().enabled = false;
         }
 
     }
