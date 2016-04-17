@@ -15,10 +15,18 @@ public class PurchaseAvatar : MonoBehaviour {
 
     void Start () {
         avatarString = transform.FindChild("Avatar").GetComponent<Text>().text;
-        Debug.Log(avatarString);
+        avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString.ToUpper());
         inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
         bank = GameObject.Find("Singletons").GetComponent<Bank>();
-        amount = inventory.GetAvatarInventory(VishnuStateController.Avatar.MATSYA);
+        try
+        {
+            amount = inventory.GetAvatarInventory(avatarEnum);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.ToString());
+            Debug.Log(avatarEnum);
+        }
         cost = amount * (amount + 1) / 2 + 1;
         costText = transform.FindChild("Cost").GetComponent<Text>();
         amountText = transform.FindChild("Amount").GetComponent<Text>();
@@ -29,11 +37,8 @@ public class PurchaseAvatar : MonoBehaviour {
         amountText.text = string.Format(@"{0}", amount);
 	}
 
-    public void Purchase(string avatarString)
+    public void Purchase()
     {
-        Debug.Log(@"Entered Purchase: " + avatarString);
-        
-        avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString);
         if (bank.TotalMoney > cost)
         {
             cost = amount * (amount + 1) / 2 + 1;
