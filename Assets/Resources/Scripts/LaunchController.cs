@@ -5,10 +5,10 @@ using System.Collections;
 public class LaunchController : MonoBehaviour {
     private Text angleText;
     private Text powerText;
-	private Text arrow; // need to update when real arrow is put in
     private Launcher launcher;
 
 	private SpriteRenderer powerCircle; 
+	private SpriteRenderer arrow; 
 
     private const float MAX_ANGLE = 90f;
     private const float MIN_ANGLE = 0f;
@@ -41,9 +41,9 @@ public class LaunchController : MonoBehaviour {
 		SpriteRenderer[] spriteValue = canvas.GetComponentsInChildren<SpriteRenderer> ();
         angleText = textValue[1];
         powerText = textValue[2];
-		arrow = textValue[3]; // need to update when real arrow is put in
         
 		powerCircle = spriteValue[1]; 
+		arrow = spriteValue [2]; 
 
 		lastTick = Time.time;
 
@@ -78,7 +78,7 @@ public class LaunchController : MonoBehaviour {
                     angleDisplayed--;
                     angleText.text = "Angle: " + angleDisplayed;
                 }
-				arrow.GetComponent<RectTransform>().rotation =  Quaternion.Euler(new Vector3(
+				arrow.transform.rotation =  Quaternion.Euler(new Vector3(
 					0, 0, angleDisplayed)); 
                 lastTick = Time.time;
 

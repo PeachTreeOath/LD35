@@ -45,8 +45,9 @@ MonoBehaviour:
   yMax: 5
   objectsPerTile: 10
   skyObjectPrefabs:
-  - {fileID: 11467910, guid: 80c1b3246cad9a94d81e9696040bb6c2, type: 2}
+  - {fileID: 11420200, guid: 45ec9ed2406ad42c3a3424e0564e37ff, type: 2}
   - {fileID: 11453030, guid: 48c5543849442c442a467223aaafb4c9, type: 2}
+  - {fileID: 11435554, guid: d7c136799325b4ed3b3576d6406cb38f, type: 2}
   groundObjectPrefabs: []
 --- !u!1001 &100100000
 Prefab:

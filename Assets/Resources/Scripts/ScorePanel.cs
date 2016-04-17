@@ -112,10 +112,10 @@ public class ScorePanel : MonoBehaviour
 		group.blocksRaycasts = true;
 		group.interactable = true;
 
-		dist = Mathf.RoundToInt (maxDist);
-		alt = Mathf.RoundToInt (maxAltitude);
-		dur = Mathf.RoundToInt (duration);
-		vel = Mathf.RoundToInt (maxVelocity);
+		dist = Mathf.RoundToInt (maxDist * distModifier);
+		alt = Mathf.RoundToInt (maxAltitude * altModifier);
+		dur = Mathf.RoundToInt (duration * durModifier);
+		vel = Mathf.RoundToInt (maxVelocity * maxVelocity);
 
 		Transform panel = transform.Find ("Panel");
 		panel.Find ("CoinText").GetComponent<Text> ().text = Convert.ToString (bank.MoneyThisRun);
@@ -129,6 +129,15 @@ public class ScorePanel : MonoBehaviour
 
 	private void CalculateTotalValue ()
 	{
-		total = 1000;
+		float totalChange = 0;
+		totalChange += dist;
+		totalChange += alt;
+		totalChange += dur;
+		totalChange += vel;
+
+		int intChange = Mathf.RoundToInt (totalChange);
+
+		bank.MoneyThisRun += intChange;
+		total = intChange + coin;
 	}
 }
