@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     private LevelTile currentLevelTile;
     private LevelTile nextLevelTile;
     private GameObject player; //current player obj in the game
+	private BGScroller bg;
 
 	void Awake ()
 	{
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour
 			cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
 			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
+			bg = GameObject.Find ("Background").GetComponent<BGScroller> ();
 		}
 		Debug.Log ("GameController level loaded");
 	}
@@ -62,16 +64,17 @@ public class GameController : MonoBehaviour
     }
 
 	//Input is new player position.  This figures out positions of other objects such as camera and bg.
-	public void UpdatePlayerPos (Transform playerPos)
+	public void UpdatePlayerPos (Vector2 playerPos, Vector2 prevPos)
 	{
-		float x = playerPos.transform.position.x + locationFromCam.x;
+		float x = playerPos.x + locationFromCam.x;
 		float y = 0;
 		float z = cam.transform.position.z;
-		if (playerPos.transform.position.y > 0) {
-			y = playerPos.transform.position.y;	
+		if (playerPos.y > 0) {
+			y = playerPos.y;	
 		}
 		cam.transform.position = new Vector3 (x, y, z);
 		groundPlatform.MoveToPlayer (x);
+		bg.Scroll (playerPos.x - prevPos.x);
 	}
 
 	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)

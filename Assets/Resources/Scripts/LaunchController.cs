@@ -47,6 +47,7 @@ public class LaunchController : MonoBehaviour {
 
 		lastTick = Time.time;
 
+        VishnuStateController.instance.PreFlight();
     }
 
 	void Update () {
@@ -128,6 +129,7 @@ public class LaunchController : MonoBehaviour {
             //don't need to save the power here since we are going to launch immediately
             isPowerSet = true;
             launcher.LaunchPlayer(angleSelected, powerDisplayed * 10);
+            VishnuStateController.instance.StartFlight();
         }
 
     }

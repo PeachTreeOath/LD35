@@ -6,8 +6,10 @@ using UnityEngine;
 
 namespace Assets.Resources.Scripts
 {
-    class AvatarInstance
+    public class AvatarInstance
     {
+        private VishnuStateController.Avatar avatar;
+
         private float maxLevelEnergy = 0;
         private float energyRemaining = 0;
         private float drainRate = 10f;
@@ -19,16 +21,34 @@ namespace Assets.Resources.Scripts
         
         public AvatarInstance(AvatarAbilityEntry entry, int level)
         {
-            this.abilities = entry.GetAbilityAtLevel(level);
+            avatar = entry.avatar;
+            abilities = entry.GetAbilityAtLevel(level);
 
-            this.maxLevelEnergy = entry.GetAbilityAtLevel(entry.GetMaxAbilityLevel()).energy;
-            this.energyRemaining = abilities.energy;
-            this.drainRate = abilities.drainRate;
+            maxLevelEnergy = entry.GetAbilityAtLevel(entry.GetMaxAbilityLevel()).energy;
+            energyRemaining = abilities.energy;
+            drainRate = abilities.drainRate;
         }        
+
+        public string GetSpriteTextureName() { 
+            switch(avatar) {
+                case VishnuStateController.Avatar.BUDDHA: return "Textures/";
+                case VishnuStateController.Avatar.PARASHURAMA: return "Textures/VishnuAxe";
+                case VishnuStateController.Avatar.MATSYA: return "Textures/VishnuFish";
+                case VishnuStateController.Avatar.KURMA: return "Textures/VishnuTurtle";
+                case VishnuStateController.Avatar.VARAHA: return "Textures/Boar";
+
+                default: return "Textures/Vishnu"; 
+            }
+        }
 
         public void Update()
         {
             energyRemaining -= drainRate * Time.deltaTime; 
+        }
+
+        public Energy getEnergy()
+        {
+            return new Energy(maxLevelEnergy, abilities.energy, EnergyRemaining);
         }
     }
 }

@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 430902}
   - 212: {fileID: 21216028}
-  - 114: {fileID: 11420200}
   - 58: {fileID: 5863658}
+  - 114: {fileID: 11479338}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -44,7 +44,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
---- !u!114 &11420200
+--- !u!114 &11479338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -52,10 +52,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 192870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bee1595b53b054d856731be8119f54, type: 3}
+  m_Script: {fileID: 11500000, guid: 47b2d242e5286ed448452bd8613de7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityChange: {x: 0, y: 0}
+  scalar: -0.5
 --- !u!212 &21216028
 SpriteRenderer:
   m_ObjectHideFlags: 1
