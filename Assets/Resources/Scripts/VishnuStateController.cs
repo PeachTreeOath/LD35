@@ -159,10 +159,14 @@ public class VishnuStateController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(state == State.FLIGHT)
+        if(state != State.PRE_FLIGHT)
         {
             AvatarInstance avatarInstance = getCurrentAvatarInstance();
             avatarInstance.Update();
+
+            if(!avatarInstance.IsAvailable) {
+                doPlayerUpdate(); //TODO this is janky way of triggering an Avatar=NONE pass
+            }
         }
     }
 
@@ -232,6 +236,11 @@ public class VishnuStateController : MonoBehaviour {
         SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
 
         sr.sprite = avatarSprites[avatar];
+
+        if (avatar == Avatar.NONE)
+            sr.color = new Color(1, 1, 1, 0.66f);
+        else
+            sr.color = Color.white;
     }
 
     public string GetSpriteTextureName(Avatar avatar)
@@ -245,6 +254,7 @@ public class VishnuStateController : MonoBehaviour {
             case Avatar.KURMA: return "Textures/VishnuTurtle";
             case Avatar.VARAHA: return "Textures/Boar";
             case Avatar.VAMANA: return "Textures/Vishnu";
+            case Avatar.NONE: return "Textures/SadSadVishnu";
 
             default: return "Textures/Vishnu";
         }
