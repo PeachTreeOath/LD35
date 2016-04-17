@@ -879,6 +879,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 50
+  distModifier: 1
+  altModifier: 1
+  durModifier: 1
+  spdModifier: 0.1
 --- !u!114 &11445320
 MonoBehaviour:
   m_ObjectHideFlags: 1
