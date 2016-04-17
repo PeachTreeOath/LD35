@@ -27,7 +27,8 @@ public class PurchaseAvatar : MonoBehaviour {
             Debug.Log(e.ToString());
             Debug.Log(avatarEnum);
         }
-        cost = amount * (amount + 1) / 2 + 1;
+        UpdateCost();
+
         costText = transform.FindChild("Cost").GetComponent<Text>();
         amountText = transform.FindChild("Amount").GetComponent<Text>();
     }
@@ -37,11 +38,19 @@ public class PurchaseAvatar : MonoBehaviour {
         amountText.text = string.Format(@"{0}", amount);
 	}
 
+    private void UpdateCost()
+    {
+        if (avatarEnum == VishnuStateController.Avatar.KALKI)
+            cost = 1000000000;
+        else
+            cost = amount * (amount + 1) / 2 + 1;
+    }
+
     public void Purchase()
     {
         if (bank.TotalMoney > cost)
         {
-            cost = amount * (amount + 1) / 2 + 1;
+            UpdateCost();
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
             amount = inventory.GetAvatarInventory(avatarEnum);

@@ -48,9 +48,8 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		OnLevelWasLoaded (Application.loadedLevel);
-
-		LevelGenerator levelGen = GetComponent<LevelGenerator> ();
+		OnLevelWasLoaded (SceneManager.GetActiveScene().buildIndex);
+        LevelGenerator levelGen = GetComponent<LevelGenerator> ();
 		currentLevelTile = levelGen.genLevelTile ();
 		nextLevelTile = levelGen.genLevelTile ();
         levelTileMoved = true;
