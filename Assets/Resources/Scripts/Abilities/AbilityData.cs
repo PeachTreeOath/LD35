@@ -77,9 +77,13 @@ public class AbilityData {
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.KRISHNA)
                .Set(Ability.AtLevel(1)
-                    .Energy(100))
+                    .Energy(100)
+                    .MoneyGain(1)
+                    .MagnetRange(1f))
                .Set(Ability.AtLevel(10)
-                    .Energy(1000))
+                    .Energy(1000)
+                    .MoneyGain(10)
+                    .MagnetRange(10f))
         );
 
         AddEntry(

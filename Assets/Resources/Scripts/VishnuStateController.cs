@@ -163,7 +163,7 @@ public class VishnuStateController : MonoBehaviour {
             AvatarInstance avatarInstance = getCurrentAvatarInstance();
             avatarInstance.Update();
 
-            if(!avatarInstance.IsAvailable && GameController.instance.getPlayerObj() != null) { // TODO: This is a temp fix for GameObject null ref.
+            if(!avatarInstance.IsAvailable && GameController.instance.getPlayerObj() != null && avatarInstance.avatar != Avatar.NONE) { // TODO: This is a temp fix for GameObject null ref.
                 doPlayerUpdate(); //TODO this is janky way of triggering an Avatar=NONE pass
             }
         }
@@ -226,7 +226,7 @@ public class VishnuStateController : MonoBehaviour {
         rb.mass = a.mass * a.liftForceMult;
         rb.drag = a.drag * a.dragMult;
 
-
+        player.GetComponentInChildren<Magnet>().Range = a.magnetRange;
     }
 
     public void changePlayerSprite(Avatar avatar) {
