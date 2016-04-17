@@ -6,21 +6,7 @@ using UnityEngine.UI;
 public class ShiftGridIcon : MonoBehaviour {
 
     public int slot;
-
-	// Use this for initialization
-	void Start () {
-    }
 	
-	// Update is called once per frame
-	void Update () {
-        AvatarInstance instance = VishnuStateController.instance.getAvatarInstanceForSlot(slot);
-        SetEnergy(instance.getEnergy());
-
-        //garbage garbage garbage
-        Sprite icon = VishnuStateController.instance.GetIconSprite(instance.avatar);
-        GetComponent<Image>().sprite = icon;
-    }
-
     public void SetEnergy(Energy energy) {
         Image meter = transform.Find("Energy Meter").GetComponent<Image>();
         if (meter != null) {

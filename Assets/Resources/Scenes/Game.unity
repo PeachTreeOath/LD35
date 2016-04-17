@@ -377,57 +377,17 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2145130027}
-    - target: {fileID: 22438408, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -32
+    - target: {fileID: 170764, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_Name
+      value: ShiftGrid Icon
       objectReference: {fileID: 0}
-    - target: {fileID: 22472960, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -225.1
+    - target: {fileID: 118814, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_Name
+      value: ShiftGrid Icon
       objectReference: {fileID: 0}
-    - target: {fileID: 22438408, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 158
-      objectReference: {fileID: 0}
-    - target: {fileID: 22472960, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 158
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468336, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1452570246}
-    - target: {fileID: 11468336, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnIconClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468336, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468336, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 11455260, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1452570246}
-    - target: {fileID: 11455260, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnIconClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 11455260, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 11455260, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11455260, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+    - target: {fileID: 116350, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_Name
+      value: ShiftGrid Icon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
@@ -664,12 +624,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!114 &1452570246 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11477244, guid: 65695db0e95bf7743adbd923710faa65,
-    type: 2}
-  m_PrefabInternal: {fileID: 578165321}
-  m_Script: {fileID: 11500000, guid: 339193d1aad80a44abc3cc0812ac1fd6, type: 3}
 --- !u!1001 &1637021030
 Prefab:
   m_ObjectHideFlags: 0

@@ -36,15 +36,6 @@ public class VishnuStateController : MonoBehaviour {
 
     private int curNumSlotsOpen = 2;
     private List<Avatar> avatarSlot = new List<Avatar>(); //0-based index for each slot.
-    
-    void SetInitialState()
-    {
-        List<Avatar> newSpheres = new List<Avatar>();
-        newSpheres.Add(Avatar.BUDDHA);
-        newSpheres.Add(Avatar.PARASHURAMA);
-
-        updateAvatars(newSpheres);
-    }
 
     void Awake() {
         if (m_instance == null) {
@@ -52,7 +43,6 @@ public class VishnuStateController : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             LoadAbilityData();
             LoadSprites();
-            SetInitialState();
         }
         else if(m_instance != null && m_instance != this) {
             Debug.Log("Deleting singleton Dup.  Someone screwed up");
@@ -87,7 +77,7 @@ public class VishnuStateController : MonoBehaviour {
 
     public AvatarInstance getAvatarInstanceForSlot(int slot) {
         if (state == State.NONE || slot < 0 || slot >= avatarSlot.Count)
-            return getAvatarInstance(Avatar.NONE);
+            return null;
 
         Avatar avatar = avatarSlot[slot];
         return getAvatarInstance(avatar);
@@ -127,6 +117,8 @@ public class VishnuStateController : MonoBehaviour {
         }
 
         Inventory inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
+
+        updateAvatars(inventory.GetAvatarsInInventory());
 
         avatarInstances.Clear();
         foreach (Avatar avatar in avatarSlot)

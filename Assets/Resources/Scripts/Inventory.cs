@@ -5,6 +5,9 @@ public class Inventory : MonoBehaviour {
 
     private Dictionary<VishnuStateController.Avatar, int> avatarInventory;
 
+    //No LinkedHashMap equivalent... what is this, microsoft, amatuer hour?
+    private List<VishnuStateController.Avatar> purchaseOrder = new List<VishnuStateController.Avatar>();
+
     void Awake()
     {
         avatarInventory = new Dictionary<VishnuStateController.Avatar, int>();
@@ -13,16 +16,34 @@ public class Inventory : MonoBehaviour {
             avatarInventory[avatar] = 0;
         }
 
+        IncrementAvatar(VishnuStateController.Avatar.BUDDHA);
+        IncrementAvatar(VishnuStateController.Avatar.PARASHURAMA);
     }
 
     public void IncrementAvatar(VishnuStateController.Avatar avatarEnum)
     {
         avatarInventory[avatarEnum]++;
+
+        if (!purchaseOrder.Contains(avatarEnum)) {
+            purchaseOrder.Add(avatarEnum);
+        }
     }
 
     public int GetAvatarInventory(VishnuStateController.Avatar avatarEnum)
     {
         return avatarInventory[avatarEnum];
+    }
+
+    public List<VishnuStateController.Avatar> GetAvatarsInInventory()
+    {
+        List<VishnuStateController.Avatar> avatars = new List<VishnuStateController.Avatar>();
+
+        foreach (VishnuStateController.Avatar avatar in purchaseOrder) {
+            if (avatarInventory[avatar] > 0)
+                avatars.Add(avatar);
+        }
+
+        return avatars;
     }
 
     public int GetTotalAvatarInventory()
