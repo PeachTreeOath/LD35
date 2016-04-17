@@ -23,40 +23,60 @@ public class AbilityData
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.MATSYA)
                .Set (Ability.AtLevel (1)
+                    .Bounciness(1)
+                    .Mass(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
+                    .Bounciness(10)
+                    .Mass(10)
                     .Energy (1000))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.KURMA)
                .Set (Ability.AtLevel (1)
+                    .Drag(1)
+                    .Mass(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
+                    .Drag(10)
+                    .Mass(10)
                     .Energy (1000))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.VARAHA)
                .Set (Ability.AtLevel (1)
+                    .LaunchForce(1)
+                    .Mass(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
+                    .LaunchForce(10)
+                    .Mass(10)
                     .Energy (1000))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.NARASIMHA)
                .Set (Ability.AtLevel (1)
+                    .Bounciness(1)
+                    .MoneyGain(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
+                    .Bounciness(10)
+                    .MoneyGain(10)
                     .Energy (1000))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.VAMANA)
                .Set (Ability.AtLevel (1)
+                    .Bounciness(1)
+                    .Drag(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
+                    .Bounciness(10)
+                    .Drag(10)
                     .Energy (1000))
 		);
 
@@ -64,29 +84,39 @@ public class AbilityData
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.PARASHURAMA)
                .Set (Ability.AtLevel (1)
                     .Energy (100)
+                    .LaunchForce(1)
+                    .Drag(1)
                     .DiveKick (1))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
+                    .LaunchForce(10)
+                    .Drag(10)
                     .DiveKick (1))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.RAMA)
                .Set (Ability.AtLevel (1)
-                    .Energy (100))
+                    .Energy (100)
+                    .Mass(1)
+                    .MoneyGain(1))
                .Set (Ability.AtLevel (10)
-                    .Energy (1000))
+                    .Energy (1000)
+                    .Mass(10)
+                    .MoneyGain(10))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.KRISHNA)
                .Set (Ability.AtLevel (1)
                     .Energy (100)
-                    .MoneyGain (1)
+                    .LaunchForce(1)
+                    .Drag(1)
                     .MagnetRange (1f))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
-                    .MoneyGain (10)
+                    .LaunchForce(10)
+                    .Drag(10)
                     .MagnetRange (10f))
 		);
 
@@ -94,10 +124,14 @@ public class AbilityData
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.BUDDHA)
                .Set (Ability.AtLevel (1)
                     .Energy (100)
-				.BuddhaBounciness (1))
+                    .LaunchForce(1)
+                    .MoneyGain(1)
+				    .BuddhaBounciness (1))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
-				.BuddhaBounciness (10))
+                    .LaunchForce(10)
+                    .MoneyGain(10)
+                    .BuddhaBounciness (10))
 		);
 
 		AddEntry (
