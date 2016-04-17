@@ -260,7 +260,8 @@ public class VishnuStateController : MonoBehaviour
 		rb.drag = a.drag * a.dragMult;
 
 		player.GetComponentInChildren<Magnet> ().Range = a.magnetRange;
-		player.GetComponent<Bounciness>().Value = a.bounciness + a.buddhaBounciness;
+		player.GetComponent<Bounciness>().Value = GetBounciness() + a.buddhaBounciness;
+
     }
 
 	public void changePlayerSprite (Avatar avatar)
