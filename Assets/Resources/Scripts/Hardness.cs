@@ -12,6 +12,6 @@ public class Hardness : MonoBehaviour {
     }
 
     bool OnObstacleEnter(Collider2D collider) {
-        return isHard;
+        return !isHard;
     }
 }

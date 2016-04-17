@@ -72,6 +72,8 @@ public class DiveKick : MonoBehaviour
 
 	bool OnObstacleEnter (Collider2D collider)
 	{
+        if (state != State.DIVING) return true;
+
 		if (collider.tag == "Obstacle") {
 			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 			if (obstacleVector != null) {

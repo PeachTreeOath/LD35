@@ -132,15 +132,22 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        bool continueProcessing = true;
+
         Component[] components = gameObject.GetComponents<Component>();
         foreach (Component component in components) {
+            if (component.GetInstanceID() == this.GetInstanceID()) continue;
+
             MethodInfo methodInfo = FindMethod(component.GetType(), typeof(bool), "OnObstacleEnter", typeof(Collider2D));
             if (methodInfo != null)
             {
-                bool result = InvokeMethod(component, methodInfo, collider);
-                if (!result) break;
+                continueProcessing = InvokeMethod(component, methodInfo, collider);
+                if (!continueProcessing) break;
             }
         }
+
+        if (continueProcessing)
+            OnObstacleEnter(collider);
     }
 
     bool OnObstacleEnter(Collider2D collider) { 
