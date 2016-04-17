@@ -29,6 +29,7 @@ public class Ability {
     public float dragMult = 1;
 
     public float magnetRange;
+    public float diveKick;
 
     public static Ability AtLevel(int level)
     {
@@ -50,6 +51,7 @@ public class Ability {
     public Ability JumpForce(float value) { jumpForce = value; return this; }
     public Ability DiveForce(float value) { diveForce = value; return this; }
     public Ability MagnetRange(float value) { magnetRange = value;  return this; }
+    public Ability DiveKick(float value) { diveKick = value;  return this;  }
 
     public static Ability LerpAbilities(Ability min, Ability max, int level)
     {
@@ -69,6 +71,7 @@ public class Ability {
         ability.diveForce = Mathf.Lerp(min.diveForce, max.diveForce, t);
         ability.magnetRange = Mathf.Lerp(min.magnetRange, max.magnetRange, t);
         ability.moneyGain = Mathf.Lerp(min.moneyGain, max.moneyGain, t);
+        ability.diveKick = Mathf.Lerp(min.diveKick, max.diveKick, t);
 
         return ability;
     }

@@ -174,7 +174,6 @@ public class VishnuStateController : MonoBehaviour
 			pendingUpdate = false;
 		}
         
-
 		state = State.FLIGHT;
 	}
 
@@ -261,7 +260,8 @@ public class VishnuStateController : MonoBehaviour
 		rb.drag = a.drag * a.dragMult;
 
 		player.GetComponentInChildren<Magnet> ().Range = a.magnetRange;
-	}
+        player.GetComponent<Bounciness>().Value = a.bounciness;
+    }
 
 	public void changePlayerSprite (Avatar avatar)
 	{
