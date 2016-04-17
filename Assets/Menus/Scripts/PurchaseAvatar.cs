@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PurchaseAvatar : MonoBehaviour {
     public int cost;
-	// Use this for initialization
-	void Start () {
-        cost = 1; 
+    private Text costText;
+    // Use this for initialization
+    void Start () {
+        cost = 1;
+        costText = transform.Find("Cost").GetComponent<Text>();
     }
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void LateUpdate () {
+        costText.text = string.Format(@"{0}", cost);
 	}
 
     public void Purchase(string avatarString)
@@ -22,13 +25,11 @@ public class PurchaseAvatar : MonoBehaviour {
         Bank bank = GameObject.Find("Singletons").GetComponent<Bank>();
         Inventory inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
 
-        cost += inventory.GetAvatarInventory(avatarEnum);
-
         if (bank.TotalMoney > cost)
         {
+            cost += inventory.GetAvatarInventory(avatarEnum)+1;
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
         }
-
     }
 }

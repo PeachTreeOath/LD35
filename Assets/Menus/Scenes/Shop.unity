@@ -754,10 +754,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 544462353}
     m_Modifications:
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22427292, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -830,34 +826,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1681018340}
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Purchase
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 11414350, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: KRISHNA
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415930, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-      propertyPath: m_Text
-      value: Krishna
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
   m_IsPrefabParent: 0
@@ -866,22 +834,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22427292, guid: 01b5a7b3789d7c24ebeab5e1b6abc251,
     type: 2}
   m_PrefabInternal: {fileID: 1681018337}
---- !u!1 &1681018339 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
-  m_PrefabInternal: {fileID: 1681018337}
---- !u!114 &1681018340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1681018339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 906b7583b4ecab04ba721ef3bdfe2e17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 0
 --- !u!1 &1794130428
 GameObject:
   m_ObjectHideFlags: 0
