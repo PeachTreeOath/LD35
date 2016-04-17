@@ -29,8 +29,10 @@ public class Ability {
     public float liftForceMult = 1;
     public float dragMult = 1;
 
-    public float magnetRange;
-    public float diveKick;
+    public float magnetRange; // Krishna (flute boy)
+    public float diveKick; // Parashurama (axe man)
+    public float hardness; // Kurma (turtle)
+    public float metabolism; // Lion
 
     public static Ability AtLevel(int level)
     {
@@ -54,6 +56,8 @@ public class Ability {
     public Ability DiveForce(float value) { diveForce = value; return this; }
     public Ability MagnetRange(float value) { magnetRange = value;  return this; }
     public Ability DiveKick(float value) { diveKick = value;  return this;  }
+    public Ability Hardness(float value) { hardness = value;  return this;  }
+    public Ability Metabolism(float value) { metabolism = value;  return this;  }
 
     public static Ability LerpAbilities(Ability min, Ability max, int level)
     {
@@ -75,6 +79,8 @@ public class Ability {
         ability.magnetRange = Mathf.Lerp(min.magnetRange, max.magnetRange, t);
         ability.moneyGain = Mathf.Lerp(min.moneyGain, max.moneyGain, t);
         ability.diveKick = Mathf.Lerp(min.diveKick, max.diveKick, t);
+        ability.hardness = Mathf.Lerp(min.hardness, max.hardness, t);
+        ability.metabolism = Mathf.Lerp(min.metabolism, max.metabolism, t);
 
         return ability;
     }

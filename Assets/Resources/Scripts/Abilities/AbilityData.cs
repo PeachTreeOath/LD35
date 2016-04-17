@@ -37,10 +37,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Drag(1)
                     .Mass(1)
+                    .Hardness(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Drag(10)
                     .Mass(10)
+                    .Hardness(10)
                     .Energy (1000))
 		);
 
