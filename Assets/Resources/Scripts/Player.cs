@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 	private float stopTimeElapsed;
     private float flightTime = 0;
 	private bool isStopped;
+	private float launchTime;
 
 	void Awake ()
 	{
@@ -61,7 +62,7 @@ public class Player : MonoBehaviour
 			isStopped = true;
 			body.velocity = Vector2.zero;
 			playerStat.SetEndDistance (transform.position);
-			playerStat.SetRunDuration (Time.time);
+			playerStat.SetRunDuration (Time.time - launchTime);
 			Invoke ("Stop", 1f);
 		}
 		prevPosition = transform.position;
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
         flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
+		launchTime = Time.time;
 	}
 
 	private void Stop ()

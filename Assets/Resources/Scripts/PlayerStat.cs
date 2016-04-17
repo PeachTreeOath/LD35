@@ -13,14 +13,12 @@ public class PlayerStat : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 		startPos = transform.position; 
 		prevPos = transform.position; 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
 		float curVelocity = Vector2.Distance(transform.position, prevPos)/Time.deltaTime;
 		if (curVelocity > maxVelocity)
 			maxVelocity = curVelocity; 
