@@ -42,7 +42,7 @@ public class Bounciness : MonoBehaviour
 		if (platform == null) {
 			platform = GameObject.Find ("GroundPlatform").GetComponent<BoxCollider2D> ();
 		}
-
+		bounciness = Mathf.Clamp (bounciness, 0, .55f); // Cap normal bounce at .95f
 		PhysicsMaterial2D newGroundMaterial = new PhysicsMaterial2D ();
 		newBounciness = initialBounciness + bounciness * statToPhysicsMult;
 		newBounciness = NoBounce ? 0f : newBounciness;
