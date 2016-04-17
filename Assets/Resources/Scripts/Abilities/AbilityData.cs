@@ -20,32 +20,42 @@ public class AbilityData {
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.MATSYA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.KURMA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.VARAHA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.NARASIMHA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))    
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.VAMANA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
@@ -58,14 +68,18 @@ public class AbilityData {
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.RAMA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.KRISHNA)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
 
         AddEntry(
@@ -80,8 +94,10 @@ public class AbilityData {
 
         AddEntry(
             AvatarAbilityEntry.For(VishnuStateController.Avatar.KALKI)
-               .Set(Ability.AtLevel(1))
-               .Set(Ability.AtLevel(10))
+               .Set(Ability.AtLevel(1)
+                    .Energy(100))
+               .Set(Ability.AtLevel(10)
+                    .Energy(1000))
         );
     }
 
