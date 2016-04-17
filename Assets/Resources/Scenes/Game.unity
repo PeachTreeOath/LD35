@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 5
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -123,6 +123,10 @@ Prefab:
     - target: {fileID: 424626, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 21218578, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
@@ -454,11 +458,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 989135577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4194962, y: -2.6491818, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2.96, z: 0}
+  m_LocalScale: {x: 0.5, y: 6, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1536131904}
+  m_RootOrder: 0
 --- !u!114 &989135582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +710,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: 0
+--- !u!4 &1536131904 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 424626, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
+  m_PrefabInternal: {fileID: 45041575}
 --- !u!1001 &1637021030
 Prefab:
   m_ObjectHideFlags: 0
@@ -789,7 +797,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22433752, guid: 7c7e93d84c08b2941af520ae866e2cec, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22433752, guid: 7c7e93d84c08b2941af520ae866e2cec, type: 2}
       propertyPath: m_AnchoredPosition.x
