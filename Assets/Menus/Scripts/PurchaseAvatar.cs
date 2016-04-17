@@ -92,9 +92,10 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         try
         {
             GameObject.Find("ActiveDescription").GetComponent<Text>().text = "Description\n" + avatarPassives[avatarHover].desc;
+            GameObject.Find("ActiveDescription").GetComponent<Text>().color = Color.cyan;
+            transform.FindChild("Avatar").GetComponent<Text>().color = Color.cyan;
             HighlightPower(avatarPassives[avatarHover].stat1, Color.cyan);
             HighlightPower(avatarPassives[avatarHover].stat2, Color.cyan);
-            
         }
         catch (Exception)
         {
@@ -106,11 +107,13 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         Debug.Log("Exiting " + gameObject.name);
         GameObject.Find("ActiveDescription").GetComponent<Text>().text = "Description";
+        GameObject.Find("ActiveDescription").GetComponent<Text>().color = Color.black;
         HighlightPower("StatLaunch", Color.black);
         HighlightPower("StatBounce", Color.black);
         HighlightPower("StatAir", Color.black);
         HighlightPower("StatObs", Color.black);
         HighlightPower("StatMagnet", Color.black);
+        transform.FindChild("Avatar").GetComponent<Text>().color = Color.black;
     }
 
     private void HighlightPower(string stat, Color color)
