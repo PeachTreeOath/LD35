@@ -13,11 +13,14 @@ public class GameController : MonoBehaviour
 	private Camera cam;
 	private GroundPlatform groundPlatform;
 	private ScorePanel scoreCanvas;
-    private LevelGenerator levelGen;
-    private LevelTile currentLevelTile;
-    private LevelTile nextLevelTile;
-    private GameObject player; //current player obj in the game
+	private LevelGenerator levelGen;
+	private LevelTile currentLevelTile;
+	private LevelTile nextLevelTile;
+	private GameObject player;
+	//current player obj in the game
 	private BGScroller bg;
+	private Tutorial tut;
+	private int tutorialCount = 0;
 
 	void Awake ()
 	{
@@ -35,6 +38,8 @@ public class GameController : MonoBehaviour
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
 			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 			bg = GameObject.Find ("Background").GetComponent<BGScroller> ();
+			tut = GameObject.Find ("TutorialText").GetComponent<Tutorial> ();
+			tutorialCount++;
 		}
 		Debug.Log ("GameController level loaded");
 	}
@@ -44,10 +49,12 @@ public class GameController : MonoBehaviour
 	{
 		OnLevelWasLoaded (Application.loadedLevel);
 
-        LevelGenerator levelGen = GetComponent<LevelGenerator>();
-        currentLevelTile = levelGen.genLevelTile();
-        nextLevelTile = levelGen.genLevelTile();
-    }
+		LevelGenerator levelGen = GetComponent<LevelGenerator> ();
+		currentLevelTile = levelGen.genLevelTile ();
+		nextLevelTile = levelGen.genLevelTile ();
+		tut.ShowTutorial (tutorialCount == 1);
+		ShowTutorialPhase (Tutorial.Phase.ANGLE);
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -55,13 +62,15 @@ public class GameController : MonoBehaviour
 	
 	}
 
-    public void setPlayer(GameObject p) {
-        this.player = p;
-    }
+	public void setPlayer (GameObject p)
+	{
+		this.player = p;
+	}
 
-    public GameObject getPlayerObj() {
-        return player;
-    }
+	public GameObject getPlayerObj ()
+	{
+		return player;
+	}
 
 	//Input is new player position.  This figures out positions of other objects such as camera and bg.
 	public void UpdatePlayerPos (Vector2 playerPos, Vector2 prevPos)
@@ -92,4 +101,8 @@ public class GameController : MonoBehaviour
 		SceneManager.LoadScene ("Game");
 	}
 
+	public void ShowTutorialPhase(Tutorial.Phase phase)
+	{
+		tut.ShowPhase (phase);
+	}
 }
