@@ -132,6 +132,18 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11412692, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374306, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499854, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 21218578, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 12b09510db66fd14cb875a2af28db3b7, type: 2}
@@ -356,6 +368,26 @@ Prefab:
     - target: {fileID: 22486720, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22300996, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2145130027}
+    - target: {fileID: 22438408, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 22472960, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -225.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22438408, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 158
+      objectReference: {fileID: 0}
+    - target: {fileID: 22472960, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 158
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65695db0e95bf7743adbd923710faa65, type: 2}
@@ -583,7 +615,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1001 &1637021030
 Prefab:
   m_ObjectHideFlags: 0
