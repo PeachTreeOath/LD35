@@ -10,18 +10,18 @@ public class PurchaseAvatar : MonoBehaviour {
     private Text amountText;
     private Bank bank;
     private Inventory inventory;
+    private VishnuStateController.Avatar avatarEnum;
+    private string avatarString;
 
     void Start () {
-        costText = transform.Find("Cost").GetComponent<Text>();
-        amountText = transform.Find("Amount").GetComponent<Text>();
+        avatarString = transform.FindChild("Avatar").GetComponent<Text>().text;
+        Debug.Log(avatarString);
         inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
         bank = GameObject.Find("Singletons").GetComponent<Bank>();
-    }
-
-    void Awake()
-    {
         amount = inventory.GetAvatarInventory(VishnuStateController.Avatar.MATSYA);
-        cost = amount + 1;
+        cost = amount * (amount + 1) / 2 + 1;
+        costText = transform.FindChild("Cost").GetComponent<Text>();
+        amountText = transform.FindChild("Amount").GetComponent<Text>();
     }
 	
 	void LateUpdate () {
@@ -32,15 +32,14 @@ public class PurchaseAvatar : MonoBehaviour {
     public void Purchase(string avatarString)
     {
         Debug.Log(@"Entered Purchase: " + avatarString);
-        VishnuStateController.Avatar avatarEnum;
+        
         avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString);
         if (bank.TotalMoney > cost)
         {
-            cost += inventory.GetAvatarInventory(avatarEnum) + 1;
+            cost = amount * (amount + 1) / 2 + 1;
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
             amount = inventory.GetAvatarInventory(avatarEnum);
         }
-
     }
 }
