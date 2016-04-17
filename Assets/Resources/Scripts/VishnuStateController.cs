@@ -174,7 +174,6 @@ public class VishnuStateController : MonoBehaviour
 			pendingUpdate = false;
 		}
         
-
 		state = State.FLIGHT;
 	}
 
@@ -261,7 +260,8 @@ public class VishnuStateController : MonoBehaviour
 		rb.drag = a.drag * a.dragMult;
 
 		player.GetComponentInChildren<Magnet> ().Range = a.magnetRange;
-	}
+        player.GetComponent<Bounciness>().Value = a.bounciness;
+    }
 
 	public void changePlayerSprite (Avatar avatar)
 	{
@@ -292,9 +292,11 @@ public class VishnuStateController : MonoBehaviour
 		case Avatar.VARAHA:
 			return "Textures/Boar";
 		case Avatar.VAMANA:
-			return "Textures/Vishnu";
+			return "Textures/Vamana";
 		case Avatar.KRISHNA:
 			return "Textures/Krishna";
+		case Avatar.NARASIMHA:
+			return "Textures/Narasimha";
 		case Avatar.NONE:
 			return "Textures/SadSadVishnu";
 

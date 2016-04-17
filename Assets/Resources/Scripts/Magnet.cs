@@ -31,12 +31,6 @@ public class Magnet : MonoBehaviour {
         }
     }
 
-    public void SetRange(float range)
-    {
-        this.range = range;
-
-    }
-
     protected void ResizeRadius()
     {
         CircleCollider2D collider = gameObject.GetComponent<CircleCollider2D>();
