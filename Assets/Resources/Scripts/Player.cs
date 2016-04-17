@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 	private Vector2 prevPosition;
 	private Rigidbody2D body;
 	private float stopTimeElapsed;
-    private float flightTime = 0;
+	private float flightTime = 0;
 	private bool isStopped;
 	private float launchTime;
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        gc.setPlayer(this.gameObject);
+		gc.setPlayer (this.gameObject);
 	}
 
 	// Update is called once per frame
@@ -41,14 +41,14 @@ public class Player : MonoBehaviour
 	{
 		float dist = Vector2.Distance (transform.position, prevPosition);
 
-        flightTime += Time.deltaTime;
-        //FIXME temp transition test code
-        if(flightTime > 2.0) {
-            Debug.Log("TEMP ASCENTION");
-            VishnuStateController.instance.transitionToNextAvatar(1);
-            flightTime = 0;
-        }
-        //FIXME temp transition test code
+		flightTime += Time.deltaTime;
+		//FIXME temp transition test code
+		if (flightTime > 2.0) {
+			Debug.Log ("TEMP ASCENTION");
+			VishnuStateController.instance.transitionToNextAvatar (1);
+			flightTime = 0;
+		}
+		//FIXME temp transition test code
 
 
 
@@ -77,12 +77,12 @@ public class Player : MonoBehaviour
 	{
 		//pass the player position to the game controller and let that decide which other components to shuffle
 		//Does this need to be in late update??
-		gc.UpdatePlayerPos (transform);
+		gc.UpdatePlayerPos (transform.position, prevPosition);
 	}
 
 	public void Fire (float angle, float force)
 	{
-        flightTime = 0;
+		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
 		launchTime = Time.time;
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D collider)
 	{
-        ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector>();
+		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 		if (obstacleVector != null) {
 			if (obstacleVector != null) {
 				body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
@@ -106,17 +106,15 @@ public class Player : MonoBehaviour
 			}
 		}
 
-        ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar>();
-        if (obstacleScalar != null)
-        {
-            if (obstacleScalar != null)
-            {
-                Vector2 playerVel = body.velocity;
-                Vector2 scalarVector = new Vector2(obstacleScalar.scalar * playerVel.x, obstacleScalar.scalar * playerVel.y);
+		ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> ();
+		if (obstacleScalar != null) {
+			if (obstacleScalar != null) {
+				Vector2 playerVel = body.velocity;
+				Vector2 scalarVector = new Vector2 (obstacleScalar.scalar * playerVel.x, obstacleScalar.scalar * playerVel.y);
                 
-                body.AddForce(scalarVector, ForceMode2D.Impulse);
-                obstacleScalar.Remove();
-            }
-        }
-    }
+				body.AddForce (scalarVector, ForceMode2D.Impulse);
+				obstacleScalar.Remove ();
+			}
+		}
+	}
 }
