@@ -164,7 +164,7 @@ public class VishnuStateController : MonoBehaviour {
             AvatarInstance avatarInstance = getCurrentAvatarInstance();
             avatarInstance.Update();
 
-            if(!avatarInstance.IsAvailable) {
+            if(!avatarInstance.IsAvailable && GameController.instance.getPlayerObj() != null) { // TODO: This is a temp fix for GameObject null ref.
                 doPlayerUpdate(); //TODO this is janky way of triggering an Avatar=NONE pass
             }
         }
