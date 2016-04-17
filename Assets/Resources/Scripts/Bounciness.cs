@@ -4,9 +4,9 @@ using System.Collections;
 public class Bounciness : MonoBehaviour {
 
     public PhysicsMaterial2D groundMaterial;
+    public float initialBounciness = 0.8f;
 
-    private float? initialBounciness = null;
-
+    private bool disableBounce = false;
     private float bounciness = 0;
     private float statToPhysicsMult = 1;
 
@@ -20,18 +20,22 @@ public class Bounciness : MonoBehaviour {
         }
     }
 
-    void Start() {
-        UpdateInitialBounciness();
+    public bool NoBounce
+    {
+        get { return disableBounce;  }
+        set
+        {
+            bool prevValue = disableBounce;
+            disableBounce = value;
+
+            if(prevValue != disableBounce) {
+                UpdateBounciness();
+            }
+        }
     }
 
 	void UpdateBounciness() {
-        UpdateInitialBounciness();
-        groundMaterial.bounciness = (float)initialBounciness + bounciness * statToPhysicsMult;
-    }
-
-    void UpdateInitialBounciness()
-    {
-        if (initialBounciness == null)
-            initialBounciness = groundMaterial.bounciness;
+        float value = initialBounciness + bounciness * statToPhysicsMult;
+        groundMaterial.bounciness = NoBounce ? 0f : value;
     }
 }
