@@ -15,10 +15,12 @@ public class Ability {
     public float launchForce;
     public float mass = 1;
     public float drag = 0.5f;
+
     public float liftForce;
     public float bounciness;
+	public float buddhaBounciness;
+    public float moneyGain;
     public float jumpForce;
-    public float magnetoForce;
     public float diveForce;
 
     //ability mods
@@ -26,6 +28,11 @@ public class Ability {
     public float diveForceMult = 1;
     public float liftForceMult = 1;
     public float dragMult = 1;
+
+    public float magnetRange; // Krishna (flute boy)
+    public float diveKick; // Parashurama (axe man)
+    public float hardness; // Kurma (turtle)
+    public float metabolism; // Lion
 
     public static Ability AtLevel(int level)
     {
@@ -43,8 +50,14 @@ public class Ability {
     public Ability Drag(float value) { drag = value; return this; }
     public Ability LiftForce(float value) { liftForce = value; return this; }
     public Ability Bounciness(float value) { bounciness = value; return this; }
+	public Ability BuddhaBounciness(float value) { buddhaBounciness = value; return this; }
+    public Ability MoneyGain(float value) { moneyGain = value;  return this; }
     public Ability JumpForce(float value) { jumpForce = value; return this; }
     public Ability DiveForce(float value) { diveForce = value; return this; }
+    public Ability MagnetRange(float value) { magnetRange = value;  return this; }
+    public Ability DiveKick(float value) { diveKick = value;  return this;  }
+    public Ability Hardness(float value) { hardness = value;  return this;  }
+    public Ability Metabolism(float value) { metabolism = value;  return this;  }
 
     public static Ability LerpAbilities(Ability min, Ability max, int level)
     {
@@ -60,8 +73,14 @@ public class Ability {
         ability.drag = Mathf.Lerp(min.drag, max.drag, t);
         ability.liftForce = Mathf.Lerp(min.liftForce, max.liftForce, t);
         ability.bounciness = Mathf.Lerp(min.bounciness, max.bounciness, t);
+		ability.buddhaBounciness = Mathf.Lerp(min.buddhaBounciness, max.bounciness, t);
         ability.jumpForce = Mathf.Lerp(min.jumpForce, max.jumpForce, t);
         ability.diveForce = Mathf.Lerp(min.diveForce, max.diveForce, t);
+        ability.magnetRange = Mathf.Lerp(min.magnetRange, max.magnetRange, t);
+        ability.moneyGain = Mathf.Lerp(min.moneyGain, max.moneyGain, t);
+        ability.diveKick = Mathf.Lerp(min.diveKick, max.diveKick, t);
+        ability.hardness = Mathf.Lerp(min.hardness, max.hardness, t);
+        ability.metabolism = Mathf.Lerp(min.metabolism, max.metabolism, t);
 
         return ability;
     }

@@ -17,7 +17,12 @@ namespace Assets.Resources.Scripts
         public Ability abilities;
 
         public float EnergyRemaining { get { return Math.Max(energyRemaining, 0f); } }
-        public bool IsAvailable {  get { return EnergyRemaining > 0; } }
+
+		public void SetEnergyRemaining(float newEnergy){ 
+			energyRemaining = newEnergy;
+		}
+        
+		public bool IsAvailable {  get { return EnergyRemaining > 0; } }
 
         public AvatarInstance(AvatarAbilityEntry entry, int level)
         {
@@ -36,7 +41,9 @@ namespace Assets.Resources.Scripts
 
         public Energy getEnergy()
         {
-            return new Energy(maxLevelEnergy, abilities.energy, EnergyRemaining);
+            //removing abilities.energy so that lion can exceed level cap when he eats birds
+			return new Energy(maxLevelEnergy, maxLevelEnergy, EnergyRemaining);
         }
+
     }
 }
