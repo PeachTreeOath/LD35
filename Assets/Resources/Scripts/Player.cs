@@ -113,5 +113,19 @@ public class Player : MonoBehaviour
 				obstacleScalar.Remove ();
 			}
 		}
+
+        LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger>();
+        if (levelGenTrigger != null)
+        {
+            if (levelGenTrigger.isATrigger && !gc.isOnATile)
+            {
+                gc.genBTile();
+            }
+            else if (!levelGenTrigger.isATrigger && gc.isOnATile)
+            {
+                gc.genATile();
+            }
+        }
+
 	}
 }
