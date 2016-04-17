@@ -4,8 +4,8 @@ using System.Collections;
 public class ShiftGridManager : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+        VishnuStateController.instance.PreFlight();
 	}
 	
 	// Update is called once per frame
