@@ -258,7 +258,7 @@ public class VishnuStateController : MonoBehaviour
 		rb.drag = a.drag * a.dragMult;
 
 		player.GetComponentInChildren<Magnet> ().Range = a.magnetRange;
-		player.GetComponent<Bounciness>().Value = GetBounciness() + a.buddhaBounciness;
+		player.GetComponent<Bounciness>().Value = GetBounciness()/50 + a.buddhaBounciness/2;
         player.GetComponent<DiveKick>().Value = a.diveKick;
     }
 

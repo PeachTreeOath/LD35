@@ -23,9 +23,9 @@ public class AbilityData
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.MATSYA)
                .Set (Ability.AtLevel (1)
-                    .Energy (100))
+				.Energy (100).Bounciness (1))
                .Set (Ability.AtLevel (10)
-                    .Energy (1000))
+				.Energy (1000).Bounciness (10))
 		);
 
 		AddEntry (
@@ -47,17 +47,17 @@ public class AbilityData
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.NARASIMHA)
                .Set (Ability.AtLevel (1)
-                    .Energy (100))
+				.Energy (100).Bounciness (1))
                .Set (Ability.AtLevel (10)
-                    .Energy (1000))
+				.Energy (1000).Bounciness (10))
 		);
 
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.VAMANA)
                .Set (Ability.AtLevel (1)
-                    .Energy (100))
+				.Energy (100).Bounciness (1))
                .Set (Ability.AtLevel (10)
-                    .Energy (1000))
+				.Energy (1000).Bounciness (10))
 		);
 
 		AddEntry (
