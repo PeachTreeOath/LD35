@@ -15,6 +15,10 @@ public class ShiftGridIcon : MonoBehaviour {
 	void Update () {
         AvatarInstance instance = VishnuStateController.instance.getAvatarInstanceForSlot(slot);
         SetEnergy(instance.getEnergy());
+
+        //garbage garbage garbage
+        Sprite icon = VishnuStateController.instance.GetIconSprite(instance.avatar);
+        GetComponent<Image>().sprite = icon;
     }
 
     public void SetEnergy(Energy energy) {

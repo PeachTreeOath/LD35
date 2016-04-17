@@ -21,6 +21,7 @@ public class VishnuStateController : MonoBehaviour {
     private AbilityData abilityDataRef; //source to load abilites from
     private Dictionary<Avatar, AvatarAbilityEntry> abilityEntries = new Dictionary<Avatar, AvatarAbilityEntry>();
     private Dictionary<Avatar, Sprite> avatarSprites = new Dictionary<Avatar, Sprite>();
+    private Dictionary<Avatar, Sprite> avatarIconSprites = new Dictionary<Avatar, Sprite>();
 
     private Dictionary<Avatar, AvatarInstance> avatarInstances = new Dictionary<Avatar, AvatarInstance>();
     private AvatarInstance noneAvatarInstance = null;
@@ -35,7 +36,6 @@ public class VishnuStateController : MonoBehaviour {
 
     private int curNumSlotsOpen = 2;
     private List<Avatar> avatarSlot = new List<Avatar>(); //0-based index for each slot.
-
     
     void SetInitialState()
     {
@@ -79,6 +79,9 @@ public class VishnuStateController : MonoBehaviour {
         foreach(Avatar avatar in Enum.GetValues(typeof(Avatar))) {
             string textureName = GetSpriteTextureName(avatar);
             avatarSprites[avatar] = Resources.Load<Sprite>(textureName);
+
+            textureName = GetIconTextureName(avatar);
+            avatarIconSprites[avatar] = Resources.Load<Sprite>(textureName);
         }
     }
 
@@ -109,8 +112,10 @@ public class VishnuStateController : MonoBehaviour {
             return avatarInstance;
     }
 
-    public void UpdateNoneAvatarInstance() {  
-        int levelOfNone = 1; //TODO we could calculate some aggregate level of this, so it gets better as your stats go up
+    public void UpdateNoneAvatarInstance() {
+        Inventory inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
+
+        int levelOfNone = Mathf.RoundToInt((float)inventory.GetTotalAvatarInventory() / 9f); //average level of "standard" avatars
         noneAvatarInstance = new AvatarInstance(abilityEntries[Avatar.NONE], levelOfNone);
     }
 
@@ -121,10 +126,12 @@ public class VishnuStateController : MonoBehaviour {
             return;
         }
 
+        Inventory inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
+
         avatarInstances.Clear();
         foreach (Avatar avatar in avatarSlot)
         {
-            int level = 1; //TODO get level of current inventory
+            int level = inventory.GetAvatarInventory(avatar); 
             avatarInstances[avatar] = new AvatarInstance(abilityEntries[avatar], level);
         }
         TransitionToNextAvatar(0);
@@ -230,8 +237,7 @@ public class VishnuStateController : MonoBehaviour {
 
     }
 
-    public void changePlayerSprite(Avatar avatar)
-    {
+    public void changePlayerSprite(Avatar avatar) {
         GameObject player = GameController.instance.getPlayerObj();
         SpriteRenderer sr = player.GetComponent<SpriteRenderer>();
 
@@ -254,10 +260,20 @@ public class VishnuStateController : MonoBehaviour {
             case Avatar.KURMA: return "Textures/VishnuTurtle";
             case Avatar.VARAHA: return "Textures/Boar";
             case Avatar.VAMANA: return "Textures/Vishnu";
+            case Avatar.KRISHNA: return "Textures/Krishna";
             case Avatar.NONE: return "Textures/SadSadVishnu";
 
             default: return "Textures/Vishnu";
         }
     }
+    
+    public string GetIconTextureName(Avatar avatar) {
+        return GetSpriteTextureName(avatar) + "Icon";
+    }
 
+    ///garbage garbage garbage...
+    public Sprite GetIconSprite(Avatar avatar)
+    {
+        return avatarIconSprites[avatar];
+    }
 }

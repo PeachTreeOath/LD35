@@ -24,4 +24,14 @@ public class Inventory : MonoBehaviour {
     {
         return avatarInventory[avatarEnum];
     }
+
+    public int GetTotalAvatarInventory()
+    {
+        int total = 0;
+        foreach(int value in avatarInventory.Values) {
+            total += value;
+        }
+
+        return total;
+    }
 }
