@@ -31,6 +31,7 @@ public class AvatarAbilityEntry {
         level = Math.Min(maxLevel, level);
         level = Math.Max(minlevel, level);
 
+        if (level == minlevel) return abilities[0];
         if (level == maxLevel) return abilities[abilities.Count - 1];
 
         for(int i = 0; i < abilities.Count; i++)
@@ -39,7 +40,7 @@ public class AvatarAbilityEntry {
             if(next.level >= level)
             {
                 Ability prev = abilities[i - 1];
-                return LerpAbilities(prev, next, level);
+                return Ability.LerpAbilities(prev, next, level);
             }
         }
 
@@ -51,24 +52,5 @@ public class AvatarAbilityEntry {
     {
         abilities.Add(ability);
         return this;
-    }
-
-    private Ability LerpAbilities(Ability min, Ability max, int level)
-    {
-        float t = level / (float)(max.level - min.level);
-
-        Ability ability = new Ability();
-        ability.level = level;
-        ability.energy = Mathf.Lerp(min.energy, max.energy, t);
-        ability.cost = Mathf.Lerp(min.cost, max.cost, t);
-        ability.launchForce = Mathf.Lerp(min.launchForce, max.launchForce, t);
-        ability.mass = Mathf.Lerp(min.mass, max.mass, t);
-        ability.drag = Mathf.Lerp(min.drag, max.drag, t);
-        ability.liftForce = Mathf.Lerp(min.liftForce, max.liftForce, t);
-        ability.bounciness = Mathf.Lerp(min.bounciness, max.bounciness, t);
-        ability.jumpForce = Mathf.Lerp(min.jumpForce, max.jumpForce, t);
-        ability.diveForce = Mathf.Lerp(min.diveForce, max.diveForce, t);
-
-        return ability;
     }
 }

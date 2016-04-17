@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Resources.Scripts;
 
 //Use this for checking/transitioning vishnu's avatar
 public class VishnuStateController : MonoBehaviour {
@@ -13,8 +14,9 @@ public class VishnuStateController : MonoBehaviour {
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from
-    private Dictionary<Avatar, Ability> abilities = new Dictionary<Avatar, Ability>();
+    private Dictionary<Avatar, AvatarAbilityEntry> abilityEntries = new Dictionary<Avatar, AvatarAbilityEntry>();
 
+    private Dictionary<Avatar, AvatarInstance> instances = new Dictionary<Avatar, AvatarInstance>();
 
     private static VishnuStateController m_instance;
     private int curAvatarIndex;
@@ -58,7 +60,7 @@ public class VishnuStateController : MonoBehaviour {
         }
 
         foreach(AvatarAbilityEntry ent in abilityDataRef.getAll()){
-            abilities[ent.avatar] = ent.GetAbilityAtLevel(5); 
+            abilityEntries[ent.avatar] = ent; 
         }
         Debug.Log("Abilities loaded!");
     }
@@ -84,6 +86,13 @@ public class VishnuStateController : MonoBehaviour {
         avatarSlot.Clear();
         avatarSlot.AddRange(orderedAvatars);
         curAvatarIndex = 0;
+
+        instances.Clear();
+        foreach(Avatar avatar in orderedAvatars)
+        {
+            int level = 1; //TODO get level of current inventory
+            instances[avatar] = new AvatarInstance(abilityEntries[avatar], 1);
+        }
     }
 
     public Avatar getCurrentAvatar() {
@@ -93,7 +102,7 @@ public class VishnuStateController : MonoBehaviour {
     //Using a numerical index, start a transition from the current index to the next
     public void transitionToNextAvatar(int nextIndex, float msDelay = 0) {
         curAvatarIndex = nextIndex; //TODO factor in time
-        Ability newAbilities = abilities[getCurrentAvatar()];
+        Ability newAbilities = instances[getCurrentAvatar()].abilities;
         changePlayerAttributes(newAbilities);
         Debug.Log("Avatar transition complete");
     }
