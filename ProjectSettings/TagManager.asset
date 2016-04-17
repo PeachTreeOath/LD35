@@ -7,6 +7,7 @@ TagManager:
   - Money
   - Obstacle
   - FriendlyObstacle
+  - Ground
   layers:
   - Default
   - TransparentFX
