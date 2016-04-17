@@ -125,6 +125,7 @@ public class LaunchController : MonoBehaviour {
             angleSelected = angleDisplayed;
             isAngleSet = true;
 			powerCircle.enabled = true;
+			GameController.instance.ShowTutorialPhase (Tutorial.Phase.POWER);
         }
         else if (Input.GetButtonDown("Fire1") && !isPowerSet)
         {
@@ -132,6 +133,7 @@ public class LaunchController : MonoBehaviour {
             isPowerSet = true;
             launcher.LaunchPlayer(angleSelected, powerDisplayed * 10);
             VishnuStateController.instance.StartFlight();
+			GameController.instance.ShowTutorialPhase (Tutorial.Phase.SWITCH);
         }
 
     }
