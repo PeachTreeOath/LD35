@@ -8,7 +8,7 @@ public class ObstacleScalar : LevelObject  {
     public float scalar;
 	private AvatarInstance curAvatarInst; 
 
-	private int lionEnergyBoost = 200; 
+	public int lionEnergyBoost = 50; 
 
     public void Remove()
     {
