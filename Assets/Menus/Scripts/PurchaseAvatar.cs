@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System;
 
-public class PurchaseAvatar : MonoBehaviour {
+public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler {
     public int cost;
     public int amount;
     private Text costText;
@@ -56,4 +57,10 @@ public class PurchaseAvatar : MonoBehaviour {
             amount = inventory.GetAvatarInventory(avatarEnum);
         }
     }
+
+	public void OnPointerEnter(PointerEventData dataName)
+	{
+		Debug.Log ("Im in " + gameObject.name);
+	}
+
 }
