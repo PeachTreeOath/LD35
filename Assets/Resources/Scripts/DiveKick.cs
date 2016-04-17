@@ -5,10 +5,11 @@ public class DiveKick : MonoBehaviour {
 
     private bool diveKicking = false;
     private float savedSpeed = 0f;
-    private State state = State.NONE;
+	private float diveMult = 800f;
+	private State state = State.NONE;
 
     public PhysicsMaterial2D groundMaterial;
-    public Vector2 DiveSpeed = Vector2.zero;
+	public Vector2 diveSpeed;
     public enum State { NONE, DIVING, RECOVERING }
 
     public float Value
@@ -34,6 +35,7 @@ public class DiveKick : MonoBehaviour {
 
     void StartDive()
     {
+		diveSpeed = new Vector2 (diveMult, -diveMult);
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
         Bounciness bounciness = gameObject.GetComponent<Bounciness>();
 
@@ -58,7 +60,8 @@ public class DiveKick : MonoBehaviour {
 	void Update () {
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
         if (state == State.DIVING) {
-            body.velocity.Set(DiveSpeed.x + savedSpeed, DiveSpeed.y);
+			body.velocity = Vector2.zero;
+			body.AddForce(new Vector2(diveSpeed.x + savedSpeed, diveSpeed.y));
         }
 	}
     
