@@ -20,8 +20,8 @@ public class ShiftGridIcon : MonoBehaviour {
     public void SetEnergy(Energy energy) {
         Image meter = transform.Find("Energy Meter").GetComponent<Image>();
         if (meter != null) {
-            float maxPercentage = energy.max / energy.absoluteMax;
-            float meterPercentage = energy.current / energy.max;
+            float maxPercentage = energy.absoluteMax > 0 ? energy.max / energy.absoluteMax : 0;
+            float meterPercentage = energy.max > 0 ? energy.current / energy.max : 0;
 
             meter.fillAmount = Mathf.Lerp(0, maxPercentage, meterPercentage); 
         } else {

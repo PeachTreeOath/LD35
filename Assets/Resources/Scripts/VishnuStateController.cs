@@ -11,12 +11,16 @@ public class VishnuStateController : MonoBehaviour {
 
     [SerializeField]
     public enum Avatar { NONE, MATSYA, KURMA, VARAHA, NARASIMHA, VAMANA, PARASHURAMA, RAMA, KRISHNA, BUDDHA, KALKI };
+    public enum State { PRE_FLIGHT, FLIGHT, NONE };
+
+    private State state = State.NONE;
 
     [SerializeField]
     private AbilityData abilityDataRef; //source to load abilites from
     private Dictionary<Avatar, AvatarAbilityEntry> abilityEntries = new Dictionary<Avatar, AvatarAbilityEntry>();
 
     private Dictionary<Avatar, AvatarInstance> avatarInstances = new Dictionary<Avatar, AvatarInstance>();
+    private AvatarInstance noneAvatarInstance = null;
 
     private static VishnuStateController m_instance;
     private int curAvatarIndex;
@@ -28,29 +32,29 @@ public class VishnuStateController : MonoBehaviour {
 
     private int curNumSlotsOpen = 2;
     private List<Avatar> avatarSlot = new List<Avatar>(); //0-based index for each slot.
+
     
+    void SetInitialState()
+    {
+        List<Avatar> newSpheres = new List<Avatar>();
+        newSpheres.Add(Avatar.BUDDHA);
+        newSpheres.Add(Avatar.PARASHURAMA);
+
+        updateAvatars(newSpheres);
+    }
 
     void Awake() {
         if (m_instance == null) {
             m_instance = this;
             DontDestroyOnLoad(gameObject);
             LoadAbilityData();
-            DEBUG_ADD_AVATAR(); //TODO REMOVER
-        }else if(m_instance != null && m_instance != this) {
+            SetInitialState();
+        }
+        else if(m_instance != null && m_instance != this) {
             Debug.Log("Deleting singleton Dup.  Someone screwed up");
             Destroy(gameObject);
             return;
         }
-    }
-
-    //FIXME delete references to this before release!
-    private void DEBUG_ADD_AVATAR() {
-        Debug.Log("Performing debug add avatars!");
-        List<Avatar> newSpheres = new List<Avatar>();
-        newSpheres.Add(Avatar.BUDDHA);
-        newSpheres.Add(Avatar.KALKI);
-        newSpheres.Add(Avatar.PARASHURAMA);
-        updateAvatars(newSpheres);
     }
 
     private void LoadAbilityData() {
@@ -67,19 +71,85 @@ public class VishnuStateController : MonoBehaviour {
 
     public AvatarInstance getAvatarInstanceForSlot(int slot)
     {
-        //TODO index out of range!
-        Avatar avatar = avatarSlot[slot];
-        AvatarInstance avatarInstance = avatarInstances[avatar];
+        if (state == State.NONE || slot < 0 || slot >= avatarSlot.Count)
+            return getAvatarInstance(Avatar.NONE);
 
-        if(!avatarInstance.IsAvailable)
-            return avatarInstances[Avatar.NONE];
-        else 
+        Avatar avatar = avatarSlot[slot];
+        return getAvatarInstance(avatar);
+    }
+
+    public AvatarInstance getCurrentAvatarInstance()
+    {
+        Avatar currentAvatar = getCurrentAvatar();
+        return getAvatarInstance(currentAvatar);
+    }
+
+    public AvatarInstance getAvatarInstance(Avatar avatar)
+    {
+        if(avatar == Avatar.NONE)
+        {
+            if (noneAvatarInstance == null) UpdateNoneAvatarInstance();
+            return noneAvatarInstance;
+        }
+
+        AvatarInstance avatarInstance = avatarInstances[avatar];
+        if (!avatarInstance.IsAvailable)
+            return getAvatarInstance(Avatar.NONE);
+        else
             return avatarInstance;
+    }
+
+    public void UpdateNoneAvatarInstance()
+    {  
+        int levelOfNone = 1; //TODO we could calculate some aggregate level of this, so it gets better as your stats go up
+        noneAvatarInstance = new AvatarInstance(abilityEntries[Avatar.NONE], levelOfNone);
+    }
+
+    public void PreFlight()
+    {
+        if (state != State.NONE)
+        {
+            Debug.LogError("Attempting to start a flight without ending the previous flight!");
+            return;
+        }
+
+        avatarInstances.Clear();
+        foreach (Avatar avatar in avatarSlot)
+        {
+            int level = 1; //TODO get level of current inventory
+            avatarInstances[avatar] = new AvatarInstance(abilityEntries[avatar], level);
+        }
+
+        state = State.PRE_FLIGHT;
+    }
+
+    public void StartFlight()
+    {
+        if(state != State.PRE_FLIGHT) {
+            Debug.LogError("Attempting to start a flight without runing PreFlight()!");
+            return;
+        }
+
+        state = State.PRE_FLIGHT;
+    }
+
+    public void StopFlight()
+    {
+        if(state != State.FLIGHT) {
+            Debug.LogError("Attempting to end a flight without running StartFlight()!");
+            return;
+        }
+
+        state = State.NONE;
     }
 
     // Update is called once per frame
     void Update() {
-
+        if(state == State.FLIGHT)
+        {
+            AvatarInstance avatarInstance = getCurrentAvatarInstance();
+            avatarInstance.Update();
+        }
     }
 
     public int getNumSlotsOpen() {
@@ -93,16 +163,6 @@ public class VishnuStateController : MonoBehaviour {
         avatarSlot.Clear();
         avatarSlot.AddRange(orderedAvatars);
         curAvatarIndex = 0;
-
-        avatarInstances.Clear();
-        foreach(Avatar avatar in orderedAvatars)
-        {
-            int level = 1; //TODO get level of current inventory
-            avatarInstances[avatar] = new AvatarInstance(abilityEntries[avatar], level);
-        }
-
-        int levelOfNone = 1; //TODO we could calculate some aggregate level of this, so it gets better as your stats go up
-        avatarInstances[Avatar.NONE] = new AvatarInstance(abilityEntries[Avatar.NONE], levelOfNone);
     }
 
     public Avatar getCurrentAvatar() {
@@ -112,7 +172,7 @@ public class VishnuStateController : MonoBehaviour {
     //Using a numerical index, start a transition from the current index to the next
     public void transitionToNextAvatar(int nextIndex, float msDelay = 0) {
         curAvatarIndex = nextIndex; //TODO factor in time
-        Ability newAbilities = avatarInstances[getCurrentAvatar()].abilities;
+        Ability newAbilities = getCurrentAvatarInstance().abilities;
         changePlayerAttributes(newAbilities);
         Debug.Log("Avatar transition complete");
     }
@@ -136,7 +196,5 @@ public class VishnuStateController : MonoBehaviour {
 
 
     }
-
-
 
 }

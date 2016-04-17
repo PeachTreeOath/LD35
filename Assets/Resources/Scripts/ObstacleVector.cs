@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Obstacle : LevelObject {
+public class ObstacleVector : LevelObject {
     public Vector2 velocityChange;
 
 	// Use this for initialization

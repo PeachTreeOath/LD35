@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 	private Vector2 prevPosition;
 	private Rigidbody2D body;
 	private float stopTimeElapsed;
-    private float flightTime = 0;
+	private float flightTime = 0;
 	private bool isStopped;
 	private float launchTime;
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        gc.setPlayer(this.gameObject);
+		gc.setPlayer (this.gameObject);
 	}
 
 	// Update is called once per frame
@@ -44,13 +44,10 @@ public class Player : MonoBehaviour
         flightTime += Time.deltaTime;
         //FIXME temp transition test code
         if(flightTime > 2.0) {
-            Debug.Log("TEMP ASCENTION");
-            VishnuStateController.instance.transitionToNextAvatar(1);
+            //Debug.Log("TEMP ASCENTION");
+            //VishnuStateController.instance.transitionToNextAvatar(1);
             flightTime = 0;
         }
-        //FIXME temp transition test code
-
-
 
 		if (dist < minDistanceTraveled) {
 			stopTimeElapsed += Time.deltaTime;
@@ -65,8 +62,7 @@ public class Player : MonoBehaviour
 			playerStat.SetRunDuration (Time.time - launchTime);
 			Invoke ("Stop", 1f);
 		}
-		prevPosition = transform.position;
-
+			
 		//LOL DAVE PLS
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			body.velocity = Vector2.zero;
@@ -75,14 +71,13 @@ public class Player : MonoBehaviour
 
 	void LateUpdate ()
 	{
-		//pass the player position to the game controller and let that decide which other components to shuffle
-		//Does this need to be in late update??
-		gc.UpdatePlayerPos (transform);
+		gc.UpdatePlayerPos (transform.position, prevPosition);
+		prevPosition = transform.position;
 	}
 
 	public void Fire (float angle, float force)
 	{
-        flightTime = 0;
+		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
 		launchTime = Time.time;
@@ -98,11 +93,22 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D collider)
 	{
-		if (collider.tag == "Obstacle") {
-			Obstacle obstacle = collider.gameObject.GetComponent<Obstacle> ();
-			if (obstacle != null) {
-				body.AddForce (obstacle.velocityChange);
-				obstacle.Remove ();
+		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
+		if (obstacleVector != null) {
+			if (obstacleVector != null) {
+				body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
+				obstacleVector.Remove ();
+			}
+		}
+
+		ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> ();
+		if (obstacleScalar != null) {
+			if (obstacleScalar != null) {
+				Vector2 playerVel = body.velocity;
+				Vector2 scalarVector = new Vector2 (obstacleScalar.scalar * playerVel.x, obstacleScalar.scalar * playerVel.y);
+                
+				body.AddForce (scalarVector, ForceMode2D.Impulse);
+				obstacleScalar.Remove ();
 			}
 		}
 	}
