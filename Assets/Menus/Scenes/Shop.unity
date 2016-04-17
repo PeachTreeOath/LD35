@@ -117,9 +117,9 @@ RectTransform:
   - {fileID: 1907518714}
   m_Father: {fileID: 544462353}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -200, y: 50}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56599080
@@ -316,6 +316,19 @@ Prefab:
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Turtle
+      objectReference: {fileID: 0}
+    - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Name
+      value: Kurma
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 766e94cd4c3dfac4ab71f831c6722751,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -823,11 +836,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (5)
+      value: Rama
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Bow Wielder
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e87b8ab13950e504080d5e9f36108269,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -934,11 +956,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (2)
+      value: Narasimha
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Man-Lion
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0ceed4b92b7c10540a5f221dfe78cacb,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1118,11 +1149,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (7)
+      value: Buddha
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Enlightened
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 402960a1e76fa534e84e9d61343eff29,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1229,11 +1269,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (6)
+      value: Krishna
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Flute Wielder
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0fa02964b777c0f40b267bbdcdf47ff6,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1340,11 +1389,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (8)
+      value: Kalki
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
-      value: Harbinger of the End
+      value: The Harbinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 30f7a950c02bd6b4fa41211c9003851b,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1451,11 +1509,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (4)
+      value: Parashurama
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Axe Wielder
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e9611f20ac3bd2148a9ee82f8206bfce,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1548,6 +1615,19 @@ Prefab:
     - target: {fileID: 22427292, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Name
+      value: Matsya
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b5235b74f29500409320fb25f91c4ad,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1649,11 +1729,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (3)
+      value: Vamana
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Dwarf
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 93a56acc9f2b7934596ef6357682bd0b,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_PreserveAspect
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1765,11 +1858,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 106514, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Name
-      value: BuyAvatar (1)
+      value: Varaha
       objectReference: {fileID: 0}
     - target: {fileID: 11490164, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
       propertyPath: m_Text
       value: The Boar
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 37ca6558499ccf6448ec886a3c0cc862,
+        type: 3}
+    - target: {fileID: 11469462, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b5a7b3789d7c24ebeab5e1b6abc251, type: 2}
@@ -1810,7 +1912,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: 0}
+  m_AnchoredPosition: {x: 600, y: 0}
   m_SizeDelta: {x: 20, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1794130430
