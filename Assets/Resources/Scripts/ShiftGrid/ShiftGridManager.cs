@@ -15,6 +15,6 @@ public class ShiftGridManager : MonoBehaviour {
 
     public void OnIconClick(int slotNumber)
     {
-
+        VishnuStateController.instance.TransitionToNextAvatar(slotNumber);
     }
 }
