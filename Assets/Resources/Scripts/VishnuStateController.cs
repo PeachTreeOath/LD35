@@ -238,7 +238,7 @@ public class VishnuStateController : MonoBehaviour {
     {
         switch (avatar)
         {
-            case Avatar.BUDDHA: return "Textures/Buddah";
+            case Avatar.BUDDHA: return "Textures/Buddha";
             case Avatar.RAMA: return "Textures/Rama";
             case Avatar.PARASHURAMA: return "Textures/VishnuAxe";
             case Avatar.MATSYA: return "Textures/VishnuFish";
