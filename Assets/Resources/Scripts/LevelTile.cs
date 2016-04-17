@@ -26,6 +26,7 @@ public class LevelTile : MonoBehaviour {
             Vector3 objPos = new Vector3(randomLocX, randomLocY, 0f);
 
             children.Add((LevelObject)Instantiate(objectToCreate, objPos, transform.rotation));
+            children[i].transform.SetParent(transform, true);
         }
     }
 	
@@ -33,6 +34,11 @@ public class LevelTile : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public float getWidth()
+    {
+        return xMax - xMin;
+    }
 
 
 }

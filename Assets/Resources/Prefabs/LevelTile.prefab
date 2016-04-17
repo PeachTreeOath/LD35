@@ -40,10 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xMin: -5
-  xMax: 20
+  xMax: 250
   yMin: -2
-  yMax: 20
-  objectsPerTile: 40
+  yMax: 250
+  objectsPerTile: 5000
   skyObjectPrefabs:
   - {fileID: 11481244, guid: d7c136799325b4ed3b3576d6406cb38f, type: 2}
   - {fileID: 11453030, guid: 48c5543849442c442a467223aaafb4c9, type: 2}

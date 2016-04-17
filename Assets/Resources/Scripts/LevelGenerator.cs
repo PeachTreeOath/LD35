@@ -13,4 +13,9 @@ public class LevelGenerator : MonoBehaviour {
 
         return levelTile;
     }
+
+    public float getTileWidth()
+    {
+        return levelTilePrefab.getWidth();
+    }
 }

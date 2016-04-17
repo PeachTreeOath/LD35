@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 	private BGScroller bg;
 	private Tutorial tut;
 	private int tutorialCount = 0;
+    private bool levelTileMoved = false;
 
 	void Awake ()
 	{
@@ -52,14 +53,28 @@ public class GameController : MonoBehaviour
 		LevelGenerator levelGen = GetComponent<LevelGenerator> ();
 		currentLevelTile = levelGen.genLevelTile ();
 		nextLevelTile = levelGen.genLevelTile ();
-		tut.ShowTutorial (tutorialCount == 1);
+        levelTileMoved = true;
+
+
+        tut.ShowTutorial (tutorialCount == 1);
 		ShowTutorialPhase (Tutorial.Phase.ANGLE);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	
+	    if (levelTileMoved)
+        {
+            //Have to move these in update, not start.  They do not tranform properly in start.
+            float nextLevelTileOffset = currentLevelTile.getWidth();
+            Vector3 nextLevelTilePos = nextLevelTile.transform.position;
+
+            float newPosX = nextLevelTilePos.x + nextLevelTileOffset;
+            float newPosY = nextLevelTilePos.y;
+            Vector3 newPos = new Vector3(newPosX, newPosY);
+            nextLevelTile.transform.position = newPos;
+            levelTileMoved = false;
+        }
 	}
 
 	public void setPlayer (GameObject p)
