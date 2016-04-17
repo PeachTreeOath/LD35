@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Reflection;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -93,8 +95,55 @@ public class Player : MonoBehaviour
 		//playerStat.DisplayRunStats();
 	}
 
-	void OnTriggerEnter2D (Collider2D collider)
-	{
+    MethodInfo FindMethod(Type type, Type returnType, string name, params Type[] parameterTypes) {
+        MethodInfo methodInfo = type.GetMethod(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if(methodInfo != null) {
+            if (methodInfo.ReturnType != returnType) {
+                methodInfo = null;
+            }
+            else {
+                ParameterInfo[] paramInfo = methodInfo.GetParameters();
+                if (parameterTypes.Length != paramInfo.Length)
+                {
+                    methodInfo = null;
+                }
+                else
+                {
+                    for (int i = 0; i < paramInfo.Length; i++)
+                    {
+                        if (paramInfo[i].ParameterType != parameterTypes[i])
+                        {
+                            methodInfo = null;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        return methodInfo;
+    }
+
+    bool InvokeMethod(System.Object target, MethodInfo methodInfo,  params System.Object[] values)
+    {
+        System.Object retVal = methodInfo.Invoke(target, values);
+        return (retVal is bool) ? (bool)retVal : false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Component[] components = gameObject.GetComponents<Component>();
+        foreach (Component component in components) {
+            MethodInfo methodInfo = FindMethod(component.GetType(), typeof(bool), "OnObstacleEnter", typeof(Collider2D));
+            if (methodInfo != null)
+            {
+                bool result = InvokeMethod(component, methodInfo, collider);
+                if (!result) break;
+            }
+        }
+    }
+
+    bool OnObstacleEnter(Collider2D collider) { 
 		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 		if (obstacleVector != null) {
 			if (obstacleVector != null) {
@@ -113,5 +162,7 @@ public class Player : MonoBehaviour
 				obstacleScalar.Remove ();
 			}
 		}
+
+        return false;
 	}
 }
