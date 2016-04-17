@@ -23,4 +23,10 @@ public class Bank : MonoBehaviour {
         MoneyThisRun += amount;
         TotalMoney += amount;
     }
+
+    public void Subtract(int amount)
+    {
+        TotalMoney -= amount;
+        if (TotalMoney < 0) TotalMoney = 0;
+    }
 }

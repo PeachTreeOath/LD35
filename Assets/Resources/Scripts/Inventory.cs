@@ -3,19 +3,24 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
 
-    private Dictionary<VishnuStateController.Avatar, uint> avatarInventory;
+    private Dictionary<VishnuStateController.Avatar, int> avatarInventory;
 
     void Awake()
     {
-        avatarInventory = new Dictionary<VishnuStateController.Avatar, uint>();
+        avatarInventory = new Dictionary<VishnuStateController.Avatar, int>();
+        foreach (VishnuStateController.Avatar avatar in System.Enum.GetValues(typeof(VishnuStateController.Avatar)) )
+        {
+            avatarInventory[avatar] = 0;
+        }
+
     }
 
-    void IncrementAvatar(VishnuStateController.Avatar avatarEnum)
+    public void IncrementAvatar(VishnuStateController.Avatar avatarEnum)
     {
         avatarInventory[avatarEnum]++;
     }
 
-    uint GetAvatarInventory(VishnuStateController.Avatar avatarEnum)
+    public int GetAvatarInventory(VishnuStateController.Avatar avatarEnum)
     {
         return avatarInventory[avatarEnum];
     }

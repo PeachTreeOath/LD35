@@ -16,16 +16,24 @@ public class PurchaseAvatar : MonoBehaviour {
     public void Purchase(string avatarString)
     {
         VishnuStateController.Avatar avatarEnum;
+
+
         avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString);
-        /* if(currency >= cost)
+
+        Bank bank = GameObject.Find("Singletons").GetComponent<Bank>();
+        Inventory inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
+
+        int cost = inventory.GetAvatarInventory(avatarEnum);
+
+
+        if (bank.TotalMoney > cost)
         {
-            // TODO: decrease currency by avatar cost
-            // TODO: increase avatar inventory in singleton
+            bank.Subtract(cost);
+            inventory.IncrementAvatar(avatarEnum);
         }
-        */
-        int bankroll;
-        bankroll = (GameObject.Find("Singletons").GetComponent<Bank>()).TotalMoney;
-        Debug.Log(string.Format(@"bankroll: {0}", bankroll));
+        
+
+        Debug.Log(string.Format(@"bankroll: {0}", bank.TotalMoney));
         Debug.Log(@"avatarString: " + avatarString);
         Debug.Log(string.Format(@"avatarEnum: {0}", avatarEnum));
 
