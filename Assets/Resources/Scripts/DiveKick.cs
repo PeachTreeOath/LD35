@@ -112,7 +112,7 @@ public class DiveKick : MonoBehaviour
 	{
 		if (state != State.NONE) {
 			state = State.ROLLING;
-			float scalar = -20f * deltaTime;
+			float scalar = -35f * deltaTime;
 			Vector2 playerVel = body.velocity;
 			Vector2 scalarVector = new Vector2 (scalar * playerVel.x, scalar * playerVel.y);
 			body.AddForce (scalarVector, ForceMode2D.Impulse);
