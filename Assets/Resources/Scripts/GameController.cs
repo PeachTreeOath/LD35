@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
     void Awake ()
 	{
 		if (m_instance == null) {
+            Debug.Log("Creating Immortal GameController object");
 			m_instance = this;
 			DontDestroyOnLoad (gameObject);
 			LoadSounds ();
@@ -130,7 +131,17 @@ public class GameController : MonoBehaviour
 			groundPlatform = GameObject.Find ("GroundPlatform").GetComponent<GroundPlatform> ();
 			cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
-			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
+            GameObject storeCanvasObj = GameObject.Find("ScoreCanvas");
+            if(storeCanvasObj != null && scoreCanvas == null) {
+			    scoreCanvas = storeCanvasObj.GetComponent<ScorePanel> ();
+                DontDestroyOnLoad(scoreCanvas); //very important!
+                foreach (Component go in storeCanvasObj.GetComponentsInChildren<Component>()) {
+                    if (go.gameObject.transform.parent == null) {
+                        DontDestroyOnLoad(go);
+                    }
+                }
+                storeCanvasObj.SetActive(false);
+            }
 			bgs = GameObject.Find ("GroundPlatform").GetComponentsInChildren<BGScroller> ();
 			GameObject obj = GameObject.Find ("TutorialText");
 			if (obj != null) {
@@ -160,7 +171,9 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
+        if(cam == null) {
+           OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
+        }
 		//levelTileMoved = true;
 
 	}
@@ -284,8 +297,14 @@ public class GameController : MonoBehaviour
 
 	}
 
+    //called on button press
+    public void disableScorePanel() {
+        scoreCanvas.gameObject.SetActive(false);
+    }
+
 	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
 	{
+        scoreCanvas.gameObject.SetActive(true);
 		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
 	}
 
