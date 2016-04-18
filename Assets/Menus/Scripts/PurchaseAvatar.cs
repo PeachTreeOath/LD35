@@ -62,14 +62,22 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
 	
 	void LateUpdate () {
-        costText.text = string.Format(@"${0}", cost);
+        if(cost == 0)
+            costText.text = @"";
+        else
+            costText.text = string.Format(@"${0}", cost);
+
         amountText.text = string.Format(@"{0}", amount);
+        UpdateStats();
+    }
+
+    private void UpdateStats()
+    {
         GameObject.Find("StatLaunch").GetComponent<Text>().text = @"Launch power: " + VishnuStateController.instance.GetLaunchPower().ToString();
         GameObject.Find("StatBounce").GetComponent<Text>().text = @"Bounce: " + VishnuStateController.instance.GetBounciness().ToString();
         GameObject.Find("StatAir").GetComponent<Text>().text = @"Air resistance: " + VishnuStateController.instance.GetDrag().ToString();
         GameObject.Find("StatObs").GetComponent<Text>().text = @"Obstacle resistance: " + VishnuStateController.instance.GetMass().ToString();
-		GameObject.Find("StatMagnet").GetComponent<Text>().text = @"Rupee multiplier: +" + (VishnuStateController.instance.GetMoneyGain()*10).ToString() + "%";
-
+        GameObject.Find("StatMagnet").GetComponent<Text>().text = @"Rupee multiplier: +" + (VishnuStateController.instance.GetMoneyGain() * 10).ToString() + "%";
     }
 
     private void UpdateCost()
@@ -85,16 +93,20 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                     cost = 1000;
                 break;
         }
+        if (inventory.GetAvatarInventory(avatarEnum) == 10)
+            cost = 0;
+        UpdateStats();
     }
 
     public void Purchase()
     {
-        if (bank.TotalMoney > cost && amount < 10)
+        if (bank.TotalMoney > cost && amount < 10 && cost > 0)
         {
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
             amount = inventory.GetAvatarInventory(avatarEnum);
-            UpdateCost();
+            VishnuStateController.instance.updateAvatars(inventory.GetAvatarsInInventory());
+            UpdateCost();   		
         }
     }
 
@@ -113,6 +125,14 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         catch (Exception)
         {
             Debug.Log("Exception in " + gameObject.name);
+        }
+        if(avatarEnum == VishnuStateController.Avatar.KALKI)
+        {
+            HighlightPower("StatLaunch", Color.cyan);
+            HighlightPower("StatBounce", Color.cyan);
+            HighlightPower("StatAir", Color.cyan);
+            HighlightPower("StatObs", Color.cyan);
+            HighlightPower("StatMagnet", Color.cyan);
         }
     }
 
