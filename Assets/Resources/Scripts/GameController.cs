@@ -56,16 +56,18 @@ public class GameController : MonoBehaviour
 			tutorialCount++;
 		}
 		Debug.Log ("GameController level loaded");
-	}
+
+        levelGen = GetComponent<LevelGenerator>();
+        //currentLevelTile = levelGen.genLevelTile(true);
+        currentLevelTile = genATile();
+        aTile = currentLevelTile;
+    }
 
 	// Use this for initialization
 	void Start ()
 	{
 		OnLevelWasLoaded (SceneManager.GetActiveScene().buildIndex);
-        levelGen = GetComponent<LevelGenerator> ();
-        //currentLevelTile = levelGen.genLevelTile(true);
-        currentLevelTile = genATile();
-        aTile = currentLevelTile;
+
 		
         //levelTileMoved = true;
 
