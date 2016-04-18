@@ -12,6 +12,7 @@ public class DiveKick : MonoBehaviour
 	public PhysicsMaterial2D groundMaterial;
 	public Vector2 diveSpeed;
 	private Rigidbody2D body;
+	private bool dontRecover;
 
 	public enum State
 	{
@@ -53,6 +54,7 @@ public class DiveKick : MonoBehaviour
 
 		bounciness.NoBounce = true;
 		state = State.DIVING;
+		dontRecover = false;
 	}
 
 	void StopDive ()
@@ -60,6 +62,7 @@ public class DiveKick : MonoBehaviour
 		Bounciness bounciness = gameObject.GetComponent<Bounciness> ();
 		bounciness.NoBounce = false;
 		state = State.NONE;
+		dontRecover = true;
 	}
 	
 	// Update is called once per frame
@@ -73,6 +76,10 @@ public class DiveKick : MonoBehaviour
 
 	bool OnObstacleEnter (Collider2D collider)
 	{
+		if (state != State.DIVING && state != State.ROLLING) {
+			return true;
+		}
+
 		if (collider.tag == "Obstacle") {
 			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 			if (obstacleVector != null) {
@@ -121,6 +128,9 @@ public class DiveKick : MonoBehaviour
 
 	private void Recover ()
 	{
-		StartDive ();
+		if (dontRecover) {
+			StartDive ();
+		}
+
 	}
 }
