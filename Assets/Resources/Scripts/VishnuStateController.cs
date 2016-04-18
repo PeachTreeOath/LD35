@@ -269,6 +269,7 @@ public class VishnuStateController : MonoBehaviour
         player.GetComponent<Boar>().Value = a.boar;
 
         player.GetComponent<Player> ().PuffSmoke ();
+		GameController.instance.PlaySound ("switch");
     }
 
 	public void changePlayerSprite (Avatar avatar)

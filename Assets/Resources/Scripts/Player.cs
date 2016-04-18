@@ -6,7 +6,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
-	GameController gc;
+	public GameController gc;
 	PlayerStat playerStat = null;
 
 	// Once player distance from prevPosition is below this
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force), ForceMode2D.Impulse);
 		launchTime = Time.time;
+		GameController.instance.PlaySound ("launch");
 	}
 
 	private void Stop ()
@@ -124,14 +125,14 @@ public class Player : MonoBehaviour
 		}
 
 
-		LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger> ();
-		if (levelGenTrigger != null) {
-			if (levelGenTrigger.isATrigger && !gc.isOnATile) {
-				gc.genBTile ();
-			} else if (!levelGenTrigger.isATrigger && gc.isOnATile) {
-				gc.genATile ();
-			}
-		}
+		//LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger> ();
+		//if (levelGenTrigger != null) {
+		//	if (levelGenTrigger.isATrigger && !gc.isOnATile) {
+		//		gc.genBTile ();
+		//	} else if (!levelGenTrigger.isATrigger && gc.isOnATile) {
+		//		gc.genATile ();
+		//	}
+		//}
 
 		return false;
 	}

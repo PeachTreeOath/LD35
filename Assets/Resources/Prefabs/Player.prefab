@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4174470cd2487041a5c68c00d3edb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gc: {fileID: 0}
   minDistanceTraveled: 0.015
   timeToStop: 1
   dk: {fileID: 0}
@@ -348,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbde55f9cb84053418593f10b437dca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRoot: {fileID: 165212}
+  playerRoot: {fileID: 11419324}
 --- !u!114 &11427968
 MonoBehaviour:
   m_ObjectHideFlags: 1
