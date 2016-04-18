@@ -73,7 +73,8 @@ public class DiveKick : MonoBehaviour
 
 	bool OnObstacleEnter (Collider2D collider)
 	{
-        if (state != State.DIVING) return true;
+		if (state != State.DIVING)
+			return true;
 
 		if (collider.tag == "Obstacle") {
 			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
@@ -89,7 +90,9 @@ public class DiveKick : MonoBehaviour
 		if (collider.tag == "FriendlyObstacle") {
 			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 			if (obstacleVector != null) {
-				body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
+				float savedX = body.velocity.x;
+				body.velocity = Vector2.zero;
+				body.AddForce (new Vector2 (savedX, obstacleVector.velocityChange.y), ForceMode2D.Impulse);
 				obstacleVector.Remove ();
 			}
 			ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> ();
@@ -108,16 +111,18 @@ public class DiveKick : MonoBehaviour
 		return false;
 	}
 
-	public void RollingOnGround(float deltaTime)
+	public void RollingOnGround (float deltaTime)
 	{
-		state = State.ROLLING;
-		float scalar = -1f * deltaTime;
-		Vector2 playerVel = body.velocity;
-		Vector2 scalarVector = new Vector2 (scalar * playerVel.x, scalar * playerVel.y);
-		body.AddForce (scalarVector, ForceMode2D.Impulse);
+		if (state != State.NONE) {
+			state = State.ROLLING;
+			float scalar = -1f * deltaTime;
+			Vector2 playerVel = body.velocity;
+			Vector2 scalarVector = new Vector2 (scalar * playerVel.x, scalar * playerVel.y);
+			body.AddForce (scalarVector, ForceMode2D.Impulse);
+		}
 	}
 
-	private void Recover()
+	private void Recover ()
 	{
 		StartDive ();
 	}
