@@ -4,6 +4,7 @@ using System.Collections;
 public class Launcher : MonoBehaviour
 {
 	public GameObject playerPrefab;
+    public float powerMult = .0001f;
     
 	// Use this for initialization
 	void Start ()
@@ -23,6 +24,6 @@ public class Launcher : MonoBehaviour
         Player player = obj.GetComponent<Player>();
 
         player.Init();
-        player.Fire(Mathf.Deg2Rad * angle, power);
+        player.Fire(Mathf.Deg2Rad * angle, power * powerMult);
     }
 }

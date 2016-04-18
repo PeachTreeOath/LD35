@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 	{
 		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
-		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
+		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force), ForceMode2D.Impulse);
 		launchTime = Time.time;
 	}
 
