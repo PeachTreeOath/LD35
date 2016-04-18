@@ -101,11 +101,11 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Energy (100)
                     .Mass(1)
-                    .MoneyGain(1))
+				.MoneyGain(1).SuperJump(1))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
                     .Mass(10)
-                    .MoneyGain(10))
+				.MoneyGain(10).SuperJump(1))
 		);
 
 		AddEntry (

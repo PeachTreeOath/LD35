@@ -261,6 +261,7 @@ public class VishnuStateController : MonoBehaviour
 		player.GetComponent<Bounciness>().Value = GetBounciness()/50 + a.buddhaBounciness/2;
         player.GetComponent<DiveKick>().Value = a.diveKick;
         player.GetComponent<Hardness>().Value = a.hardness;
+		player.GetComponent<SuperJump>().Value = a.superJump;
     }
 
 	public void changePlayerSprite (Avatar avatar)
