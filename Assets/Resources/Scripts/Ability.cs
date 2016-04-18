@@ -35,6 +35,7 @@ public class Ability {
     public float metabolism; // Lion
     public float umbrella; // Vamana
 	public float superJump; // Rama
+    public float tastiness; // Matsya (fish)
 
     public static Ability AtLevel(int level)
     {
@@ -62,7 +63,7 @@ public class Ability {
     public Ability Metabolism(float value) { metabolism = value;  return this;  }
     public Ability Umbrella(float value) { umbrella = value; return this; }
 	public Ability SuperJump(float value) { superJump = value;  return this;  }
-
+    public Ability Tastiness(float value) { tastiness = value; return this; }
 
     public static Ability LerpAbilities(Ability min, Ability max, int level)
     {
@@ -88,6 +89,7 @@ public class Ability {
         ability.metabolism = Mathf.Lerp(min.metabolism, max.metabolism, t);
         ability.umbrella = Mathf.Lerp(min.umbrella, max.umbrella, t);
 		ability.superJump = Mathf.Lerp(min.superJump, max.superJump, t);
+        ability.tastiness = Mathf.Lerp(min.tastiness, max.tastiness, t);
 
         return ability;
     }

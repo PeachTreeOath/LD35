@@ -263,6 +263,7 @@ public class VishnuStateController : MonoBehaviour
         player.GetComponent<Umbrella>().Value = a.umbrella;
         player.GetComponent<Hardness>().Value = a.hardness;
 		player.GetComponent<SuperJump>().Value = a.superJump;
+        player.GetComponent<Tastiness>().Value = a.tastiness;
 
 		player.GetComponent<Player> ().PuffSmoke ();
     }

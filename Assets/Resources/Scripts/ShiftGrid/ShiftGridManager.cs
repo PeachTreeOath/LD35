@@ -6,22 +6,6 @@ using UnityEngine.UI;
 
 public class ShiftGridManager : MonoBehaviour { 
 
-	//Singleton accessor for this obj. I think this will work...
-	public static ShiftGridManager instance { get { return m_instance; } }
-	private static ShiftGridManager m_instance;
-
-	void Awake ()
-	{
-		if (m_instance == null) {
-			m_instance = this;
-			DontDestroyOnLoad (gameObject);
-		} else if (m_instance != null && m_instance != this) {
-			Debug.Log ("Deleting singleton Dup.  Someone screwed up");
-			Destroy (gameObject);
-			return;
-		}
-	}
-
 	// Update is called once per frame
 	void Update () {
         foreach(ShiftGridIcon icon in transform.GetComponentsInChildren<ShiftGridIcon>(true)) {
