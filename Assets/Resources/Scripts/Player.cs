@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 	private bool isStopped;
 	private float launchTime;
 	private DiveKick dk;
+	private ParticleSystem smoke;
 
 	void Awake ()
 	{
@@ -32,13 +33,15 @@ public class Player : MonoBehaviour
 		body = GetComponent<Rigidbody2D> ();
 		dk = GetComponent<DiveKick> ();
 		prevPosition = transform.position;
-        gc.setPlayer(this.gameObject);
-    }
+		gc.setPlayer (this.gameObject);
+		smoke = GetComponentInChildren<ParticleSystem> ();
+		QuitSmoking ();
+	}
 
 	// Use this for initialization
 	void Start ()
 	{
-		gc.setPlayer (this.gameObject);
+		Init ();
 	}
 
 	// Update is called once per frame
@@ -46,13 +49,13 @@ public class Player : MonoBehaviour
 	{
 		float dist = Vector2.Distance (transform.position, prevPosition);
 
-        flightTime += Time.deltaTime;
-        //FIXME temp transition test code
-        if(flightTime > 2.0) {
-            //Debug.Log("TEMP ASCENTION");
-            //VishnuStateController.instance.transitionToNextAvatar(1);
-            flightTime = 0;
-        }
+		flightTime += Time.deltaTime;
+		//FIXME temp transition test code
+		if (flightTime > 2.0) {
+			//Debug.Log("TEMP ASCENTION");
+			//VishnuStateController.instance.transitionToNextAvatar(1);
+			flightTime = 0;
+		}
 
 		if (dist < minDistanceTraveled) {
 			stopTimeElapsed += Time.deltaTime;
@@ -90,77 +93,74 @@ public class Player : MonoBehaviour
 
 	private void Stop ()
 	{
-        VishnuStateController.instance.StopFlight();
+		VishnuStateController.instance.StopFlight ();
 		gc.ShowScorePanel (playerStat.maxDist, playerStat.maxAltitude, playerStat.totalDuration, playerStat.maxVelocity);
 		//TODO: Detect when stop and transition to score dialog
 		//SceneManager.LoadScene("TitleScene"); lol why does this not work
 		//playerStat.DisplayRunStats();
 	}
 
-    MethodInfo FindMethod(Type type, Type returnType, string name, params Type[] parameterTypes) {
-        MethodInfo methodInfo = type.GetMethod(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        if(methodInfo != null) {
-            if (methodInfo.ReturnType != returnType) {
-                methodInfo = null;
-            }
-            else {
-                ParameterInfo[] paramInfo = methodInfo.GetParameters();
-                if (parameterTypes.Length != paramInfo.Length)
-                {
-                    methodInfo = null;
-                }
-                else
-                {
-                    for (int i = 0; i < paramInfo.Length; i++)
-                    {
-                        if (paramInfo[i].ParameterType != parameterTypes[i])
-                        {
-                            methodInfo = null;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
+	MethodInfo FindMethod (Type type, Type returnType, string name, params Type[] parameterTypes)
+	{
+		MethodInfo methodInfo = type.GetMethod (name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+		if (methodInfo != null) {
+			if (methodInfo.ReturnType != returnType) {
+				methodInfo = null;
+			} else {
+				ParameterInfo[] paramInfo = methodInfo.GetParameters ();
+				if (parameterTypes.Length != paramInfo.Length) {
+					methodInfo = null;
+				} else {
+					for (int i = 0; i < paramInfo.Length; i++) {
+						if (paramInfo [i].ParameterType != parameterTypes [i]) {
+							methodInfo = null;
+							break;
+						}
+					}
+				}
+			}
+		}
 
-        return methodInfo;
-    }
+		return methodInfo;
+	}
 
-    bool InvokeMethod(System.Object target, MethodInfo methodInfo,  params System.Object[] values)
-    {
-        System.Object retVal = methodInfo.Invoke(target, values);
-        return (retVal is bool) ? (bool)retVal : false;
-    }
+	bool InvokeMethod (System.Object target, MethodInfo methodInfo, params System.Object[] values)
+	{
+		System.Object retVal = methodInfo.Invoke (target, values);
+		return (retVal is bool) ? (bool)retVal : false;
+	}
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        bool continueProcessing = true;
+	void OnTriggerEnter2D (Collider2D collider)
+	{
+		bool continueProcessing = true;
 
-        Component[] components = gameObject.GetComponents<Component>();
-        foreach (Component component in components) {
-            if (component.GetInstanceID() == this.GetInstanceID()) continue;
+		Component[] components = gameObject.GetComponents<Component> ();
+		foreach (Component component in components) {
+			if (component.GetInstanceID () == this.GetInstanceID ())
+				continue;
 
-            MethodInfo methodInfo = FindMethod(component.GetType(), typeof(bool), "OnObstacleEnter", typeof(Collider2D));
-            if (methodInfo != null)
-            {
-                continueProcessing = InvokeMethod(component, methodInfo, collider);
-                if (!continueProcessing) break;
-            }
-        }
+			MethodInfo methodInfo = FindMethod (component.GetType (), typeof(bool), "OnObstacleEnter", typeof(Collider2D));
+			if (methodInfo != null) {
+				continueProcessing = InvokeMethod (component, methodInfo, collider);
+				if (!continueProcessing)
+					break;
+			}
+		}
 
-        if (continueProcessing)
-            OnObstacleEnter(collider);
-    }
+		if (continueProcessing)
+			OnObstacleEnter (collider);
+	}
 
 
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnCollisionEnter2D (Collision2D collision)
 	{
 		if (collision.gameObject.tag == "Ground") {
-			dk.RollingOnGround(Time.deltaTime);
+			dk.RollingOnGround (Time.deltaTime);
 		}
 	}
 
-    bool OnObstacleEnter(Collider2D collider) { 
+	bool OnObstacleEnter (Collider2D collider)
+	{ 
 		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 		if (obstacleVector != null) {
 			if (obstacleVector != null) {
@@ -181,19 +181,27 @@ public class Player : MonoBehaviour
 		}
 
 
-        LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger>();
-        if (levelGenTrigger != null)
-        {
-            if (levelGenTrigger.isATrigger && !gc.isOnATile)
-            {
-                gc.genBTile();
-            }
-            else if (!levelGenTrigger.isATrigger && gc.isOnATile)
-            {
-                gc.genATile();
-            }
-        }
+		LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger> ();
+		if (levelGenTrigger != null) {
+			if (levelGenTrigger.isATrigger && !gc.isOnATile) {
+				gc.genBTile ();
+			} else if (!levelGenTrigger.isATrigger && gc.isOnATile) {
+				gc.genATile ();
+			}
+		}
 
-        return false;
+		return false;
 	}
+
+	public void PuffSmoke ()
+	{
+		smoke.Play ();
+		Invoke ("QuitSmoking", 0.1f);
+	}
+
+	public void QuitSmoking ()
+	{
+		smoke.Stop ();
+	}
+
 }
