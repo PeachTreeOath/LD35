@@ -88,9 +88,10 @@ public class Player : MonoBehaviour
 
 	public void Fire (float angle, float force)
 	{
+		float launchStat = VishnuStateController.instance.GetLaunchPower ()/10;
 		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
-		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force), ForceMode2D.Impulse);
+		body.AddForce (new Vector2 (Mathf.Cos (angle) * (force*launchStat), Mathf.Sin (angle) * (force*launchStat)), ForceMode2D.Impulse);
 		launchTime = Time.time;
 		GameController.instance.PlaySound ("launch");
 	}
@@ -110,32 +111,30 @@ public class Player : MonoBehaviour
 	{ 
 		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 		if (obstacleVector != null) {
-			if (obstacleVector != null) {
-				body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
-				obstacleVector.Remove ();
-			}
+			body.AddForce (obstacleVector.velocityChange, ForceMode2D.Impulse);
+			obstacleVector.Remove ();
 		}
 
 		ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> ();
 		if (obstacleScalar != null) {
-			if (obstacleScalar != null) {
-				Vector2 playerVel = body.velocity;
-				Vector2 scalarVector = new Vector2 (obstacleScalar.scalar * playerVel.x, obstacleScalar.scalar * playerVel.y);
+			Vector2 playerVel = body.velocity;
+			Vector2 scalarVector = new Vector2 (obstacleScalar.scalar * playerVel.x, obstacleScalar.scalar * playerVel.y);
                 
-				body.AddForce (scalarVector, ForceMode2D.Impulse);
-				obstacleScalar.Remove ();
-			}
+			body.AddForce (scalarVector, ForceMode2D.Impulse);
+			obstacleScalar.Remove ();
 		}
 
+        ObstacleSlow obstacleSlow = collider.GetComponent<ObstacleSlow>();
+        if(obstacleSlow != null) {
+            float speed = body.velocity.x;
 
-		//LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger> ();
-		//if (levelGenTrigger != null) {
-		//	if (levelGenTrigger.isATrigger && !gc.isOnATile) {
-		//		gc.genBTile ();
-		//	} else if (!levelGenTrigger.isATrigger && gc.isOnATile) {
-		//		gc.genATile ();
-		//	}
-		//}
+            speed = Mathf.Clamp(speed, 0, obstacleSlow.speedLimit);
+            speed = speed - (speed * Mathf.Clamp(obstacleSlow.reduction, 0, 1));
+
+            body.velocity = new Vector2(speed, body.velocity.y);
+
+            obstacleSlow.Remove();
+        }
 
 		return false;
 	}
