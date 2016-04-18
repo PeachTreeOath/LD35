@@ -71,6 +71,7 @@ GameObject:
   - 114: {fileID: 11454630}
   - 114: {fileID: 11472894}
   - 114: {fileID: 11451356}
+  - 114: {fileID: 11447550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -291,6 +292,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMaterial: {fileID: 0}
   diveSpeed: {x: 0, y: 0}
+--- !u!114 &11447550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005310a79993dd84ca0dcf66766bb448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11451356
 MonoBehaviour:
   m_ObjectHideFlags: 1

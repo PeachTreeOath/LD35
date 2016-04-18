@@ -266,8 +266,9 @@ public class VishnuStateController : MonoBehaviour
         player.GetComponent<Hardness>().Value = a.hardness;
 		player.GetComponent<SuperJump>().Value = a.superJump;
         player.GetComponent<Tastiness>().Value = a.tastiness;
+        player.GetComponent<Boar>().Value = a.boar;
 
-		player.GetComponent<Player> ().PuffSmoke ();
+        player.GetComponent<Player> ().PuffSmoke ();
     }
 
 	public void changePlayerSprite (Avatar avatar)

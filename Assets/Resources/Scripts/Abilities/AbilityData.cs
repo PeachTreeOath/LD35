@@ -53,10 +53,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .LaunchForce(1)
                     .Mass(1)
+                    .Boar(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .LaunchForce(10)
                     .Mass(10)
+                    .Boar(1)
                     .Energy (1000))
 		);
 
