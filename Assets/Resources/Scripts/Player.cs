@@ -75,6 +75,9 @@ public class Player : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			body.velocity = Vector2.zero;
 		}
+		if (body.velocity.x < 0) {
+			body.velocity = new Vector2 (0, body.velocity.y);
+		}
 	}
 
 	void LateUpdate ()

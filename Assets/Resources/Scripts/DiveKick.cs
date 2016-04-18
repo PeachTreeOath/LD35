@@ -7,7 +7,7 @@ public class DiveKick : MonoBehaviour
 	private bool diveKicking = false;
 	private float savedSpeed = 0f;
 	private float diveMult = 20f;
-	private State state = State.NONE;
+	public State state = State.NONE;
 
 	public PhysicsMaterial2D groundMaterial;
 	public Vector2 diveSpeed;
@@ -73,9 +73,6 @@ public class DiveKick : MonoBehaviour
 
 	bool OnObstacleEnter (Collider2D collider)
 	{
-		if (state != State.DIVING)
-			return true;
-
 		if (collider.tag == "Obstacle") {
 			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
 			if (obstacleVector != null) {
@@ -115,7 +112,7 @@ public class DiveKick : MonoBehaviour
 	{
 		if (state != State.NONE) {
 			state = State.ROLLING;
-			float scalar = -1f * deltaTime;
+			float scalar = -20f * deltaTime;
 			Vector2 playerVel = body.velocity;
 			Vector2 scalarVector = new Vector2 (scalar * playerVel.x, scalar * playerVel.y);
 			body.AddForce (scalarVector, ForceMode2D.Impulse);
