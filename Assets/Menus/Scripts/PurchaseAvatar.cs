@@ -79,6 +79,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             case VishnuStateController.Avatar.KALKI:
                 cost = 1000000;
                 break;
+                /*
             case VishnuStateController.Avatar.MATSYA:
                 cost = amount * (amount + 1) / 2 + 1;
                 break;
@@ -88,22 +89,34 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             case VishnuStateController.Avatar.VARAHA:
                 cost = amount * (amount + 1) / 2 + 1;
                 break;
+            case VishnuStateController.Avatar.NARASIMHA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.VAMANA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.PARASHURAMA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.RAMA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.KRISHNA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
             case VishnuStateController.Avatar.BUDDHA:
                 cost = amount * (amount + 1) / 2 + 1;
                 break;
+                */
             default:
-                cost = amount * (amount + 1) / 2 + 1;
+                cost = (amount+1) * (amount+1) * 1000;
                 break;
         }
-        if (avatarEnum == VishnuStateController.Avatar.KALKI)
-            cost = 1000000;
-        else
-            cost = amount * (amount + 1) / 2 + 1;
     }
 
     public void Purchase()
     {
-        if (bank.TotalMoney > cost)
+        if (bank.TotalMoney > cost && amount < 10)
         {
             UpdateCost();
             bank.Subtract(cost);
