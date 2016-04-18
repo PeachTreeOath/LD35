@@ -89,6 +89,11 @@ public class DiveKick : MonoBehaviour
 			if (obstacleScalar != null) {
 				obstacleScalar.Remove ();
 			}
+
+            ObstacleSlow obstacleSlow = collider.GetComponent<ObstacleSlow>();
+            if (obstacleSlow != null) {
+                obstacleScalar.Remove();
+            }
 		}
 
 		if (collider.tag == "FriendlyObstacle") {
