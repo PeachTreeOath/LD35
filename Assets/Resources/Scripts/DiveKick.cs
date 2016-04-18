@@ -67,7 +67,7 @@ public class DiveKick : MonoBehaviour
 	{
 		if (state == State.DIVING) {
 			body.velocity = Vector2.zero;
-			body.AddForce (new Vector2 (diveSpeed.x + savedSpeed, diveSpeed.y), ForceMode2D.Impulse);
+			body.AddForce (new Vector2 (diveSpeed.x, diveSpeed.y), ForceMode2D.Impulse);
 		}
 	}
 
