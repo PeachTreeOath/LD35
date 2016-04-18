@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Tastiness : MonoBehaviour {
 
+    public GameObject magnetObject;
+
     private float range;
     private bool isPrey = false;
 
@@ -30,11 +32,16 @@ public class Tastiness : MonoBehaviour {
     }
 
     void BecomeTheHunted(float range) {
+        Magnet magnet = magnetObject.GetComponent<Magnet>();
 
+        magnet.Range = range;
     }
 
     void BecomeTheHunter(float range) {
+        Magnet magnet = magnetObject.GetComponent<Magnet>();
 
+        magnet.Range = 0;
+        magnet.Demagnetize();
     }
 
     bool OnObstacleEnter(Collider2D collider)

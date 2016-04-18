@@ -7,6 +7,7 @@ public class Magnetized : MonoBehaviour {
 
     public float stiffness = 100f;
     public float damping = 25f;
+    public float maxSpeed = 30f;
 
 	void LateUpdate () {
         if (magnet == null) return;
@@ -19,7 +20,7 @@ public class Magnetized : MonoBehaviour {
             Vector2 delta = magnetBody.position - myBody.position;
             Vector2 acceleration = delta * stiffness - myBody.velocity;
 
-            myBody.velocity += acceleration * Time.deltaTime;
+            myBody.velocity = Vector2.ClampMagnitude(myBody.velocity + acceleration * Time.deltaTime, maxSpeed);
         }
     }
 }
