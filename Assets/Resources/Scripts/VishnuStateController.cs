@@ -221,6 +221,8 @@ public class VishnuStateController : MonoBehaviour
 	//Using a numerical index, start a transition from the current index to the next
 	public void TransitionToNextAvatar (int nextIndex)
 	{
+        if (nextIndex == curAvatarIndex) return;
+
 		curAvatarIndex = nextIndex; //TODO factor in time
 
 		if (state == State.FLIGHT) {
@@ -257,11 +259,15 @@ public class VishnuStateController : MonoBehaviour
 		rb.mass = a.mass * a.liftForceMult;
 		rb.drag = a.drag * a.dragMult;
 
-		player.GetComponentInChildren<Magnet> ().Range = a.magnetRange;
+		player.GetComponent<Greediness>().Value = a.magnetRange;
 		player.GetComponent<Bounciness>().Value = GetBounciness()/50 + a.buddhaBounciness/2;
         player.GetComponent<DiveKick>().Value = a.diveKick;
+        player.GetComponent<Umbrella>().Value = a.umbrella;
         player.GetComponent<Hardness>().Value = a.hardness;
 		player.GetComponent<SuperJump>().Value = a.superJump;
+        player.GetComponent<Tastiness>().Value = a.tastiness;
+
+		player.GetComponent<Player> ().PuffSmoke ();
     }
 
 	public void changePlayerSprite (Avatar avatar)

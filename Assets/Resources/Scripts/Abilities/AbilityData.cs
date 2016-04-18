@@ -25,10 +25,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Bounciness(1)
                     .Mass(1)
+                    .Tastiness(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
                     .Mass(10)
+                    .Tastiness(10)
                     .Energy (1000))
 		);
 
@@ -76,10 +78,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Bounciness(1)
                     .Drag(1)
+                    .Umbrella(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
                     .Drag(10)
+                    .Umbrella(1)
                     .Energy (1000))
 		);
 
@@ -115,12 +119,12 @@ public class AbilityData
                     .Energy (100)
                     .LaunchForce(1)
                     .Drag(1)
-                    .MagnetRange (1f))
+                    .MagnetRange (5f))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
                     .LaunchForce(10)
                     .Drag(10)
-                    .MagnetRange (10f))
+                    .MagnetRange (20f))
 		);
 
 		AddEntry (
@@ -128,12 +132,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Energy (100)
                     .LaunchForce(1)
-                    .MoneyGain(1)
+                    .Bounciness(1)
 				    .BuddhaBounciness (1))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
                     .LaunchForce(10)
-                    .MoneyGain(10)
+                    .Bounciness(10)
                     .BuddhaBounciness (10))
 		);
 
