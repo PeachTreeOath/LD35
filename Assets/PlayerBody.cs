@@ -51,7 +51,7 @@ public class PlayerBody : MonoBehaviour {
         Player player = playerRoot.GetComponent<Player>();
         bool continueProcessing = true;
 
-        Component[] components = gameObject.GetComponents<Component>();
+        Component[] components = playerRoot.GetComponents<Component>();
         foreach (Component component in components)
         {
             if (component.GetInstanceID() == player.GetInstanceID())
