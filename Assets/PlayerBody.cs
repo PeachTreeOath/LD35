@@ -97,6 +97,7 @@ public class PlayerBody : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Ground")
         {
+			GameController.instance.PlaySound ("bounce");
             playerRoot.GetComponent<Player>().dk.RollingOnGround(Time.deltaTime);
         }
     }
