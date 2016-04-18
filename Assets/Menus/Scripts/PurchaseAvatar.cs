@@ -49,13 +49,13 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         activeDesc = GameObject.Find("ActiveDescription");
         avatarPassives = new Dictionary<VishnuStateController.Avatar, AvatarPassiveStats>();
         avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats(statBounce, "StatBounce", "StatObs", "Birds carry you");
-        avatarPassives[VishnuStateController.Avatar.KURMA] = new AvatarPassiveStats(statAir, "StatAir", "StatObs", "Prevents momentum loss");
-        avatarPassives[VishnuStateController.Avatar.VARAHA] = new AvatarPassiveStats(statLaunch, "StatLaunch", "StatObs", "Runs on the ground and jumps at the end");
+		avatarPassives[VishnuStateController.Avatar.KURMA] = new AvatarPassiveStats(statAir, "StatAir", "StatObs", "Unaffected by obstacles");
+		avatarPassives[VishnuStateController.Avatar.VARAHA] = new AvatarPassiveStats(statLaunch, "StatLaunch", "StatObs", "Runs on the ground and jumps on avatar switch");
         avatarPassives[VishnuStateController.Avatar.NARASIMHA] = new AvatarPassiveStats(statBounce, "StatBounce", "StatMagnet", "Eats animals for power");
         avatarPassives[VishnuStateController.Avatar.VAMANA] = new AvatarPassiveStats(statBounce, "StatBounce", "StatAir", "Floats with umbrella");
         avatarPassives[VishnuStateController.Avatar.PARASHURAMA] = new AvatarPassiveStats(statLaunch, "StatLaunch", "StatMagnet", "Dives down with attack");
         avatarPassives[VishnuStateController.Avatar.RAMA] = new AvatarPassiveStats(statMagnet, "StatMagnet", "StatObs", "Jumps upward");
-        avatarPassives[VishnuStateController.Avatar.KRISHNA] = new AvatarPassiveStats(statLaunch, "StatLaunch", "StatAir", "Increase money gained");
+        avatarPassives[VishnuStateController.Avatar.KRISHNA] = new AvatarPassiveStats(statLaunch, "StatLaunch", "StatAir", "Magnetizes rupees");
         avatarPassives[VishnuStateController.Avatar.BUDDHA] = new AvatarPassiveStats(statLaunch, "StatLaunch", "StatBounce", "Big bounce");
         avatarPassives[VishnuStateController.Avatar.KALKI] = new AvatarPassiveStats(statLaunch, "", "", "The FINAL FORM!");
         avatarString = transform.FindChild("Avatar").GetComponent<Text>().text;

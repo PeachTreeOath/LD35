@@ -218,26 +218,28 @@ public class VishnuStateController : MonoBehaviour
 	}
 
 	//Using a numerical index, start a transition from the current index to the next
-	public void TransitionToNextAvatar (int nextIndex)
+	public AvatarInstance TransitionToNextAvatar (int nextIndex)
 	{
         //if (nextIndex == curAvatarIndex) return;
 
 		curAvatarIndex = nextIndex; //TODO factor in time
 
 		if (state == State.FLIGHT) {
-			doPlayerUpdate ();
+			return doPlayerUpdate ();
 			//Debug.Log ("Avatar transition complete");
 		} else {
 			//Debug.Log ("Avatar transition deferred");
 			pendingUpdate = true;
+			return null;
 		}
 	}
 
-	private void doPlayerUpdate ()
+	private AvatarInstance doPlayerUpdate ()
 	{
 		AvatarInstance avatarInstance = getCurrentAvatarInstance ();
 		changePlayerAttributes (avatarInstance.abilities);
 		changePlayerSprite (avatarInstance.avatar);
+		return avatarInstance;
 	}
 
 	//Set the given abilites to apply to the active player
