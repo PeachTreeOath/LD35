@@ -40,7 +40,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         avatarPassives[VishnuStateController.Avatar.PARASHURAMA] = new AvatarPassiveStats("StatLaunch", "StatMagnet", "Dives down with attack");
         avatarPassives[VishnuStateController.Avatar.RAMA] = new AvatarPassiveStats("StatMagnet", "StatObs", "Jumps upward");
         avatarPassives[VishnuStateController.Avatar.KRISHNA] = new AvatarPassiveStats("StatLaunch", "StatAir", "Increase money gained");
-        avatarPassives[VishnuStateController.Avatar.BUDDHA] = new AvatarPassiveStats("StatLaunch", "StatMagnet", "Big bounce");
+        avatarPassives[VishnuStateController.Avatar.BUDDHA] = new AvatarPassiveStats("StatLaunch", "StatBounce", "Big bounce");
         avatarPassives[VishnuStateController.Avatar.KALKI] = new AvatarPassiveStats("", "", "Completes the game");
         avatarString = transform.FindChild("Avatar").GetComponent<Text>().text;
         avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString.ToUpper());
