@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //General state for the game
 public class GameController : MonoBehaviour
@@ -34,8 +35,9 @@ public class GameController : MonoBehaviour
 	private int numGens = 0;
 	//number of Times a stage gen has been called.
 	private AudioSource audio;
+    private Text wt;
 
-	void Awake ()
+    void Awake ()
 	{
 		if (m_instance == null) {
 			m_instance = this;
@@ -57,6 +59,8 @@ public class GameController : MonoBehaviour
 	private AudioClip meterSelectSound;
 	private AudioClip rupeeSound;
 	private AudioClip switchAvatarSound;
+	private AudioClip currySound;
+	private AudioClip flowerSound;
 
 	private void LoadSounds ()
 	{
@@ -76,6 +80,8 @@ public class GameController : MonoBehaviour
 		meterSelectSound = (AudioClip)Resources.Load ("Sounds/MeterSelect");
 		rupeeSound = (AudioClip)Resources.Load ("Sounds/RupeePickup");
 		switchAvatarSound = (AudioClip)Resources.Load ("Sounds/SwitchAvatar");
+		currySound = (AudioClip)Resources.Load ("Sounds/Curry");
+		flowerSound = (AudioClip)Resources.Load ("Sounds/Flower");
 	}
 
 	public void PlaySound (string name)
@@ -83,10 +89,10 @@ public class GameController : MonoBehaviour
 		float vol = 0.5f;
 		switch (name) {
 		case "balloon":
-			audio.PlayOneShot (balloonPopSound, vol);
+			audio.PlayOneShot (balloonPopSound, 2f);
 			break;
 		case "bird":
-			audio.PlayOneShot (birdSound, vol);
+			audio.PlayOneShot (birdSound, 1f);
 			break;
 		case "bounce":
 			audio.PlayOneShot (bounceSound, vol);
@@ -95,7 +101,7 @@ public class GameController : MonoBehaviour
 			audio.PlayOneShot (flameSound, 1f);
 			break;
 		case "hit":
-			audio.PlayOneShot (hitSound, vol);
+			audio.PlayOneShot (hitSound, 1f);
 			break;
 		case "launch":
 			audio.PlayOneShot (launchSound, vol);
@@ -109,6 +115,12 @@ public class GameController : MonoBehaviour
 		case "switch":
 			audio.PlayOneShot (switchAvatarSound, vol);
 			break;
+		case "curry":
+			audio.PlayOneShot (currySound, .3f);
+			break;
+		case "flower":
+			audio.PlayOneShot (flowerSound, .3f);
+			break;
 		}
 	}
 
@@ -121,7 +133,8 @@ public class GameController : MonoBehaviour
 			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 			bg = GameObject.Find ("Background").GetComponent<BGScroller> ();
 			tut = GameObject.Find ("TutorialText").GetComponent<Tutorial> ();
-			tutorialCount++;
+            wt = GameObject.Find("WinText").GetComponent<Text>();
+            tutorialCount++;
 		}
 		Debug.Log ("GameController level loaded");
 
@@ -129,7 +142,9 @@ public class GameController : MonoBehaviour
 		//currentLevelTile = levelGen.genLevelTile(true);
 		currentLevelTile = genATile ();
 		aTile = currentLevelTile;
-	}
+
+
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -142,8 +157,20 @@ public class GameController : MonoBehaviour
 
 		tut.ShowTutorial (tutorialCount == 1);
 		ShowTutorialPhase (Tutorial.Phase.ANGLE);
+
+
 	}
-	
+	void LateUpdate()
+    {
+        if (VishnuStateController.instance.getCurrentAvatar() == VishnuStateController.Avatar.KALKI)
+        {
+            wt.text = "Congratulation! You reached Vishnu's FINAL FORM!";
+        }
+        else
+        {
+            wt.text = "";
+        }
+    }
 	// Update is called once per frame
 	void Update ()
 	{
@@ -253,16 +280,6 @@ public class GameController : MonoBehaviour
 	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
 	{
 		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
-	}
-
-	public void GoToShop ()
-	{
-		SceneManager.LoadScene ("Shop");
-	}
-
-	public void GoToGame ()
-	{
-		SceneManager.LoadScene ("Game");
 	}
 
 	public void ShowTutorialPhase (Tutorial.Phase phase)

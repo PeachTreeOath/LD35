@@ -48,6 +48,22 @@ public class PlayerBody : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+		if (collider.name == "Bird(Clone)") {
+			GameController.instance.PlaySound ("bird");
+		}
+		else if (collider.name == "Balloon(Clone)") {
+			GameController.instance.PlaySound ("balloon");
+		}
+		else if (collider.name == "rock(Clone)") {
+			GameController.instance.PlaySound ("hit");
+		}
+		else if (collider.name == "currybowl(Clone)") {
+			GameController.instance.PlaySound ("curry");
+		}
+		else if (collider.name == "LotusFlower(Clone)") {
+			GameController.instance.PlaySound ("flower");
+		}
+
         Player player = playerRoot.GetComponent<Player>();
         bool continueProcessing = true;
 

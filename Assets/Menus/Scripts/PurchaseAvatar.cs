@@ -32,7 +32,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Start () {
         avatarPassives = new Dictionary<VishnuStateController.Avatar, AvatarPassiveStats>();
-        avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats("StatBounce", "StatObs", "Not slowed in water");
+        avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats("StatBounce", "StatObs", "Bir");
         avatarPassives[VishnuStateController.Avatar.KURMA] = new AvatarPassiveStats("StatAir", "StatObs", "Prevents momentum loss");
         avatarPassives[VishnuStateController.Avatar.VARAHA] = new AvatarPassiveStats("StatLaunch", "StatObs", "Runs on the ground");
         avatarPassives[VishnuStateController.Avatar.NARASIMHA] = new AvatarPassiveStats("StatBounce", "StatMagnet", "Eats animals for power");
@@ -41,7 +41,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         avatarPassives[VishnuStateController.Avatar.RAMA] = new AvatarPassiveStats("StatMagnet", "StatObs", "Jumps upward");
         avatarPassives[VishnuStateController.Avatar.KRISHNA] = new AvatarPassiveStats("StatLaunch", "StatAir", "Increase money gained");
         avatarPassives[VishnuStateController.Avatar.BUDDHA] = new AvatarPassiveStats("StatLaunch", "StatBounce", "Big bounce");
-        avatarPassives[VishnuStateController.Avatar.KALKI] = new AvatarPassiveStats("", "", "Completes the game");
+        avatarPassives[VishnuStateController.Avatar.KALKI] = new AvatarPassiveStats("", "", "The FINAL FORM!");
         avatarString = transform.FindChild("Avatar").GetComponent<Text>().text;
         avatarEnum = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(avatarString.ToUpper());
         inventory = GameObject.Find("Singletons").GetComponent<Inventory>();
