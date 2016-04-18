@@ -56,6 +56,7 @@ MonoBehaviour:
   levelGenTriggerPrefab: {fileID: 11449814, guid: 3537c4d0a368dcd4285142e72bcc22b8,
     type: 2}
   isATile: 1
+  skyToGroundRatio: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
