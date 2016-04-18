@@ -16,34 +16,39 @@ public class Carry : MonoBehaviour {
         load = gameObject;
 
         Rigidbody2D carrierBody = gameObject.GetComponent<Rigidbody2D>();
-        carrierBody.velocity = new Vector2(carrySpeed, 0f);
+        
         
         carryTimer = timeToCarry;
         isCarrying = true;
     }
 
     public void StopCarry() {
+        isCarrying = false;
+
         Rigidbody2D carrierBody = gameObject.GetComponent<Rigidbody2D>();
         Rigidbody2D loadBody = load.GetComponent<Rigidbody2D>();
 
-        loadBody.velocity = carrierBody.velocity;
+        loadBody.velocity = new Vector2(carrySpeed, 0f);
 
         Destroy(gameObject);
     }
 
     void LateUpdate() {
         Rigidbody2D carrierBody = gameObject.GetComponent<Rigidbody2D>();
-        velocity = carrierBody.velocity;
 
         if (isCarrying) {
             carryTimer -= Time.deltaTime;
             if (carryTimer <= 0f)
                 StopCarry();
+            else
+            {
+                carrierBody.velocity = new Vector2(carrySpeed, 0f);
 
-            Rigidbody2D loadBody = load.GetComponent<Rigidbody2D>();
+                Rigidbody2D loadBody = load.GetComponent<Rigidbody2D>();
 
-            loadBody.position = carrierBody.position;
-            loadBody.velocity = Vector2.zero;
+                loadBody.position = carrierBody.position;
+                loadBody.velocity = Vector2.zero;
+            }
         }
     }
 }
