@@ -74,6 +74,27 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void UpdateCost()
     {
+        switch(avatarEnum)
+        {
+            case VishnuStateController.Avatar.KALKI:
+                cost = 1000000;
+                break;
+            case VishnuStateController.Avatar.MATSYA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.KURMA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.VARAHA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            case VishnuStateController.Avatar.BUDDHA:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+            default:
+                cost = amount * (amount + 1) / 2 + 1;
+                break;
+        }
         if (avatarEnum == VishnuStateController.Avatar.KALKI)
             cost = 1000000;
         else
