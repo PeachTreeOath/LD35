@@ -145,21 +145,15 @@ public class GameController : MonoBehaviour
 
         numGens = 0;
 
-
-}
-
-// Use this for initialization
-void Start ()
-	{
-		OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
-
-		
-		//levelTileMoved = true;
-
-
 		tut.ShowTutorial (tutorialCount == 1);
 		ShowTutorialPhase (Tutorial.Phase.ANGLE);
+	}
 
+	// Use this for initialization
+	void Start ()
+	{
+		OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
+		//levelTileMoved = true;
 
 	}
 	void LateUpdate()
