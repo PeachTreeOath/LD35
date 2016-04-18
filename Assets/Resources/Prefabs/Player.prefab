@@ -49,6 +49,8 @@ GameObject:
   - 114: {fileID: 11482686}
   - 114: {fileID: 11479038}
   - 114: {fileID: 11438044}
+  - 114: {fileID: 11452062}
+  - 114: {fileID: 11418980}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -164,6 +166,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7df58d3ebb0e3649a456846d7288856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11418980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be59632cc36b3684bb389226badc6289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11419324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,7 +213,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundMaterial: {fileID: 0}
-  DiveSpeed: {x: 50, y: -50}
+  diveSpeed: {x: 0, y: 0}
+--- !u!114 &11452062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70fe42e931273448f01b083b27116d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11479038
 MonoBehaviour:
   m_ObjectHideFlags: 1

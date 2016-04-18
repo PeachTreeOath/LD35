@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 	private float flightTime = 0;
 	private bool isStopped;
 	private float launchTime;
+	private DiveKick dk;
 
 	void Awake ()
 	{
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
 	public void Init ()
 	{
 		body = GetComponent<Rigidbody2D> ();
+		dk = GetComponent<DiveKick> ();
 		prevPosition = transform.position;
         gc.setPlayer(this.gameObject);
     }
@@ -82,7 +84,7 @@ public class Player : MonoBehaviour
 	{
 		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
-		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force));
+		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force), ForceMode2D.Impulse);
 		launchTime = Time.time;
 	}
 
@@ -132,16 +134,31 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        bool continueProcessing = true;
+
         Component[] components = gameObject.GetComponents<Component>();
         foreach (Component component in components) {
+            if (component.GetInstanceID() == this.GetInstanceID()) continue;
+
             MethodInfo methodInfo = FindMethod(component.GetType(), typeof(bool), "OnObstacleEnter", typeof(Collider2D));
             if (methodInfo != null)
             {
-                bool result = InvokeMethod(component, methodInfo, collider);
-                if (!result) break;
+                continueProcessing = InvokeMethod(component, methodInfo, collider);
+                if (!continueProcessing) break;
             }
         }
+
+        if (continueProcessing)
+            OnObstacleEnter(collider);
     }
+
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Ground") {
+			dk.RollingOnGround(Time.deltaTime);
+		}
+	}
 
     bool OnObstacleEnter(Collider2D collider) { 
 		ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
@@ -162,6 +179,20 @@ public class Player : MonoBehaviour
 				obstacleScalar.Remove ();
 			}
 		}
+
+
+        LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger>();
+        if (levelGenTrigger != null)
+        {
+            if (levelGenTrigger.isATrigger && !gc.isOnATile)
+            {
+                gc.genBTile();
+            }
+            else if (!levelGenTrigger.isATrigger && gc.isOnATile)
+            {
+                gc.genATile();
+            }
+        }
 
         return false;
 	}

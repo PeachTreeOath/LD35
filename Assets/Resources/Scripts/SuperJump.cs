@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DiveKick : MonoBehaviour
+public class SuperJump : MonoBehaviour
 {
 
 	private bool diveKicking = false;
@@ -9,7 +9,6 @@ public class DiveKick : MonoBehaviour
 	private float diveMult = 20f;
 	private State state = State.NONE;
 
-	public PhysicsMaterial2D groundMaterial;
 	public Vector2 diveSpeed;
 	private Rigidbody2D body;
 
@@ -17,8 +16,7 @@ public class DiveKick : MonoBehaviour
 	{
 		NONE,
 		DIVING,
-		RECOVERING,
-		ROLLING
+		RECOVERING
 
 	}
 
@@ -44,7 +42,7 @@ public class DiveKick : MonoBehaviour
 
 	void StartDive ()
 	{
-		diveSpeed = new Vector2 (diveMult, -diveMult);
+		diveSpeed = new Vector2 (diveMult, diveMult);
 		body = gameObject.GetComponent<Rigidbody2D> ();
 		Bounciness bounciness = gameObject.GetComponent<Bounciness> ();
 
@@ -61,7 +59,7 @@ public class DiveKick : MonoBehaviour
 		bounciness.NoBounce = false;
 		state = State.NONE;
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -109,17 +107,6 @@ public class DiveKick : MonoBehaviour
 		}
 
 		return false;
-	}
-
-	public void RollingOnGround (float deltaTime)
-	{
-		if (state != State.NONE) {
-			state = State.ROLLING;
-			float scalar = -1f * deltaTime;
-			Vector2 playerVel = body.velocity;
-			Vector2 scalarVector = new Vector2 (scalar * playerVel.x, scalar * playerVel.y);
-			body.AddForce (scalarVector, ForceMode2D.Impulse);
-		}
 	}
 
 	private void Recover ()

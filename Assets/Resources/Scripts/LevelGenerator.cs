@@ -3,19 +3,35 @@ using System.Collections;
 
 public class LevelGenerator : MonoBehaviour {
     public LevelTile levelTilePrefab;
-    //public LevelObject[] levelObjectPrefabs;
 
-	public LevelTile genLevelTile()
+    private bool startInUpdate = false;
+    private LevelTile wipLevelTile;
+    private bool isATile;
+
+	public LevelTile genLevelTile(bool isATile)
     {
-        LevelTile levelTile =  (LevelTile)Instantiate(levelTilePrefab, transform.position, transform.rotation);
-        //LevelObject levelObject = (LevelObject)Instantiate(levelObjectPrefabs[0], transform.position, transform.rotation);
-        
-
-        return levelTile;
+        wipLevelTile =  (LevelTile)Instantiate(levelTilePrefab, transform.position, transform.rotation);
+        this.isATile = isATile;
+        startInUpdate = true;
+        return wipLevelTile;
     }
+
+    void Update()
+    {
+        if (startInUpdate)
+        {
+            wipLevelTile.isATile = isATile;
+        }
+    }
+
+
 
     public float getTileWidth()
     {
         return levelTilePrefab.getWidth();
     }
+
+
+
+
 }

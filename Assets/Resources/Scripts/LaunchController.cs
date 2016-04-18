@@ -131,7 +131,7 @@ public class LaunchController : MonoBehaviour {
         {
             //don't need to save the power here since we are going to launch immediately
             isPowerSet = true;
-            launcher.LaunchPlayer(angleSelected, powerDisplayed * 10);
+            launcher.LaunchPlayer(angleSelected, powerDisplayed);
             VishnuStateController.instance.StartFlight();
 			GameController.instance.ShowTutorialPhase (Tutorial.Phase.SWITCH);
 			GameObject.Find ("VishnuStart").GetComponent<SpriteRenderer> ().enabled = false;
