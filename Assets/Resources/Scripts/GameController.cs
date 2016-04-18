@@ -36,12 +36,36 @@ public class GameController : MonoBehaviour
 		if (m_instance == null) {
 			m_instance = this;
 			DontDestroyOnLoad (gameObject);
+			LoadSounds ();
 		}
 		else if (m_instance != null && m_instance != this) {
 			Debug.Log ("Deleting singleton Dup.  Someone screwed up");
 			Destroy (gameObject);
 			return;
 		}
+	}
+
+	private AudioClip balloonPopSound;
+	private AudioClip birdSound;
+	private AudioClip bounceSound;
+	private AudioClip flameSound;
+	private AudioClip hitSound;
+	private AudioClip launchSound;
+	private AudioClip meterSelectSound;
+	private AudioClip rupeeSound;
+	private AudioClip switchAvatarSound;
+
+	private void LoadSounds()
+	{
+		balloonPopSound = (AudioClip)Resources.Load ("Sounds/BalloonPop");
+		birdSound = (AudioClip)Resources.Load ("Sounds/Bird");
+		bounceSound = (AudioClip)Resources.Load ("Sounds/Bounce");
+		flameSound = (AudioClip)Resources.Load ("Sounds/Flame");
+		hitSound = (AudioClip)Resources.Load ("Sounds/GenericHit");
+		launchSound = (AudioClip)Resources.Load ("Sounds/Launch");
+		meterSelectSound = (AudioClip)Resources.Load ("Sounds/MeterSelect");
+		rupeeSound = (AudioClip)Resources.Load ("Sounds/RupeePickup");
+		switchAvatarSound = (AudioClip)Resources.Load ("Sounds/SwitchAvatar");
 	}
 
 	void OnLevelWasLoaded (int level)
