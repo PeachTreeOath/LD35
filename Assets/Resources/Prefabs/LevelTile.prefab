@@ -53,7 +53,7 @@ MonoBehaviour:
   skyObjectsPerTile: c8000000c800000064000000c8000000
   groundObjectPrefabs:
   - {fileID: 11440112, guid: 1bc4fd93a5c1a4dcd88f566a57ec1563, type: 2}
-  - {fileID: 11426800, guid: 4c8231940e4ff4cecbaa0802ce0808dd, type: 2}
+  - {fileID: 11461476, guid: 4c8231940e4ff4cecbaa0802ce0808dd, type: 2}
   groundObjectsPerTile: 0200000002000000
   levelGenTriggerPrefab: {fileID: 11449814, guid: 3537c4d0a368dcd4285142e72bcc22b8,
     type: 2}

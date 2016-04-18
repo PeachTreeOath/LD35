@@ -116,7 +116,7 @@ public class ScorePanel : MonoBehaviour
 		dist = Mathf.RoundToInt (maxDist * distModifier);
 		alt = Mathf.RoundToInt (maxAltitude * altModifier);
 		dur = Mathf.RoundToInt (duration * durModifier);
-		vel = Mathf.RoundToInt (maxVelocity * maxVelocity);
+		vel = Mathf.RoundToInt (maxVelocity * spdModifier);
 
 		Transform panel = transform.Find ("Panel");
 		panel.Find ("CoinText").GetComponent<Text> ().text = Convert.ToString (bank.MoneyThisRun);

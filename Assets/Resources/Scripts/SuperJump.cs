@@ -9,6 +9,7 @@ public class SuperJump : MonoBehaviour
 
 	public Vector2 diveSpeed;
 	private Rigidbody2D body;
+	private bool dontRecover;
 
 	public enum State
 	{
@@ -50,6 +51,7 @@ public class SuperJump : MonoBehaviour
 
 		bounciness.NoBounce = true;
 		state = State.JUMPING;
+		dontRecover = false;
 	}
 
 	void StopJump ()
@@ -57,6 +59,7 @@ public class SuperJump : MonoBehaviour
 		Bounciness bounciness = gameObject.GetComponent<Bounciness> ();
 		bounciness.NoBounce = false;
 		state = State.NONE;
+		dontRecover = true;
 	}
 
 	// Update is called once per frame
@@ -106,6 +109,9 @@ public class SuperJump : MonoBehaviour
 
 	private void Recover ()
 	{
-		StartJump ();
+		if (!dontRecover) {
+			StartJump ();
+		}
+
 	}
 }
