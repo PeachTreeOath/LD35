@@ -118,12 +118,12 @@ public class AbilityData
                     .Energy (100)
                     .LaunchForce(1)
                     .Drag(1)
-                    .MagnetRange (1f))
+                    .MagnetRange (5f))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
                     .LaunchForce(10)
                     .Drag(10)
-                    .MagnetRange (10f))
+                    .MagnetRange (20f))
 		);
 
 		AddEntry (

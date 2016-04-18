@@ -70,6 +70,7 @@ GameObject:
   - 114: {fileID: 11418980}
   - 114: {fileID: 11454630}
   - 114: {fileID: 11472894}
+  - 114: {fileID: 11451356}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -290,6 +291,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMaterial: {fileID: 0}
   diveSpeed: {x: 0, y: 0}
+--- !u!114 &11451356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8635f5be353a1a3448d14b6062e609e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetObject: {fileID: 145618}
 --- !u!114 &11452062
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LevelTile : MonoBehaviour {
 
     public float xMin, xMax, yMin, yMax;
-    public int objectsPerTile = 10;
+    public int objectsPerTile = 100;
     public float levelTriggerOffset = 20; //needs to not be 0 so we don't erase the tile while the player can still see it.
 
     public LevelObject[] skyObjectPrefabs;
