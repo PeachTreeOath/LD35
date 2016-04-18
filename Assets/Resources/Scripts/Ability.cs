@@ -27,7 +27,7 @@ public class Ability {
     public float jumpForceMult = 1;
     public float diveForceMult = 1;
     public float liftForceMult = 1;
-    public float dragMult = 1;
+    public float dragMult = .5f;
 
     public float magnetRange; // Krishna (flute boy)
     public float diveKick; // Parashurama (axe man)
