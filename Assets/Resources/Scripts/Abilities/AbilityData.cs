@@ -75,10 +75,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Bounciness(1)
                     .Drag(1)
+                    .Umbrella(1)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
                     .Drag(10)
+                    .Umbrella(1)
                     .Energy (1000))
 		);
 
