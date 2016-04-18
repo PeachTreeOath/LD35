@@ -73,5 +73,10 @@ public class LevelTile : MonoBehaviour {
         return xMax - xMin;
     }
 
+    public void remove()
+    {
+        Destroy(gameObject);
+    }
+
 
 }
