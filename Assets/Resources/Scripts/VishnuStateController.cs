@@ -245,7 +245,6 @@ public class VishnuStateController : MonoBehaviour
 	//TODO this is a prototype, we may want to make this more sophisticated by lerping and adding in time considerations etc
 	public void changePlayerAttributes (Ability a)
 	{
-
 		GameObject player = GameController.instance.getPlayerObj ();
 
 		//this is only a prototype of how this should work....improvements welcome
@@ -260,7 +259,12 @@ public class VishnuStateController : MonoBehaviour
 		rb.drag = (1f/( 1 + a.drag)) * a.dragMult;
 
 		player.GetComponent<Greediness>().Value = a.magnetRange;
-		player.GetComponent<Bounciness>().Value = GetBounciness()/50 + a.buddhaBounciness/2;
+		AvatarInstance avatarInstance = getCurrentAvatarInstance ();
+		if (avatarInstance.avatar == Avatar.NONE) {
+			player.GetComponent<Bounciness> ().Value = 0f;
+		} else {
+			player.GetComponent<Bounciness>().Value = GetBounciness()/50 + a.buddhaBounciness/2;
+		}
         player.GetComponent<DiveKick>().Value = a.diveKick;
         player.GetComponent<Umbrella>().Value = a.umbrella;
         player.GetComponent<Hardness>().Value = a.hardness;
