@@ -41,6 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 165212, guid: 31c5d7cd04bbc1b4aafa888be0512640, type: 2}
+  powerMult: 0.00000001
 --- !u!212 &21289756
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -88,10 +88,11 @@ public class Player : MonoBehaviour
 
 	public void Fire (float angle, float force)
 	{
-		float launchStat = VishnuStateController.instance.GetLaunchPower ()/10;
+		float launchStat = VishnuStateController.instance.GetLaunchPower ();
 		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
-		body.AddForce (new Vector2 (10+ Mathf.Cos (angle) * (force*launchStat), 10+ Mathf.Sin (angle) * (force*launchStat)), ForceMode2D.Impulse);
+
+		body.AddForce (new Vector2 (Mathf.Cos (angle) * (force*launchStat), Mathf.Sin (angle) * (force*launchStat)), ForceMode2D.Impulse);
 		launchTime = Time.time;
 		GameController.instance.PlaySound ("launch");
 	}

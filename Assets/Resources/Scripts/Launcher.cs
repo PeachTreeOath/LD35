@@ -4,7 +4,7 @@ using System.Collections;
 public class Launcher : MonoBehaviour
 {
 	public GameObject playerPrefab;
-    public float powerMult = .0001f;
+    public float powerMult = .00001f;
     
 	// Use this for initialization
 	void Start ()
