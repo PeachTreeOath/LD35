@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 	private ScorePanel scoreCanvas;
 	private LevelGenerator levelGen;
 	private LevelTile currentLevelTile;
-	private LevelTile aTile;
+    private LevelTile aTile = null;
 	//a and b tiles alternate, so you can gen one while you are in another.
 	private LevelTile bTile = null;
 	private bool tileAUpdated = false;
@@ -202,6 +202,11 @@ public class GameController : MonoBehaviour
 
 	public LevelTile genATile ()
 	{
+        if (aTile != null)
+        {
+            aTile.remove();
+        }
+        
 		aTile = levelGen.genLevelTile (true);
 		tileAUpdated = true;
 		//float aTileOffset = currentLevelTile.getWidth() * numGens;
@@ -220,7 +225,10 @@ public class GameController : MonoBehaviour
 
 	public LevelTile genBTile ()
 	{
-        
+        if (bTile != null)
+        {
+            bTile.remove();
+        }
 		bTile = levelGen.genLevelTile (false);
 		tileBUpdated = true;
 		isOnATile = true;

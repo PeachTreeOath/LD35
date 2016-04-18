@@ -6,9 +6,6 @@ using System;
 public class PlayerBody : MonoBehaviour {
 
     public Player playerRoot;
-   
-
-    
 
     MethodInfo FindMethod(Type type, Type returnType, string name, params Type[] parameterTypes)
     {
