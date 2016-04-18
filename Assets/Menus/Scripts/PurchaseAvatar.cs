@@ -77,7 +77,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         switch(avatarEnum)
         {
             case VishnuStateController.Avatar.KALKI:
-                cost = 1000000;
+                cost = 100000;
                 break;
                 /*
             case VishnuStateController.Avatar.MATSYA:
@@ -109,7 +109,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 break;
                 */
             default:
-                cost = (amount+1) * (amount+1) * 1000;
+                cost = (amount+1) * (amount+1) * 100;
                 break;
         }
     }
