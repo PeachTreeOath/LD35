@@ -44,7 +44,7 @@ public class Boar : MonoBehaviour
         if (boarActive && boarOnGround )
         {
             body.rotation = 0;
-            body.velocity = new Vector2(body.velocity.x + 0.2f, 0);
+            body.velocity = new Vector2(body.velocity.x + 0.1f, 0);
         }
         
     }

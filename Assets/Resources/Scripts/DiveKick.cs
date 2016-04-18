@@ -109,7 +109,7 @@ public class DiveKick : MonoBehaviour
 			}
 
 			state = State.RECOVERING;
-			Invoke ("Recover", 1f);
+			Invoke ("Recover", 3f);
 		}
 
 		return false;
@@ -128,7 +128,7 @@ public class DiveKick : MonoBehaviour
 
 	private void Recover ()
 	{
-		if (dontRecover) {
+		if (!dontRecover) {
 			StartDive ();
 		}
 
