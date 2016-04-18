@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bee1595b53b054d856731be8119f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityChange: {x: 5, y: 5}
+  velocityChange: {x: 20, y: 20}
   obstacleType: 2
 --- !u!212 &21269368
 SpriteRenderer:
