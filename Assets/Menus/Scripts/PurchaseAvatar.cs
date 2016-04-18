@@ -77,10 +77,10 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         switch(avatarEnum)
         {
             case VishnuStateController.Avatar.KALKI:
-                cost = 100000;
+                cost = 10000;
                 break; 
             default:
-                cost = (amount+1) * (amount+1) * 100;
+                cost = 200*amount+200;
                 break;
         }
     }
@@ -89,10 +89,10 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (bank.TotalMoney > cost && amount < 10)
         {
-            UpdateCost();
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
             amount = inventory.GetAvatarInventory(avatarEnum);
+            UpdateCost();
         }
     }
 
