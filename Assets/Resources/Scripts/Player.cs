@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 		float launchStat = VishnuStateController.instance.GetLaunchPower ()/10;
 		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
-		body.AddForce (new Vector2 (Mathf.Cos (angle) * (force*launchStat), Mathf.Sin (angle) * (force*launchStat)), ForceMode2D.Impulse);
+		body.AddForce (new Vector2 (10+ Mathf.Cos (angle) * (force*launchStat), 10+ Mathf.Sin (angle) * (force*launchStat)), ForceMode2D.Impulse);
 		launchTime = Time.time;
 		GameController.instance.PlaySound ("launch");
 	}
