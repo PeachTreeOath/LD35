@@ -13,12 +13,14 @@ public class LevelTile : MonoBehaviour {
 
     public LevelGenTrigger levelGenTriggerPrefab;
 
+    public bool isATile = false;
+
+    public int skyToGroundRatio = 100;
+
     private List<LevelObject> children;
     private LevelGenTrigger levelGenTrigger;
     private bool startInUpdate = false; //for updating properties outside of Start
-    public bool isATile = false;
-
-	private int skyToGroundRatio = 10;
+    
 
 
     // Use this for initialization
