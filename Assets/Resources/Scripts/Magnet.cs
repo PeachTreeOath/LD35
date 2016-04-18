@@ -16,7 +16,7 @@ public class Magnet : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         if (range > 0)
         {
