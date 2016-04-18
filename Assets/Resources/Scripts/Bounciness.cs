@@ -47,6 +47,8 @@ public class Bounciness : MonoBehaviour
 		newBounciness = initialBounciness + bounciness * statToPhysicsMult;
 		newBounciness = NoBounce ? 0f : newBounciness;
 		newGroundMaterial.bounciness = newBounciness;
+		newGroundMaterial.friction = 100f;
+		newGroundMaterial.name = "NewMat";
 		platform.sharedMaterial = newGroundMaterial;
 	}
 }
