@@ -29,7 +29,7 @@ public class Ability {
     public float liftForceMult = 1;
     public float dragMult = .5f;
 
-    public float magnetRange; // Krishna (flute boy)
+    public float magnetRange = 2.5f; // Krishna (flute boy)
     public float diveKick; // Parashurama (axe man)
     public float hardness; // Kurma (turtle)
     public float metabolism; // Lion
