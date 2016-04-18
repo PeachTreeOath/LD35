@@ -62,7 +62,11 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
 	
 	void LateUpdate () {
-        costText.text = string.Format(@"${0}", cost);
+        if(cost == 0)
+            costText.text = @"";
+        else
+            costText.text = string.Format(@"${0}", cost);
+
         amountText.text = string.Format(@"{0}", amount);
         UpdateStats();
     }
@@ -89,12 +93,14 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                     cost = 1000;
                 break;
         }
+        if (inventory.GetAvatarInventory(avatarEnum) == 10)
+            cost = 0;
         UpdateStats();
     }
 
     public void Purchase()
     {
-        if (bank.TotalMoney > cost && amount < 10)
+        if (bank.TotalMoney > cost && amount < 10 && cost > 0)
         {
             bank.Subtract(cost);
             inventory.IncrementAvatar(avatarEnum);
