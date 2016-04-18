@@ -4,9 +4,11 @@ using System.Collections;
 public class PicksUpMoney : MonoBehaviour {
 
     private Bank bank;
+	private float moneyGainMult;
 
 	void Start () {
         bank = GameObject.Find("Singletons").GetComponent<Bank>();
+		moneyGainMult = VishnuStateController.instance.GetMoneyGain ();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -16,7 +18,7 @@ public class PicksUpMoney : MonoBehaviour {
             Money money = collider.gameObject.GetComponent<Money>();
             if (money != null)
             {
-				bank.Add(money.GetValue());
+				bank.Add(Mathf.RoundToInt (money.GetValue() * moneyGainMult));
                 money.Collect();
             }  
         }
