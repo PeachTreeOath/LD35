@@ -12,4 +12,6 @@ public class LevelObject : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public virtual void Remove() { }
 }

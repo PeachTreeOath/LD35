@@ -14,7 +14,7 @@ public class ObstacleScalar : LevelObject  {
 
 	private AvatarInstance curAvatarInst; 
 
-    public void Remove()
+    public override void Remove()
     {
         Destroy(gameObject); //temporary
     }
