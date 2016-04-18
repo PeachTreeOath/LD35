@@ -7,14 +7,6 @@ public class Umbrella : MonoBehaviour
     private float oldGravity;
     private float oldDrag;
 
-    // Update is called once per frame
-    void Update()
-    {
-        Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
-        body.gravityScale = 0;
-    }
-
-
     public float Value
     {
         get { return umbrellaActive ? 1f : 0f; }
@@ -47,7 +39,7 @@ public class Umbrella : MonoBehaviour
         oldGravity = body.gravityScale;
         oldDrag = body.drag;
         body.gravityScale = 0;
-        //body.drag = 0;
+        body.drag = 0;
         Debug.Log("Start umbrella " + oldGravity.ToString());
     }
 
@@ -55,7 +47,7 @@ public class Umbrella : MonoBehaviour
     {
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
         body.gravityScale = oldGravity;
-        //body.drag = oldDrag;
+        body.drag = oldDrag;
         Debug.Log("Stop umbrella " + body.gravityScale.ToString());
     }
 }
