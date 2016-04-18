@@ -265,16 +265,6 @@ public class GameController : MonoBehaviour
 		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
 	}
 
-	public void GoToShop ()
-	{
-		SceneManager.LoadScene ("Shop");
-	}
-
-	public void GoToGame ()
-	{
-		SceneManager.LoadScene ("Game");
-	}
-
 	public void ShowTutorialPhase (Tutorial.Phase phase)
 	{
 		tut.ShowPhase (phase);
