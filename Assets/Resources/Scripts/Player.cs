@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 	private float flightTime = 0;
 	private bool isStopped;
 	private float launchTime;
-	private DiveKick dk;
+	public DiveKick dk;
 	private ParticleSystem smoke;
 
 	void Awake ()
@@ -100,64 +100,7 @@ public class Player : MonoBehaviour
 		//playerStat.DisplayRunStats();
 	}
 
-	MethodInfo FindMethod (Type type, Type returnType, string name, params Type[] parameterTypes)
-	{
-		MethodInfo methodInfo = type.GetMethod (name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-		if (methodInfo != null) {
-			if (methodInfo.ReturnType != returnType) {
-				methodInfo = null;
-			} else {
-				ParameterInfo[] paramInfo = methodInfo.GetParameters ();
-				if (parameterTypes.Length != paramInfo.Length) {
-					methodInfo = null;
-				} else {
-					for (int i = 0; i < paramInfo.Length; i++) {
-						if (paramInfo [i].ParameterType != parameterTypes [i]) {
-							methodInfo = null;
-							break;
-						}
-					}
-				}
-			}
-		}
-
-		return methodInfo;
-	}
-
-	bool InvokeMethod (System.Object target, MethodInfo methodInfo, params System.Object[] values)
-	{
-		System.Object retVal = methodInfo.Invoke (target, values);
-		return (retVal is bool) ? (bool)retVal : false;
-	}
-
-	void OnTriggerEnter2D (Collider2D collider)
-	{
-		bool continueProcessing = true;
-
-		Component[] components = gameObject.GetComponents<Component> ();
-		foreach (Component component in components) {
-			if (component.GetInstanceID () == this.GetInstanceID ())
-				continue;
-
-			MethodInfo methodInfo = FindMethod (component.GetType (), typeof(bool), "OnObstacleEnter", typeof(Collider2D));
-			if (methodInfo != null) {
-				continueProcessing = InvokeMethod (component, methodInfo, collider);
-				if (!continueProcessing)
-					break;
-			}
-		}
-
-		if (continueProcessing)
-			OnObstacleEnter (collider);
-	}
-
-
-	void OnCollisionEnter2D (Collision2D collision)
-	{
-		if (collision.gameObject.tag == "Ground") {
-			dk.RollingOnGround (Time.deltaTime);
-		}
-	}
+	
 
 	bool OnObstacleEnter (Collider2D collider)
 	{ 

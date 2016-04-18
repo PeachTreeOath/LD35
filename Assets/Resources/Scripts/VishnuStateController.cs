@@ -86,7 +86,7 @@ public class VishnuStateController : MonoBehaviour
 		foreach (AvatarAbilityEntry ent in abilityDataRef.getAll()) {
 			abilityEntries [ent.avatar] = ent; 
 		}
-		Debug.Log ("Abilities loaded!");
+		//Debug.Log ("Abilities loaded!");
 	}
 
 	private void LoadSprites ()
@@ -227,9 +227,9 @@ public class VishnuStateController : MonoBehaviour
 
 		if (state == State.FLIGHT) {
 			doPlayerUpdate ();
-			Debug.Log ("Avatar transition complete");
+			//Debug.Log ("Avatar transition complete");
 		} else {
-			Debug.Log ("Avatar transition deferred");
+			//Debug.Log ("Avatar transition deferred");
 			pendingUpdate = true;
 		}
 	}

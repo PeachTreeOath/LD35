@@ -25,7 +25,7 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Bounciness(1)
                     .Mass(1)
-                    .Tastiness(1)
+                    .Tastiness(5)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
