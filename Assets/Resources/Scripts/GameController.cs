@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 	public static GameController instance { get { return m_instance; } }
 
     public bool isOnATile = false; //if the player has hit the trigger in an A tile.
+	public bool muteGame = true;
 
     private static GameController m_instance;
 	private Vector3 locationFromCam;
@@ -35,6 +36,11 @@ public class GameController : MonoBehaviour
 		if (m_instance == null) {
 			m_instance = this;
 			DontDestroyOnLoad (gameObject);
+		}
+		else if (m_instance != null && m_instance != this) {
+			Debug.Log ("Deleting singleton Dup.  Someone screwed up");
+			Destroy (gameObject);
+			return;
 		}
 	}
 
@@ -186,5 +192,17 @@ public class GameController : MonoBehaviour
 	public void ShowTutorialPhase(Tutorial.Phase phase)
 	{
 		tut.ShowPhase (phase);
+	}
+
+	public void Mute(bool mute)
+	{
+		muteGame = mute;
+		if (mute) {
+			AudioListener.pause = true;
+			AudioListener.volume = 0;
+		} else {
+			AudioListener.pause = false;
+			AudioListener.volume = 1;
+		}
 	}
 }
