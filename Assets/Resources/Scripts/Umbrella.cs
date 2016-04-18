@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Umbrella : MonoBehaviour
 {
     private bool umbrellaActive;
     private float oldGravity;
-    private float oldDrag;
 
     public float Value
     {
@@ -37,9 +37,8 @@ public class Umbrella : MonoBehaviour
         
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
         oldGravity = body.gravityScale;
-        oldDrag = body.drag;
         body.gravityScale = 0;
-        body.drag = 0;
+        body.velocity = new Vector2(body.velocity.x + Math.Abs(body.velocity.y), 0);
         Debug.Log("Start umbrella " + oldGravity.ToString());
     }
 
@@ -47,7 +46,6 @@ public class Umbrella : MonoBehaviour
     {
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
         body.gravityScale = oldGravity;
-        body.drag = oldDrag;
         Debug.Log("Stop umbrella " + body.gravityScale.ToString());
     }
 }
