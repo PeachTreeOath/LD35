@@ -3,10 +3,8 @@ using System.Collections;
 
 public class SuperJump : MonoBehaviour
 {
-
-	private bool diveKicking = false;
+	private bool superJumping = false;
 	private float savedSpeed = 0f;
-	private float diveMult = 20f;
 	private State state = State.NONE;
 
 	public Vector2 diveSpeed;
@@ -15,34 +13,35 @@ public class SuperJump : MonoBehaviour
 	public enum State
 	{
 		NONE,
-		DIVING,
+		JUMPING,
 		RECOVERING
-
 	}
 
 	public float Value {
-		get { return diveKicking ? 1f : 0f; }
+		get { return superJumping ? 1f : 0f; }
 		set {
-			bool prevValue = diveKicking;
-			diveKicking = value > 0;
+			bool prevValue = superJumping;
 
-			if (diveKicking != prevValue)
-				OnStateChange (diveKicking);
+            diveSpeed = new Vector2(1, 1) * value;
+            superJumping = value > 0;
+
+			if (superJumping != prevValue)
+				OnStateChange (superJumping);
 		}
 	}
 
 	void OnStateChange (bool newValue)
 	{
 		if (newValue) {
-			StartDive ();
+			StartJump ();
 		} else {
-			StopDive ();
+			StopJump ();
 		}
 	}
 
-	void StartDive ()
+	void StartJump ()
 	{
-		diveSpeed = new Vector2 (diveMult, diveMult);
+
 		body = gameObject.GetComponent<Rigidbody2D> ();
 		Bounciness bounciness = gameObject.GetComponent<Bounciness> ();
 
@@ -50,10 +49,10 @@ public class SuperJump : MonoBehaviour
 		body.velocity = Vector2.zero;
 
 		bounciness.NoBounce = true;
-		state = State.DIVING;
+		state = State.JUMPING;
 	}
 
-	void StopDive ()
+	void StopJump ()
 	{
 		Bounciness bounciness = gameObject.GetComponent<Bounciness> ();
 		bounciness.NoBounce = false;
@@ -63,7 +62,7 @@ public class SuperJump : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (state == State.DIVING) {
+		if (state == State.JUMPING) {
 			body.velocity = Vector2.zero;
 			body.AddForce (new Vector2 (diveSpeed.x + savedSpeed, diveSpeed.y), ForceMode2D.Impulse);
 		}
@@ -71,17 +70,13 @@ public class SuperJump : MonoBehaviour
 
 	bool OnObstacleEnter (Collider2D collider)
 	{
-		if (state != State.DIVING)
+		if (state != State.JUMPING)
 			return true;
 
 		if (collider.tag == "Obstacle") {
-			ObstacleVector obstacleVector = collider.GetComponent<ObstacleVector> ();
+			LevelObject obstacleVector = collider.GetComponent<LevelObject> ();
 			if (obstacleVector != null) {
 				obstacleVector.Remove ();
-			}
-			ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> ();
-			if (obstacleScalar != null) {
-				obstacleScalar.Remove ();
 			}
 		}
 
@@ -111,6 +106,6 @@ public class SuperJump : MonoBehaviour
 
 	private void Recover ()
 	{
-		StartDive ();
+		StartJump ();
 	}
 }

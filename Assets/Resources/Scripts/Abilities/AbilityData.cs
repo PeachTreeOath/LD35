@@ -107,12 +107,16 @@ public class AbilityData
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.RAMA)
                .Set (Ability.AtLevel (1)
                     .Energy (100)
+                    .DrainRate(100)
                     .Mass(1)
-				.MoneyGain(1).SuperJump(1))
+				    .MoneyGain(1)
+                    .SuperJump(5))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
+                    .DrainRate(75)
                     .Mass(10)
-				.MoneyGain(10).SuperJump(1))
+				    .MoneyGain(10)
+                    .SuperJump(20))
 		);
 
 		AddEntry (
