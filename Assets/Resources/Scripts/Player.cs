@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
 		transform.Rotate (new Vector3 (0, 0, angle));
 		body.AddForce (new Vector2 (Mathf.Cos (angle) * force, Mathf.Sin (angle) * force), ForceMode2D.Impulse);
 		launchTime = Time.time;
+		GameController.instance.PlaySound ("launch");
 	}
 
 	private void Stop ()
