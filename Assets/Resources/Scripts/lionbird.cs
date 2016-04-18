@@ -18,18 +18,17 @@ public class lionbird : MonoBehaviour {
 
 	bool OnObstacleEnter (Collider2D collider){
 
-		Debug.Log ("Special OnObstacleEnter");
-
 		ObstacleScalar obstacleScalar = collider.GetComponent<ObstacleScalar> (); 
 			
-		if( obstacleScalar.obstacleType == ObstacleScalar.ScalarObstacles.bird){
+		if (obstacleScalar != null) {
+			if (obstacleScalar.obstacleType == ObstacleScalar.ScalarObstacles.bird) {
 
-			Debug.Log ("Bird!");
-			AvatarInstance curAvatarInst = VishnuStateController.instance.getCurrentAvatarInstance ();
-			if (curAvatarInst.avatar == VishnuStateController.Avatar.NARASIMHA) {
-				curAvatarInst.SetEnergyRemaining (curAvatarInst.abilities.level * obstacleScalar.lionEnergyBoost + curAvatarInst.EnergyRemaining);
+				AvatarInstance curAvatarInst = VishnuStateController.instance.getCurrentAvatarInstance ();
+				if (curAvatarInst.avatar == VishnuStateController.Avatar.NARASIMHA) {
+					curAvatarInst.SetEnergyRemaining (curAvatarInst.abilities.level * obstacleScalar.lionEnergyBoost + curAvatarInst.EnergyRemaining);
 
-				return false;
+					return false;
+				}
 			}
 		}
 		return true;

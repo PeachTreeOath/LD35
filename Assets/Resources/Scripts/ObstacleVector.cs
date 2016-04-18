@@ -5,7 +5,7 @@ public class ObstacleVector : LevelObject {
     public Vector2 velocityChange;
 
 	public enum VectorObstacles {unknown, balloon, lotus}; 
-	public VectorObstacles obstacleType;
+	public VectorObstacles obstacleType = VectorObstacles.unknown;
 
 	// Use this for initialization
 	void Start () {

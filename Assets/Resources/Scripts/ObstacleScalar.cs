@@ -8,7 +8,7 @@ public class ObstacleScalar : LevelObject  {
     public float scalar;
 
 	public enum ScalarObstacles {unknown, bird, rock, curry}; 
-	public ScalarObstacles obstacleType;
+	public ScalarObstacles obstacleType = ScalarObstacles.unknown;
 
 	public int lionEnergyBoost = 0; 
 
