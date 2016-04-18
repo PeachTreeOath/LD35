@@ -42,7 +42,7 @@ MonoBehaviour:
   xMin: -5
   xMax: 100
   yMin: -2
-  yMax: 500
+  yMax: 1000
   objectsPerTile: 1000
   levelTriggerOffset: 10
   skyObjectPrefabs:

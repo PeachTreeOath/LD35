@@ -5,7 +5,10 @@ using System;
 
 public class PlayerBody : MonoBehaviour {
 
-    public GameObject playerRoot;
+    public Player playerRoot;
+   
+
+    
 
     MethodInfo FindMethod(Type type, Type returnType, string name, params Type[] parameterTypes)
     {
@@ -72,7 +75,21 @@ public class PlayerBody : MonoBehaviour {
             if (methodInfo != null)
                 InvokeMethod(player, methodInfo, collider);
         }
-            
+
+        LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger>();
+        if (levelGenTrigger != null)
+        {
+            if (levelGenTrigger.isATrigger && !playerRoot.gc.isOnATile)
+            {
+                playerRoot.gc.genBTile();
+            }
+            else if (!levelGenTrigger.isATrigger && playerRoot.gc.isOnATile)
+            {
+                playerRoot.gc.genATile();
+            }
+        }
+
+
     }
 
 

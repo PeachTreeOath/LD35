@@ -6,7 +6,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
-	GameController gc;
+	public GameController gc;
 	PlayerStat playerStat = null;
 
 	// Once player distance from prevPosition is below this
@@ -124,14 +124,14 @@ public class Player : MonoBehaviour
 		}
 
 
-		LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger> ();
-		if (levelGenTrigger != null) {
-			if (levelGenTrigger.isATrigger && !gc.isOnATile) {
-				gc.genBTile ();
-			} else if (!levelGenTrigger.isATrigger && gc.isOnATile) {
-				gc.genATile ();
-			}
-		}
+		//LevelGenTrigger levelGenTrigger = collider.GetComponent<LevelGenTrigger> ();
+		//if (levelGenTrigger != null) {
+		//	if (levelGenTrigger.isATrigger && !gc.isOnATile) {
+		//		gc.genBTile ();
+		//	} else if (!levelGenTrigger.isATrigger && gc.isOnATile) {
+		//		gc.genATile ();
+		//	}
+		//}
 
 		return false;
 	}
