@@ -62,10 +62,12 @@ public class LaunchController : MonoBehaviour {
                 {
                     //Flip the spinner
                     isSpinnerIncreasing = false;
+					GameController.instance.PlaySound ("meter");
                 }
                 else if (!isSpinnerIncreasing && angleDisplayed <= MIN_ANGLE)
                 {
                     isSpinnerIncreasing = true;
+					GameController.instance.PlaySound ("meter");
                 }
 
                 //Now the standard increment/decrement cases
@@ -95,15 +97,18 @@ public class LaunchController : MonoBehaviour {
                 {
                     //Flip the spinner
                     isSpinnerIncreasing = false;
+					GameController.instance.PlaySound ("flame");
                 }
                 else if (!isSpinnerIncreasing && powerDisplayed <= MIN_POWER)
                 {
                     isSpinnerIncreasing = true;
+					GameController.instance.PlaySound ("flame");
                 }
 
                 //Now the standard increment/decrement cases
                 if (isSpinnerIncreasing)
                 {
+
                     powerDisplayed++;
                     powerText.text = "Power: " + powerDisplayed;
 					powerCircle.transform.localScale += new Vector3 (.1f, .1f, 0f);
@@ -126,6 +131,7 @@ public class LaunchController : MonoBehaviour {
             isAngleSet = true;
 			powerCircle.enabled = true;
 			GameController.instance.ShowTutorialPhase (Tutorial.Phase.POWER);
+			GameController.instance.PlaySound ("flame");
         }
         else if (Input.GetButtonDown("Fire1") && !isPowerSet)
         {
