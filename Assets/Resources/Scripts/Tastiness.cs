@@ -84,10 +84,13 @@ public class Tastiness : MonoBehaviour {
     {
         if(isPrey)
         {
-            if (!isCarried && collider.gameObject.layer == LayerMask.NameToLayer("Birds")) {
+            if (isCarried) return false;
+            
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Birds")) {
                 StartCarry(collider.gameObject);
+                return false;
             }
-            return false;
+            return true;
         }   
         else 
             return true;
