@@ -26,11 +26,13 @@ public class AbilityData
                     .Bounciness(1)
                     .Mass(1)
                     .Tastiness(5)
+                    .BirdSpeed(10)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
                     .Mass(10)
                     .Tastiness(10)
+                    .BirdSpeed(25)
                     .Energy (1000))
 		);
 

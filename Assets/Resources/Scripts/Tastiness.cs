@@ -5,6 +5,8 @@ public class Tastiness : MonoBehaviour {
     public GameObject magnetObject;
 
     private float range;
+    public float Speed;
+
     private bool isPrey = false;
     private bool isCarried = false;
     private GameObject carrier = null;
@@ -48,7 +50,7 @@ public class Tastiness : MonoBehaviour {
         StopCarry();
     }
 
-    void StartCarry(GameObject obj) {
+    void StartCarry(GameObject obj, float speed) {
         Carry carry = obj.GetComponent<Carry>();
         if (carry != null)
         {
@@ -57,6 +59,7 @@ public class Tastiness : MonoBehaviour {
             carrier = obj;
             isCarried = true;
 
+            carry.carrySpeed = speed;
             carry.StartCarry(gameObject);
         }
     }
@@ -87,7 +90,7 @@ public class Tastiness : MonoBehaviour {
             if (isCarried) return false;
             
             if (collider.gameObject.layer == LayerMask.NameToLayer("Birds")) {
-                StartCarry(collider.gameObject);
+                StartCarry(collider.gameObject, Speed);
                 return false;
             }
             return true;
