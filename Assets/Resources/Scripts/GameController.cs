@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 	private ScorePanel scoreCanvas;
 	private LevelGenerator levelGen;
 	private LevelTile currentLevelTile;
-	private LevelTile aTile;
+    private LevelTile aTile = null;
 	//a and b tiles alternate, so you can gen one while you are in another.
 	private LevelTile bTile = null;
 	private bool tileAUpdated = false;
@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour
 	private AudioClip meterSelectSound;
 	private AudioClip rupeeSound;
 	private AudioClip switchAvatarSound;
+	private AudioClip currySound;
+	private AudioClip flowerSound;
 
 	private void LoadSounds ()
 	{
@@ -78,6 +80,8 @@ public class GameController : MonoBehaviour
 		meterSelectSound = (AudioClip)Resources.Load ("Sounds/MeterSelect");
 		rupeeSound = (AudioClip)Resources.Load ("Sounds/RupeePickup");
 		switchAvatarSound = (AudioClip)Resources.Load ("Sounds/SwitchAvatar");
+		currySound = (AudioClip)Resources.Load ("Sounds/Curry");
+		flowerSound = (AudioClip)Resources.Load ("Sounds/Flower");
 	}
 
 	public void PlaySound (string name)
@@ -85,31 +89,37 @@ public class GameController : MonoBehaviour
 		float vol = 0.5f;
 		switch (name) {
 		case "balloon":
-			audio.PlayOneShot (balloonPopSound, vol);
+			audio.PlayOneShot (balloonPopSound, 2f);
 			break;
 		case "bird":
-			audio.PlayOneShot (birdSound, vol);
+			audio.PlayOneShot (birdSound, 1f);
 			break;
 		case "bounce":
 			audio.PlayOneShot (bounceSound, vol);
 			break;
 		case "flame":
-			audio.PlayOneShot (flameSound, vol);
+			audio.PlayOneShot (flameSound, 1f);
 			break;
 		case "hit":
-			audio.PlayOneShot (hitSound, vol);
+			audio.PlayOneShot (hitSound, 1f);
 			break;
 		case "launch":
 			audio.PlayOneShot (launchSound, vol);
 			break;
 		case "meter":
-			audio.PlayOneShot (meterSelectSound, vol);
+			audio.PlayOneShot (meterSelectSound, 1f);
 			break;
 		case "coin":
 			audio.PlayOneShot (rupeeSound, vol);
 			break;
 		case "switch":
 			audio.PlayOneShot (switchAvatarSound, vol);
+			break;
+		case "curry":
+			audio.PlayOneShot (currySound, .3f);
+			break;
+		case "flower":
+			audio.PlayOneShot (flowerSound, .3f);
 			break;
 		}
 	}
@@ -209,6 +219,11 @@ public class GameController : MonoBehaviour
 
 	public LevelTile genATile ()
 	{
+        if (aTile != null)
+        {
+            aTile.remove();
+        }
+        
 		aTile = levelGen.genLevelTile (true);
 		tileAUpdated = true;
 		//float aTileOffset = currentLevelTile.getWidth() * numGens;
@@ -227,7 +242,10 @@ public class GameController : MonoBehaviour
 
 	public LevelTile genBTile ()
 	{
-        
+        if (bTile != null)
+        {
+            bTile.remove();
+        }
 		bTile = levelGen.genLevelTile (false);
 		tileBUpdated = true;
 		isOnATile = true;
@@ -262,16 +280,6 @@ public class GameController : MonoBehaviour
 	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
 	{
 		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
-	}
-
-	public void GoToShop ()
-	{
-		SceneManager.LoadScene ("Shop");
-	}
-
-	public void GoToGame ()
-	{
-		SceneManager.LoadScene ("Game");
 	}
 
 	public void ShowTutorialPhase (Tutorial.Phase phase)
