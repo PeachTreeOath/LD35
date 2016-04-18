@@ -14,11 +14,9 @@ public class Tutorial : MonoBehaviour
 
 	private bool playTutorial;
 
-	private Text text;
 	// Use this for initialization
 	void Start ()
 	{
-		text = GetComponent<Text> ();
 	}
 
 	// Update is called once per frame
@@ -30,7 +28,7 @@ public class Tutorial : MonoBehaviour
 	public void ShowTutorial(bool show)
 	{
 		playTutorial = show;
-		text.enabled = show;
+        GetComponent<Text>().enabled = show;
 	}
 
 	public void ShowPhase (Phase phase)
@@ -48,6 +46,6 @@ public class Tutorial : MonoBehaviour
 			tutString = "Your avatars are in the top left, switch avatars before their lifespans run out";
 			break;
 		}
-		text.text = tutString;
+        GetComponent<Text>().text = tutString;
 	}
 }
