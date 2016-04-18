@@ -11,6 +11,9 @@ GameObject:
   - 212: {fileID: 21216028}
   - 114: {fileID: 11479338}
   - 61: {fileID: 6148682}
+  - 114: {fileID: 11407250}
+  - 114: {fileID: 11457660}
+  - 50: {fileID: 5032332}
   m_Layer: 10
   m_Name: Bird
   m_TagString: Obstacle
@@ -30,6 +33,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5032332
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192870}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6148682
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -44,6 +64,36 @@ BoxCollider2D:
   m_Offset: {x: -0.06915647, y: -0.008056879}
   serializedVersion: 2
   m_Size: {x: 0.906255, y: 0.4524557}
+--- !u!114 &11407250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9248ac30931cbf488617d8d60d9a975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnet: {fileID: 0}
+  stiffness: 100
+  damping: 25
+  maxSpeed: 25
+--- !u!114 &11457660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e71793af7cea5d4db4dbf2b4267d9f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+  load: {fileID: 0}
+  timeToCarry: 2.5
+  carrySpeed: 20
 --- !u!114 &11479338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b2d242e5286ed448452bd8613de7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalar: -0.25
+  scalar: -18.67
   obstacleType: 1
   lionEnergyBoost: 200
 --- !u!212 &21216028

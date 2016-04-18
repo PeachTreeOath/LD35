@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 11476898, guid: 726b3bfcdb3e84b2586d3c7a7c5e9586, type: 2}
   groundObjectPrefabs:
   - {fileID: 11440112, guid: 1bc4fd93a5c1a4dcd88f566a57ec1563, type: 2}
-  - {fileID: 11426800, guid: 4c8231940e4ff4cecbaa0802ce0808dd, type: 2}
+  - {fileID: 11461476, guid: 4c8231940e4ff4cecbaa0802ce0808dd, type: 2}
   levelGenTriggerPrefab: {fileID: 11449814, guid: 3537c4d0a368dcd4285142e72bcc22b8,
     type: 2}
   isATile: 1
