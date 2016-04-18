@@ -8,39 +8,107 @@ public class GameController : MonoBehaviour
     
 	public static GameController instance { get { return m_instance; } }
 
-    public bool isOnATile = false; //if the player has hit the trigger in an A tile.
+	public bool isOnATile = false;
+	//if the player has hit the trigger in an A tile.
 	public bool muteGame = true;
 
-    private static GameController m_instance;
+	private static GameController m_instance;
 	private Vector3 locationFromCam;
 	private Camera cam;
 	private GroundPlatform groundPlatform;
 	private ScorePanel scoreCanvas;
 	private LevelGenerator levelGen;
 	private LevelTile currentLevelTile;
-	private LevelTile aTile; //a and b tiles alternate, so you can gen one while you are in another.
-    private LevelTile bTile = null;
-    private bool tileAUpdated = false;
-    private bool tileBUpdated = false;
+	private LevelTile aTile;
+	//a and b tiles alternate, so you can gen one while you are in another.
+	private LevelTile bTile = null;
+	private bool tileAUpdated = false;
+	private bool tileBUpdated = false;
      
 	private GameObject player;
 	//current player obj in the game
 	private BGScroller bg;
 	private Tutorial tut;
 	private int tutorialCount = 0;
-    private bool levelTileMoved = false;
-    private int numGens = 0; //number of Times a stage gen has been called.
+	private bool levelTileMoved = false;
+	private int numGens = 0;
+	//number of Times a stage gen has been called.
+	private AudioSource audio;
 
 	void Awake ()
 	{
 		if (m_instance == null) {
 			m_instance = this;
 			DontDestroyOnLoad (gameObject);
-		}
-		else if (m_instance != null && m_instance != this) {
+			LoadSounds ();
+		} else if (m_instance != null && m_instance != this) {
 			Debug.Log ("Deleting singleton Dup.  Someone screwed up");
 			Destroy (gameObject);
 			return;
+		}
+	}
+
+	private AudioClip balloonPopSound;
+	private AudioClip birdSound;
+	private AudioClip bounceSound;
+	private AudioClip flameSound;
+	private AudioClip hitSound;
+	private AudioClip launchSound;
+	private AudioClip meterSelectSound;
+	private AudioClip rupeeSound;
+	private AudioClip switchAvatarSound;
+
+	private void LoadSounds ()
+	{
+		AudioSource[] sources = GetComponentsInChildren<AudioSource> ();
+		foreach (AudioSource src in sources) {
+			if (src.gameObject.GetInstanceID () != GetInstanceID ()) {
+				audio = src;
+			}
+		}
+
+		balloonPopSound = (AudioClip)Resources.Load ("Sounds/BalloonPop");
+		birdSound = (AudioClip)Resources.Load ("Sounds/Bird");
+		bounceSound = (AudioClip)Resources.Load ("Sounds/Bounce");
+		flameSound = (AudioClip)Resources.Load ("Sounds/Flame");
+		hitSound = (AudioClip)Resources.Load ("Sounds/GenericHit");
+		launchSound = (AudioClip)Resources.Load ("Sounds/Launch");
+		meterSelectSound = (AudioClip)Resources.Load ("Sounds/MeterSelect");
+		rupeeSound = (AudioClip)Resources.Load ("Sounds/RupeePickup");
+		switchAvatarSound = (AudioClip)Resources.Load ("Sounds/SwitchAvatar");
+	}
+
+	public void PlaySound (string name)
+	{
+		float vol = 0.5f;
+		switch (name) {
+		case "balloon":
+			audio.PlayOneShot (balloonPopSound, vol);
+			break;
+		case "bird":
+			audio.PlayOneShot (birdSound, vol);
+			break;
+		case "bounce":
+			audio.PlayOneShot (bounceSound, vol);
+			break;
+		case "flame":
+			audio.PlayOneShot (flameSound, vol);
+			break;
+		case "hit":
+			audio.PlayOneShot (hitSound, vol);
+			break;
+		case "launch":
+			audio.PlayOneShot (launchSound, vol);
+			break;
+		case "meter":
+			audio.PlayOneShot (meterSelectSound, vol);
+			break;
+		case "coin":
+			audio.PlayOneShot (rupeeSound, vol);
+			break;
+		case "switch":
+			audio.PlayOneShot (switchAvatarSound, vol);
+			break;
 		}
 	}
 
@@ -57,100 +125,98 @@ public class GameController : MonoBehaviour
 		}
 		Debug.Log ("GameController level loaded");
 
-        levelGen = GetComponent<LevelGenerator>();
-        //currentLevelTile = levelGen.genLevelTile(true);
-        currentLevelTile = genATile();
-        aTile = currentLevelTile;
-    }
+		levelGen = GetComponent<LevelGenerator> ();
+		//currentLevelTile = levelGen.genLevelTile(true);
+		currentLevelTile = genATile ();
+		aTile = currentLevelTile;
+	}
 
 	// Use this for initialization
 	void Start ()
 	{
-		OnLevelWasLoaded (SceneManager.GetActiveScene().buildIndex);
+		OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
 
 		
-        //levelTileMoved = true;
+		//levelTileMoved = true;
 
 
-        tut.ShowTutorial (tutorialCount == 1);
+		tut.ShowTutorial (tutorialCount == 1);
 		ShowTutorialPhase (Tutorial.Phase.ANGLE);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-        //if (levelTileMoved)
-        //   {
-        //       //Have to move these in update, not start.  They do not tranform properly in start.
-        //       float nextLevelTileOffset = currentLevelTile.getWidth();
-        //       Vector3 nextLevelTilePos = nextLevelTile.transform.position;
+		//if (levelTileMoved)
+		//   {
+		//       //Have to move these in update, not start.  They do not tranform properly in start.
+		//       float nextLevelTileOffset = currentLevelTile.getWidth();
+		//       Vector3 nextLevelTilePos = nextLevelTile.transform.position;
 
-        //       float newPosX = nextLevelTilePos.x + nextLevelTileOffset;
-        //       float newPosY = nextLevelTilePos.y;
-        //       Vector3 newPos = new Vector3(newPosX, newPosY);
-        //       nextLevelTile.transform.position = newPos;
-        //       levelTileMoved = false;
-        //   
-        if (tileAUpdated)
-        {
-            float aTileOffset = currentLevelTile.getWidth() * numGens;
-            Vector3 aTilePos = aTile.transform.position;
+		//       float newPosX = nextLevelTilePos.x + nextLevelTileOffset;
+		//       float newPosY = nextLevelTilePos.y;
+		//       Vector3 newPos = new Vector3(newPosX, newPosY);
+		//       nextLevelTile.transform.position = newPos;
+		//       levelTileMoved = false;
+		//   
+		if (tileAUpdated) {
+			float aTileOffset = currentLevelTile.getWidth () * numGens;
+			Vector3 aTilePos = aTile.transform.position;
 
-            float newPosX = aTilePos.x + aTileOffset;
-            float newPosY = aTilePos.y;
-            Vector3 newPos = new Vector3(newPosX, newPosY);
-            aTile.transform.position = newPos;
-            //levelTileMoved = false;
-            //isOnATile = false;
-            numGens++;
+			float newPosX = aTilePos.x + aTileOffset;
+			float newPosY = aTilePos.y;
+			Vector3 newPos = new Vector3 (newPosX, newPosY);
+			aTile.transform.position = newPos;
+			//levelTileMoved = false;
+			//isOnATile = false;
+			numGens++;
 
-            tileAUpdated = false;
-        }
+			tileAUpdated = false;
+		}
 
-        if (tileBUpdated)
-        {
-            float bTileOffset = currentLevelTile.getWidth() * numGens;
-            Vector3 bTilePos = bTile.transform.position;
+		if (tileBUpdated) {
+			float bTileOffset = currentLevelTile.getWidth () * numGens;
+			Vector3 bTilePos = bTile.transform.position;
 
-            float newPosX = bTilePos.x + bTileOffset;
-            float newPosY = bTilePos.y;
-            Vector3 newPos = new Vector3(newPosX, newPosY);
-            bTile.transform.position = newPos;
-            //levelTileMoved = false;
+			float newPosX = bTilePos.x + bTileOffset;
+			float newPosY = bTilePos.y;
+			Vector3 newPos = new Vector3 (newPosX, newPosY);
+			bTile.transform.position = newPos;
+			//levelTileMoved = false;
             
-            numGens++;
+			numGens++;
 
-            tileBUpdated = false;
-        }
+			tileBUpdated = false;
+		}
 	}
 
-    public LevelTile genATile()
-    {
-        aTile = levelGen.genLevelTile(true);
-        tileAUpdated = true;
-        //float aTileOffset = currentLevelTile.getWidth() * numGens;
-        //Vector3 aTilePos = aTile.transform.position;
+	public LevelTile genATile ()
+	{
+		aTile = levelGen.genLevelTile (true);
+		tileAUpdated = true;
+		//float aTileOffset = currentLevelTile.getWidth() * numGens;
+		//Vector3 aTilePos = aTile.transform.position;
 
-        //float newPosX = aTilePos.x + aTileOffset;
-        //float newPosY = aTilePos.y;
-        //Vector3 newPos = new Vector3(newPosX, newPosY);
-        //aTile.transform.position = newPos;
-        ////levelTileMoved = false;
-        //isOnATile = false;
-        //numGens++;
-        isOnATile = false;
-        return aTile;
-    }
+		//float newPosX = aTilePos.x + aTileOffset;
+		//float newPosY = aTilePos.y;
+		//Vector3 newPos = new Vector3(newPosX, newPosY);
+		//aTile.transform.position = newPos;
+		////levelTileMoved = false;
+		//isOnATile = false;
+		//numGens++;
+		isOnATile = false;
+		return aTile;
+	}
 
-    public LevelTile genBTile()
-    {
+	public LevelTile genBTile ()
+	{
         
-        bTile = levelGen.genLevelTile(false);
-        tileBUpdated = true;
-        isOnATile = true;
-        return bTile;
+		bTile = levelGen.genLevelTile (false);
+		tileBUpdated = true;
+		isOnATile = true;
+		return bTile;
 
-    }
+	}
 
 	public void setPlayer (GameObject p)
 	{
@@ -191,12 +257,12 @@ public class GameController : MonoBehaviour
 		SceneManager.LoadScene ("Game");
 	}
 
-	public void ShowTutorialPhase(Tutorial.Phase phase)
+	public void ShowTutorialPhase (Tutorial.Phase phase)
 	{
 		tut.ShowPhase (phase);
 	}
 
-	public void Mute(bool mute)
+	public void Mute (bool mute)
 	{
 		muteGame = mute;
 		if (mute) {
