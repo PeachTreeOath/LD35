@@ -17,14 +17,14 @@ public class Inventory : MonoBehaviour {
         }
 
         IncrementAvatar(VishnuStateController.Avatar.BUDDHA);
-        IncrementAvatar(VishnuStateController.Avatar.PARASHURAMA);
-		IncrementAvatar(VishnuStateController.Avatar.KRISHNA);
-		IncrementAvatar(VishnuStateController.Avatar.KURMA);
-		IncrementAvatar(VishnuStateController.Avatar.MATSYA);
+        //IncrementAvatar(VishnuStateController.Avatar.PARASHURAMA);
+		//IncrementAvatar(VishnuStateController.Avatar.KRISHNA);
+		//IncrementAvatar(VishnuStateController.Avatar.KURMA);
+		//IncrementAvatar(VishnuStateController.Avatar.MATSYA);
 		IncrementAvatar(VishnuStateController.Avatar.RAMA);
-		IncrementAvatar(VishnuStateController.Avatar.NARASIMHA);
-		IncrementAvatar(VishnuStateController.Avatar.VAMANA);
-		IncrementAvatar(VishnuStateController.Avatar.VARAHA);
+		//IncrementAvatar(VishnuStateController.Avatar.NARASIMHA);
+		//IncrementAvatar(VishnuStateController.Avatar.VAMANA);
+		//IncrementAvatar(VishnuStateController.Avatar.VARAHA);
     }
 
     public void IncrementAvatar(VishnuStateController.Avatar avatarEnum)
