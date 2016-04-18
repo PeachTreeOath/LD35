@@ -61,7 +61,8 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Bounciness(1)
                     .MoneyGain(1)
-                    .Energy (100))
+                    .Energy (100)
+					.BuddhaBounciness (10)) // remove after testing
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
                     .MoneyGain(10)

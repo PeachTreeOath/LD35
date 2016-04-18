@@ -6,19 +6,18 @@ using System;
 
 public class ObstacleScalar : LevelObject  {
     public float scalar;
-	private AvatarInstance curAvatarInst; 
 
-	public int lionEnergyBoost = 50; 
+	public enum ScalarObstacles {unknown, bird, rock, curry}; 
+	public ScalarObstacles obstacleType;
+
+	public int lionEnergyBoost = 0; 
+
+	private AvatarInstance curAvatarInst; 
 
     public void Remove()
     {
         Destroy(gameObject); //temporary
     }
 
-	void OnTriggerEnter2D (Collider2D collider){
-		curAvatarInst = VishnuStateController.instance.getCurrentAvatarInstance ();
-		if (curAvatarInst.avatar == VishnuStateController.Avatar.NARASIMHA){
-			curAvatarInst.SetEnergyRemaining (curAvatarInst.abilities.level * lionEnergyBoost + curAvatarInst.EnergyRemaining);
-		}
-	}
+
 }
