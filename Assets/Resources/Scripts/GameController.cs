@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
 			audio.PlayOneShot (bounceSound, vol);
 			break;
 		case "flame":
-			audio.PlayOneShot (flameSound, vol);
+			audio.PlayOneShot (flameSound, 1f);
 			break;
 		case "hit":
 			audio.PlayOneShot (hitSound, vol);
@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
 			audio.PlayOneShot (launchSound, vol);
 			break;
 		case "meter":
-			audio.PlayOneShot (meterSelectSound, vol);
+			audio.PlayOneShot (meterSelectSound, 1f);
 			break;
 		case "coin":
 			audio.PlayOneShot (rupeeSound, vol);

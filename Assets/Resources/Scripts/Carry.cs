@@ -6,6 +6,8 @@ public class Carry : MonoBehaviour {
     private bool isCarrying = false;
     private float carryTimer = 0f;
 
+    public Vector2 velocity;
+
     public GameObject load;
     public float timeToCarry = 2.5f;
     public float carrySpeed = 20f;
@@ -29,13 +31,15 @@ public class Carry : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void Update() {
-        if(isCarrying) {
+    void LateUpdate() {
+        Rigidbody2D carrierBody = gameObject.GetComponent<Rigidbody2D>();
+        velocity = carrierBody.velocity;
+
+        if (isCarrying) {
             carryTimer -= Time.deltaTime;
             if (carryTimer <= 0f)
                 StopCarry();
 
-            Rigidbody2D carrierBody = gameObject.GetComponent<Rigidbody2D>();
             Rigidbody2D loadBody = load.GetComponent<Rigidbody2D>();
 
             loadBody.position = carrierBody.position;
