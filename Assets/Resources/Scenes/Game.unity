@@ -210,7 +210,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 8275126, guid: f9edfbabbc96e2d4782674b304d8d6f2, type: 2}
       propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275126, guid: f9edfbabbc96e2d4782674b304d8d6f2, type: 2}
+      propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275126, guid: f9edfbabbc96e2d4782674b304d8d6f2, type: 2}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479100, guid: f9edfbabbc96e2d4782674b304d8d6f2, type: 2}
+      propertyPath: muteGame
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9edfbabbc96e2d4782674b304d8d6f2, type: 2}
