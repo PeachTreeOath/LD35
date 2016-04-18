@@ -29,13 +29,14 @@ public class Ability {
     public float liftForceMult = 1;
     public float dragMult = .5f;
 
-    public float magnetRange; // Krishna (flute boy)
+    public float magnetRange = 2.5f; // Krishna (flute boy)
     public float diveKick; // Parashurama (axe man)
     public float hardness; // Kurma (turtle)
     public float metabolism; // Lion
     public float umbrella; // Vamana
 	public float superJump; // Rama
     public float tastiness; // Matsya (fish)
+    public float birdSpeed = 4f;
     public float boar; // Varaha
 
     public static Ability AtLevel(int level)
@@ -65,6 +66,7 @@ public class Ability {
     public Ability Umbrella(float value) { umbrella = value; return this; }
 	public Ability SuperJump(float value) { superJump = value;  return this;  }
     public Ability Tastiness(float value) { tastiness = value; return this; }
+    public Ability BirdSpeed(float value) { birdSpeed = value;  return this;  }
     public Ability Boar(float value) { boar = value; return this; }
 
     public static Ability LerpAbilities(Ability min, Ability max, int level)
@@ -92,6 +94,7 @@ public class Ability {
         ability.umbrella = Mathf.Lerp(min.umbrella, max.umbrella, t);
 		ability.superJump = Mathf.Lerp(min.superJump, max.superJump, t);
         ability.tastiness = Mathf.Lerp(min.tastiness, max.tastiness, t);
+        ability.birdSpeed = Mathf.Lerp(min.birdSpeed, max.birdSpeed, t);
         ability.boar = Mathf.Lerp(min.boar, max.boar, t);
 
         return ability;

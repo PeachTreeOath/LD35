@@ -26,11 +26,13 @@ public class AbilityData
                     .Bounciness(1)
                     .Mass(1)
                     .Tastiness(5)
+                    .BirdSpeed(10)
                     .Energy (100))
                .Set (Ability.AtLevel (10)
                     .Bounciness(10)
                     .Mass(10)
                     .Tastiness(10)
+                    .BirdSpeed(25)
                     .Energy (1000))
 		);
 
@@ -96,12 +98,17 @@ public class AbilityData
                     .Energy (100)
                     .LaunchForce(1)
                     .Drag(1)
-                    .DiveKick (1))
+                    .DiveKick (12))
+                .Set (Ability.AtLevel(5)
+                    .Energy (500)
+                    .LaunchForce(5)
+                    .Drag(5)
+                    .DiveKick(20))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
                     .LaunchForce(10)
                     .Drag(10)
-                    .DiveKick (1))
+                    .DiveKick (12))
 		);
 
 		AddEntry (
