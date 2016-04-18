@@ -17,7 +17,7 @@ public class ObstacleVector : LevelObject {
 	
 	}
 
-    public void Remove()
+    public override void Remove()
     {
         Destroy(gameObject); //temporary
     }

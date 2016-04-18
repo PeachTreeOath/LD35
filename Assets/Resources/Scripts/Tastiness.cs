@@ -2,11 +2,12 @@
 using System.Collections;
 
 public class Tastiness : MonoBehaviour {
-
     public GameObject magnetObject;
 
     private float range;
     private bool isPrey = false;
+    private bool isCarried = false;
+    private GameObject carrier = null;
 
     public float Value
     {
@@ -28,7 +29,12 @@ public class Tastiness : MonoBehaviour {
         if (isPrey)
             BecomeTheHunted(range);
         else
+        {
+            if(isCarried)
+                StopCarry();
+
             BecomeTheHunter(range);
+        }
     }
 
     void BecomeTheHunted(float range) {
@@ -38,6 +44,36 @@ public class Tastiness : MonoBehaviour {
     }
 
     void BecomeTheHunter(float range) {
+        TurnOffMagnet();
+        StopCarry();
+    }
+
+    void StartCarry(GameObject obj) {
+        Carry carry = obj.GetComponent<Carry>();
+        if (carry != null)
+        {
+            TurnOffMagnet();
+
+            carrier = obj;
+            isCarried = true;
+
+            carry.StartCarry(gameObject);
+        }
+    }
+
+    void StopCarry() {
+        isCarried = false;
+
+        if (carrier != null)
+        {
+            Carry carry = carrier.GetComponent<Carry>();
+            if (carry != null)
+                carry.StopCarry();
+        }
+    }
+
+    void TurnOffMagnet()
+    {
         Magnet magnet = magnetObject.GetComponent<Magnet>();
 
         magnet.Range = 0;
@@ -46,6 +82,14 @@ public class Tastiness : MonoBehaviour {
 
     bool OnObstacleEnter(Collider2D collider)
     {
-        return true;
+        if(isPrey)
+        {
+            if (!isCarried && collider.gameObject.layer == LayerMask.NameToLayer("Birds")) {
+                StartCarry(collider.gameObject);
+            }
+            return false;
+        }   
+        else 
+            return true;
     }
 }

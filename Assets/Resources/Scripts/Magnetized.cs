@@ -7,7 +7,7 @@ public class Magnetized : MonoBehaviour {
 
     public float stiffness = 100f;
     public float damping = 25f;
-    public float maxSpeed = 15f;
+    public float maxSpeed = 25f;
 
 	void LateUpdate () {
         if (magnet == null) return;
