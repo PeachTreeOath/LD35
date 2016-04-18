@@ -15,6 +15,7 @@ public class PicksUpMoney : MonoBehaviour {
     {
         if (collider.tag == "Money")
         {
+			GameController.instance.PlaySound ("coin");
             Money money = collider.gameObject.GetComponent<Money>();
             if (money != null)
             {
