@@ -305,6 +305,8 @@ public class VishnuStateController : MonoBehaviour
 			return "Textures/Krishna";
 		case Avatar.NARASIMHA:
 			return "Textures/Narasimha";
+        case Avatar.KALKI:
+            return "Textures/Kalki";
 		case Avatar.NONE:
 			return "Textures/SadSadVishnu";
 
