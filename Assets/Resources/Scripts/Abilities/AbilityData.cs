@@ -129,12 +129,12 @@ public class AbilityData
                .Set (Ability.AtLevel (1)
                     .Energy (100)
                     .LaunchForce(1)
-                    .MoneyGain(1)
+                    .Bounciness(1)
 				    .BuddhaBounciness (1))
                .Set (Ability.AtLevel (10)
                     .Energy (1000)
                     .LaunchForce(10)
-                    .MoneyGain(10)
+                    .Bounciness(10)
                     .BuddhaBounciness (10))
 		);
 

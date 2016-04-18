@@ -67,7 +67,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         GameObject.Find("StatLaunch").GetComponent<Text>().text = @"Launch power: " + VishnuStateController.instance.GetLaunchPower().ToString();
         GameObject.Find("StatBounce").GetComponent<Text>().text = @"Bounce: " + VishnuStateController.instance.GetBounciness().ToString();
         GameObject.Find("StatAir").GetComponent<Text>().text = @"Air resistance: " + VishnuStateController.instance.GetDrag().ToString();
-        GameObject.Find("StatObs").GetComponent<Text>().text = @"Obstacle res: " + VishnuStateController.instance.GetMass().ToString();
+        GameObject.Find("StatObs").GetComponent<Text>().text = @"Obstacle resistance: " + VishnuStateController.instance.GetMass().ToString();
         GameObject.Find("StatMagnet").GetComponent<Text>().text = @"Rupee multiplier: " + VishnuStateController.instance.GetMoneyGain().ToString();
 
     }
