@@ -166,7 +166,7 @@ public class AbilityData
                     .MoneyGain(10)
                     .DrainRate(2)
                     .Hardness(1)
-                    .MagnetRange(5f))
+                    .MagnetRange(1f))
                 .Set(Ability.AtLevel(10)
                     .Energy(1000)
                     .Bounciness(30)
@@ -176,7 +176,7 @@ public class AbilityData
                     .MoneyGain(30)
                     .DrainRate(0)
                     .Hardness(10)
-                    .MagnetRange(20f))
+                    .MagnetRange(10f))
         );
 	}
 
