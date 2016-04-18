@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
 	public GameController gc;
 	PlayerStat playerStat = null;
+    public float launchStatMultiplier = 1f;
 
 	// Once player distance from prevPosition is below this
 	public float minDistanceTraveled = 0.5f;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 	private bool isStopped;
 	private float launchTime;
 	public DiveKick dk;
+
 	private ParticleSystem smoke;
 
 	void Awake ()
@@ -92,7 +94,7 @@ public class Player : MonoBehaviour
 		flightTime = 0;
 		transform.Rotate (new Vector3 (0, 0, angle));
 
-		body.AddForce (new Vector2 (Mathf.Cos (angle) * (force*launchStat), Mathf.Sin (angle) * (force*launchStat)), ForceMode2D.Impulse);
+		body.AddForce (new Vector2 (Mathf.Cos (angle) * force + (launchStatMultiplier) * launchStat , Mathf.Sin (angle) * force + launchStatMultiplier * launchStat), ForceMode2D.Impulse);
 		launchTime = Time.time;
 		GameController.instance.PlaySound ("launch");
 	}
