@@ -40,22 +40,37 @@ public class Boar : MonoBehaviour
     void Update()
     {
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
-        if(body.position.y < -3.3)
-        { boarOnGround = true; }
-        else { boarOnGround = false; }
 
         if (boarActive && boarOnGround )
         {
             body.rotation = 0;
-            body.velocity = new Vector2(body.velocity.x + 0.3f, 0);
+            body.velocity = new Vector2(body.velocity.x + 0.2f, 0);
         }
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            boarOnGround = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            boarOnGround = false;
+        }
     }
 
     void StopBoar()
     {
         Rigidbody2D body = gameObject.GetComponent<Rigidbody2D>();
-        body.position = new Vector2(body.position.x, -3.28f);
-        body.AddForce(new Vector2(0, body.velocity.x), ForceMode2D.Impulse);
+        if(boarOnGround)
+        {
+            body.AddForce(new Vector2(0, body.velocity.x), ForceMode2D.Impulse);
+        }    
     }
 }
