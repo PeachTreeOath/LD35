@@ -39,7 +39,7 @@ public class Umbrella : MonoBehaviour
         oldGravity = body.gravityScale;
         body.gravityScale = 0;
         body.rotation = 0;
-        body.velocity = new Vector2(body.velocity.x + Math.Abs(body.velocity.y), 0);
+        body.velocity = new Vector2(body.velocity.x, 0);
         Debug.Log("Start umbrella " + oldGravity.ToString());
     }
 
