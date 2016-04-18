@@ -143,11 +143,13 @@ public class GameController : MonoBehaviour
 		currentLevelTile = genATile ();
 		aTile = currentLevelTile;
 
+        numGens = 0;
 
-    }
 
-	// Use this for initialization
-	void Start ()
+}
+
+// Use this for initialization
+void Start ()
 	{
 		OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
 
