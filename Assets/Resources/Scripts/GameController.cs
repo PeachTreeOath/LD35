@@ -35,7 +35,6 @@ public class GameController : MonoBehaviour
 	private int numGens = 0;
 	//number of Times a stage gen has been called.
 	private AudioSource audio;
-    private Inventory inv;
     private Text wt;
 
     void Awake ()
@@ -124,7 +123,6 @@ public class GameController : MonoBehaviour
 			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 			bg = GameObject.Find ("Background").GetComponent<BGScroller> ();
 			tut = GameObject.Find ("TutorialText").GetComponent<Tutorial> ();
-            inv = GameObject.Find("Singletons").GetComponent<Inventory>();
             wt = GameObject.Find("WinText").GetComponent<Text>();
             tutorialCount++;
 		}
@@ -135,14 +133,7 @@ public class GameController : MonoBehaviour
 		currentLevelTile = genATile ();
 		aTile = currentLevelTile;
 
-        if (inv.GetAvatarInventory(VishnuStateController.Avatar.KALKI) > 0)
-        {
-            wt.text = "Congratulation! You reached Vishnu's FINAL FORM!";
-        }
-        else
-        {
-            wt.text = "";
-        }
+
     }
 
 	// Use this for initialization
@@ -159,7 +150,17 @@ public class GameController : MonoBehaviour
 
 
 	}
-	
+	void LateUpdate()
+    {
+        if (VishnuStateController.instance.getCurrentAvatar() == VishnuStateController.Avatar.KALKI)
+        {
+            wt.text = "Congratulation! You reached Vishnu's FINAL FORM!";
+        }
+        else
+        {
+            wt.text = "";
+        }
+    }
 	// Update is called once per frame
 	void Update ()
 	{
