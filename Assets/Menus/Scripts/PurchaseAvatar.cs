@@ -122,7 +122,6 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
 
     public void OnPointerEnter(PointerEventData dataName) {
-        Debug.Log("Im in " + gameObject.name);
         VishnuStateController.Avatar avatarHover = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(gameObject.name.ToUpper());
         try {
             activeDesc.GetComponent<Text>().text = "Description\n" + avatarPassives[avatarHover].desc;
