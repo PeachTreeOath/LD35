@@ -21,7 +21,7 @@ public class ObstacleSlow : LevelObject {
 
         ySpeed = Mathf.Clamp(ySpeed, -speedLimit, speedLimit);
 
-        ySpeed = (1 - ySpeed) * Mathf.Clamp(reduction, 0, 1);
+        ySpeed = ySpeed * (1 -  Mathf.Clamp(reduction, 0, 1));
 
 
         body.velocity = new Vector2(xSpeed, ySpeed);
