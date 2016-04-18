@@ -28,7 +28,10 @@ public class Tutorial : MonoBehaviour
 	public void ShowTutorial(bool show)
 	{
 		playTutorial = show;
-        GetComponent<Text>().enabled = show;
+		if (GetComponent<Text> ().enabled == true) {
+			GetComponent<Text>().enabled = show;
+		}
+        
 	}
 
 	public void ShowPhase (Phase phase)
