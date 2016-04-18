@@ -32,9 +32,9 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Start () {
         avatarPassives = new Dictionary<VishnuStateController.Avatar, AvatarPassiveStats>();
-        avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats("StatBounce", "StatObs", "Bir");
+        avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats("StatBounce", "StatObs", "Birds carry you");
         avatarPassives[VishnuStateController.Avatar.KURMA] = new AvatarPassiveStats("StatAir", "StatObs", "Prevents momentum loss");
-        avatarPassives[VishnuStateController.Avatar.VARAHA] = new AvatarPassiveStats("StatLaunch", "StatObs", "Runs on the ground");
+        avatarPassives[VishnuStateController.Avatar.VARAHA] = new AvatarPassiveStats("StatLaunch", "StatObs", "Runs on the ground and jumps at the end");
         avatarPassives[VishnuStateController.Avatar.NARASIMHA] = new AvatarPassiveStats("StatBounce", "StatMagnet", "Eats animals for power");
         avatarPassives[VishnuStateController.Avatar.VAMANA] = new AvatarPassiveStats("StatBounce", "StatAir", "Floats with umbrella");
         avatarPassives[VishnuStateController.Avatar.PARASHURAMA] = new AvatarPassiveStats("StatLaunch", "StatMagnet", "Dives down with attack");

@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
      
 	private GameObject player;
 	//current player obj in the game
-	private BGScroller bg;
+	private BGScroller[] bgs;
 	private Tutorial tut;
 	private int tutorialCount = 0;
 	private bool levelTileMoved = false;
@@ -131,7 +131,7 @@ public class GameController : MonoBehaviour
 			cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
 			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
-			bg = GameObject.Find ("Background").GetComponent<BGScroller> ();
+			bgs = GameObject.Find ("GroundPlatform").GetComponentsInChildren<BGScroller> ();
 			tut = GameObject.Find ("TutorialText").GetComponent<Tutorial> ();
             wt = GameObject.Find("WinText").GetComponent<Text>();
             tutorialCount++;
@@ -276,7 +276,10 @@ void Start ()
 		}
 		cam.transform.position = new Vector3 (x, y, z);
 		groundPlatform.MoveToPlayer (x);
-		bg.Scroll (playerPos.x - prevPos.x);
+		foreach (BGScroller bg in bgs) {
+			bg.Scroll (playerPos.x - prevPos.x);
+		}
+
 	}
 
 	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
