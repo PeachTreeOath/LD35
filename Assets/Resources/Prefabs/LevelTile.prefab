@@ -48,9 +48,9 @@ MonoBehaviour:
   skyObjectPrefabs:
   - {fileID: 11481244, guid: d7c136799325b4ed3b3576d6406cb38f, type: 2}
   - {fileID: 11453030, guid: 48c5543849442c442a467223aaafb4c9, type: 2}
-  - {fileID: 11479338, guid: 45ec9ed2406ad42c3a3424e0564e37ff, type: 2}
+  - {fileID: 11419364, guid: 45ec9ed2406ad42c3a3424e0564e37ff, type: 2}
   - {fileID: 11476898, guid: 726b3bfcdb3e84b2586d3c7a7c5e9586, type: 2}
-  skyObjectsPerTile: c8000000c800000064000000c8000000
+  skyObjectsPerTile: c8000000c80000005e010000c8000000
   groundObjectPrefabs:
   - {fileID: 11440112, guid: 1bc4fd93a5c1a4dcd88f566a57ec1563, type: 2}
   - {fileID: 11461476, guid: 4c8231940e4ff4cecbaa0802ce0808dd, type: 2}

@@ -9,11 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 430902}
   - 212: {fileID: 21216028}
-  - 114: {fileID: 11479338}
   - 61: {fileID: 6148682}
   - 114: {fileID: 11407250}
   - 114: {fileID: 11457660}
   - 50: {fileID: 5032332}
+  - 114: {fileID: 11419364}
   m_Layer: 10
   m_Name: Bird
   m_TagString: Obstacle
@@ -79,6 +79,19 @@ MonoBehaviour:
   stiffness: 100
   damping: 25
   maxSpeed: 25
+--- !u!114 &11419364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b65f04ca96ec8479f55ddd63466c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reduction: 0.5
+  speedLimit: 150
 --- !u!114 &11457660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,20 +107,6 @@ MonoBehaviour:
   load: {fileID: 0}
   timeToCarry: 2.5
   carrySpeed: 20
---- !u!114 &11479338
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b2d242e5286ed448452bd8613de7b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scalar: -18.67
-  obstacleType: 1
-  lionEnergyBoost: 200
 --- !u!212 &21216028
 SpriteRenderer:
   m_ObjectHideFlags: 1

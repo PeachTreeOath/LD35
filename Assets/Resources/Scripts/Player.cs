@@ -126,14 +126,7 @@ public class Player : MonoBehaviour
 
         ObstacleSlow obstacleSlow = collider.GetComponent<ObstacleSlow>();
         if(obstacleSlow != null) {
-            float speed = body.velocity.x;
-
-            speed = Mathf.Clamp(speed, 0, obstacleSlow.speedLimit);
-            speed = speed - (speed * Mathf.Clamp(obstacleSlow.reduction, 0, 1));
-
-            body.velocity = new Vector2(speed, body.velocity.y);
-
-            obstacleSlow.Remove();
+            obstacleSlow.DoDefaultSlow(body);
         }
 
 		return false;
