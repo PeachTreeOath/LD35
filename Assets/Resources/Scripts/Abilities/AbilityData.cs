@@ -151,13 +151,22 @@ public class AbilityData
 		AddEntry (
 			AvatarAbilityEntry.For (VishnuStateController.Avatar.KALKI)
                .Set (Ability.AtLevel (1)
-                    .Energy (1000)
+                    .Energy (100)
+                    .Bounciness(10)
+                    .LaunchForce(10)
+                    .Drag(10)
+                    .Mass(10)
+                    .MoneyGain(10)
+                    .DrainRate(2))
+                .Set(Ability.AtLevel(10)
+                    .Energy(1000)
                     .Bounciness(30)
                     .LaunchForce(30)
                     .Drag(30)
                     .Mass(30)
-                    .DrainRate(0))
-		);
+                    .MoneyGain(30)
+                    .DrainRate(2))
+        );
 	}
 
 	public void AddEntry (AvatarAbilityEntry entry)

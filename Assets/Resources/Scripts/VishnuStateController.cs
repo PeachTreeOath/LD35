@@ -147,10 +147,9 @@ public class VishnuStateController : MonoBehaviour
 		}
 
 		Inventory inventory = GameObject.Find ("Singletons").GetComponent<Inventory> ();
+        updateAvatars(inventory.GetAvatarsInInventory());
 
-		updateAvatars (inventory.GetAvatarsInInventory ());
-
-		avatarInstances.Clear ();
+        avatarInstances.Clear ();
 		foreach (Avatar avatar in avatarSlot) {
 			int level = inventory.GetAvatarInventory (avatar); 
 			avatarInstances [avatar] = new AvatarInstance (abilityEntries [avatar], level);
