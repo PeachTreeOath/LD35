@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
 	//current player obj in the game
 	private BGScroller[] bgs;
 	private Tutorial tut;
-	private int tutorialCount = 0;
+	public int tutorialCount = 0;
 	private bool levelTileMoved = false;
 	private int numGens = 0;
 	//number of Times a stage gen has been called.
@@ -132,7 +132,11 @@ public class GameController : MonoBehaviour
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
 			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 			bgs = GameObject.Find ("GroundPlatform").GetComponentsInChildren<BGScroller> ();
-			tut = GameObject.Find ("TutorialText").GetComponent<Tutorial> ();
+			GameObject obj = GameObject.Find ("TutorialText");
+			if (obj != null) {
+				tut = obj.GetComponent<Tutorial> ();
+			}
+
             wt = GameObject.Find("WinText").GetComponent<Text>();
             tutorialCount++;
 		}
@@ -145,7 +149,10 @@ public class GameController : MonoBehaviour
 
         numGens = 0;
 
-		tut.ShowTutorial (tutorialCount == 1);
+		if (SceneManager.GetActiveScene ().name.Equals ("Game")) {
+			tut.ShowTutorial (tutorialCount == 1);
+		}
+
 		ShowTutorialPhase (Tutorial.Phase.ANGLE);
 	}
 
@@ -283,7 +290,10 @@ public class GameController : MonoBehaviour
 
 	public void ShowTutorialPhase (Tutorial.Phase phase)
 	{
-		tut.ShowPhase (phase);
+		if (tut != null) {
+			tut.ShowPhase (phase);
+		}
+
 	}
 
 	public void Mute (bool mute)

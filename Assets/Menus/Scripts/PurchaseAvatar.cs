@@ -80,7 +80,7 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 cost = 10000;
                 break; 
             default:
-                cost = 200*amount+200;
+                cost = (amount + 1) * (amount + 2) * 25;
                 break;
         }
     }

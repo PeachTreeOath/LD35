@@ -92,7 +92,7 @@ public class DiveKick : MonoBehaviour
 
             ObstacleSlow obstacleSlow = collider.GetComponent<ObstacleSlow>();
             if (obstacleSlow != null) {
-                obstacleScalar.Remove();
+                obstacleSlow.Remove();
             }
 		}
 
