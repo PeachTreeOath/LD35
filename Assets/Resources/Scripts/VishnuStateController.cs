@@ -262,6 +262,7 @@ public class VishnuStateController : MonoBehaviour
         player.GetComponent<DiveKick>().Value = a.diveKick;
         player.GetComponent<Umbrella>().Value = a.umbrella;
         player.GetComponent<Hardness>().Value = a.hardness;
+		player.GetComponent<SuperJump>().Value = a.superJump;
     }
 
 	public void changePlayerSprite (Avatar avatar)
