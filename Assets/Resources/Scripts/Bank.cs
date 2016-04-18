@@ -15,7 +15,7 @@ public class Bank : MonoBehaviour {
 
     void OnLevelWasLoaded()
     {
-       // MoneyThisRun = 0;
+       //MoneyThisRun = 0;
     }
 
     public void Add(int amount)

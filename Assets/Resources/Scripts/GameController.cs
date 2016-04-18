@@ -135,6 +135,7 @@ public class GameController : MonoBehaviour
 			tut = GameObject.Find ("TutorialText").GetComponent<Tutorial> ();
             wt = GameObject.Find("WinText").GetComponent<Text>();
             tutorialCount++;
+            GameObject.Find("Singletons").GetComponent<Bank>().MoneyThisRun = 0;
 		}
 		Debug.Log ("GameController level loaded");
 
