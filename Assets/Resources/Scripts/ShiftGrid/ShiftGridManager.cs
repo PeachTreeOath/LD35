@@ -27,12 +27,20 @@ public class ShiftGridManager : MonoBehaviour
 		}
 	}
 
-
+	bool canClick = true;
 	public void OnIconClick (int slotNumber)
 	{
-		desc = transform.parent.GetComponentInChildren<AvatarDescriptions> ();
-		AvatarInstance av = VishnuStateController.instance.TransitionToNextAvatar (slotNumber);
-		desc.ChangeAvatarText (av.avatar);
+		if (canClick) {
+			desc = transform.parent.GetComponentInChildren<AvatarDescriptions> ();
+			AvatarInstance av = VishnuStateController.instance.TransitionToNextAvatar (slotNumber);
+			desc.ChangeAvatarText (av.avatar);
+			canClick = false;
+			Invoke ("CanClicker", 0.5f);
+		}
+	}
+	public void CanClicker()
+	{
+		canClick = true;
 	}
 
 	public void ChangeDesc()
