@@ -18,17 +18,17 @@ public class Money : LevelObject
 		if (color == RupeeColor.unknown) {
 			int randColor = Random.Range (0, 100); 
 
-			if (randColor >= 0 && randColor < 50) {
+			if (randColor >= 0 && randColor < 40) {
 				color = RupeeColor.green;
-			} else if (randColor >= 50 && randColor < 70) {
+			} else if (randColor >= 40 && randColor < 60) {
 				color = RupeeColor.blue; 
-			} else if (randColor >= 70 && randColor < 83) {
+			} else if (randColor >= 60 && randColor < 75) {
 				color = RupeeColor.yellow; 
-			} else if (randColor >= 83 && randColor < 90) {
+			} else if (randColor >= 75 && randColor < 88) {
 				color = RupeeColor.red;
-			} else if (randColor >= 90 && randColor < 95) {
+			} else if (randColor >= 88 && randColor < 93) {
 				color = RupeeColor.purple;
-			} else if (randColor >= 95 && randColor < 98) {
+			} else if (randColor >= 93 && randColor < 97) {
 				color = RupeeColor.orange;
 			} else {
 				color = RupeeColor.silver; 
