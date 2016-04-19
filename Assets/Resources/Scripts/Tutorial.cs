@@ -46,7 +46,7 @@ public class Tutorial : MonoBehaviour
 			tutString = "Left click the screen to set power";
 			break;
 		case Phase.SWITCH:
-			tutString = "Your avatars are in the top left, switch avatars before their lifespans run out";
+			tutString = "Press 1-9 or click avatar icons in the top left before their lifespans run out";
 			break;
 		}
         GetComponent<Text>().text = tutString;
