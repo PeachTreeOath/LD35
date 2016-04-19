@@ -16,6 +16,7 @@ public class ShiftGridIcon : MonoBehaviour
 			float meterPercentage = energy.max > 0 ? energy.current / energy.max : 0;
 
 			meter.fillAmount = Mathf.Lerp (0, maxPercentage, meterPercentage); 
+
 		} else {
 			Debug.LogError ("ShiftGridIcon should have a child with \"Image\" Component!");
 		}

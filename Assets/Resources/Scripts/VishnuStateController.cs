@@ -239,6 +239,7 @@ public class VishnuStateController : MonoBehaviour
 		AvatarInstance avatarInstance = getCurrentAvatarInstance ();
 		changePlayerAttributes (avatarInstance.abilities);
 		changePlayerSprite (avatarInstance.avatar);
+
 		return avatarInstance;
 	}
 
@@ -290,6 +291,8 @@ public class VishnuStateController : MonoBehaviour
 			sr.color = new Color (1, 1, 1, 0.66f);
 		else
 			sr.color = Color.white;
+
+		GameObject.Find ("ShiftGrid").GetComponent<ShiftGridManager> ().ChangeDesc ();
 	}
 
 	public string GetSpriteTextureName (Avatar avatar)

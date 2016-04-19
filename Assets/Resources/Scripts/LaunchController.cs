@@ -119,6 +119,7 @@ public class LaunchController : MonoBehaviour
 			VishnuStateController.instance.StartFlight ();
 			GameController.instance.ShowTutorialPhase (Tutorial.Phase.SWITCH);
 			GameObject.Find ("VishnuStart").GetComponent<SpriteRenderer> ().enabled = false;
+			GameObject.Find ("ShiftGrid").GetComponent<ShiftGridManager> ().ChangeDesc ();
 		}
 
 	}

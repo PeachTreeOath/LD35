@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ShiftGridManager : MonoBehaviour
 {
 
+	AvatarDescriptions desc;
 	// Update is called once per frame
 	void Update ()
 	{
@@ -29,9 +30,15 @@ public class ShiftGridManager : MonoBehaviour
 
 	public void OnIconClick (int slotNumber)
 	{
-		AvatarDescriptions desc = transform.parent.GetComponentInChildren<AvatarDescriptions> ();
+		desc = transform.parent.GetComponentInChildren<AvatarDescriptions> ();
 		AvatarInstance av = VishnuStateController.instance.TransitionToNextAvatar (slotNumber);
 		desc.ChangeAvatarText (av.avatar);
+	}
+
+	public void ChangeDesc()
+	{
+		desc = transform.parent.GetComponentInChildren<AvatarDescriptions> ();
+		desc.ChangeAvatarText ( VishnuStateController.instance.getCurrentAvatar());
 	}
 
 }
