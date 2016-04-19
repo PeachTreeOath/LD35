@@ -20,15 +20,15 @@ public class Money : LevelObject
 
 			if (randColor >= 0 && randColor < 50) {
 				color = RupeeColor.green;
-			} else if (randColor >= 50 && randColor < 75) {
+			} else if (randColor >= 50 && randColor < 70) {
 				color = RupeeColor.blue; 
-			} else if (randColor >= 75 && randColor < 88) {
+			} else if (randColor >= 70 && randColor < 83) {
 				color = RupeeColor.yellow; 
-			} else if (randColor >= 88 && randColor < 93) {
+			} else if (randColor >= 83 && randColor < 90) {
 				color = RupeeColor.red;
-			} else if (randColor >= 93 && randColor < 97) {
+			} else if (randColor >= 90 && randColor < 95) {
 				color = RupeeColor.purple;
-			} else if (randColor >= 97 && randColor < 99) {
+			} else if (randColor >= 95 && randColor < 98) {
 				color = RupeeColor.orange;
 			} else {
 				color = RupeeColor.silver; 
