@@ -19,7 +19,7 @@ public class PicksUpMoney : MonoBehaviour {
             Money money = collider.gameObject.GetComponent<Money>();
             if (money != null)
             {
-				bank.Add(Mathf.RoundToInt (money.GetValue() * (moneyGainMult/10)));
+				bank.Add(Mathf.RoundToInt (money.GetValue() * (Mathf.Clamp(moneyGainMult/10,1, Mathf.Infinity))));
                 money.Collect();
             }  
         }
