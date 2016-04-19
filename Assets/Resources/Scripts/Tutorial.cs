@@ -29,7 +29,7 @@ public class Tutorial : MonoBehaviour
 	{
 		playTutorial = show;
 		if (GetComponent<Text> ().enabled == true) {
-			GetComponent<Text>().enabled = show;
+			//GetComponent<Text>().enabled = show;
 		}
         
 	}
