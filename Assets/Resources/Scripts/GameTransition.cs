@@ -4,10 +4,6 @@ using System.Collections;
 
 public class GameTransition : MonoBehaviour {
 
-    void Awake() {
-        DontDestroyOnLoad(gameObject);
-    }
-
 	// Use this for initialization
 	void Start () {
 	

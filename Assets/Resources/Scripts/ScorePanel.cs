@@ -7,7 +7,7 @@ public class ScorePanel : MonoBehaviour
 {
 	public float Velocity = 50f;
 
-	// Multiply values by this to 
+	// Multiply values by this to
 	public float distModifier;
 	public float altModifier;
 	public float durModifier;
@@ -138,7 +138,7 @@ public class ScorePanel : MonoBehaviour
 
 		int intChange = Mathf.RoundToInt (totalChange);
 
-		bank.Add(intChange);
+		bank.Add (intChange);
 		total = intChange + coin;
 	}
 }

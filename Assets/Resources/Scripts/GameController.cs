@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //General state for the game
 public class GameController : MonoBehaviour
 {
-    
+
 	public static GameController instance { get { return m_instance; } }
 
 	public bool isOnATile = false;
@@ -20,12 +20,12 @@ public class GameController : MonoBehaviour
 	private ScorePanel scoreCanvas;
 	private LevelGenerator levelGen;
 	private LevelTile currentLevelTile;
-    private LevelTile aTile = null;
+	private LevelTile aTile = null;
 	//a and b tiles alternate, so you can gen one while you are in another.
 	private LevelTile bTile = null;
 	private bool tileAUpdated = false;
 	private bool tileBUpdated = false;
-     
+
 	private GameObject player;
 	//current player obj in the game
 	private BGScroller[] bgs;
@@ -35,12 +35,11 @@ public class GameController : MonoBehaviour
 	private int numGens = 0;
 	//number of Times a stage gen has been called.
 	private AudioSource audio;
-    private Text wt;
+	private Text wt;
 
-    void Awake ()
+	void Awake ()
 	{
 		if (m_instance == null) {
-            Debug.Log("Creating Immortal GameController object");
 			m_instance = this;
 			DontDestroyOnLoad (gameObject);
 			LoadSounds ();
@@ -131,26 +130,16 @@ public class GameController : MonoBehaviour
 			groundPlatform = GameObject.Find ("GroundPlatform").GetComponent<GroundPlatform> ();
 			cam = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 			locationFromCam = cam.transform.position - GameObject.Find ("Launcher").transform.position;
-            GameObject storeCanvasObj = GameObject.Find("ScoreCanvas");
-            if(storeCanvasObj != null && scoreCanvas == null) {
-			    scoreCanvas = storeCanvasObj.GetComponent<ScorePanel> ();
-                DontDestroyOnLoad(scoreCanvas); //very important!
-                foreach (Component go in storeCanvasObj.GetComponentsInChildren<Component>()) {
-                    if (go.gameObject.transform.parent == null) {
-                        DontDestroyOnLoad(go);
-                    }
-                }
-                storeCanvasObj.SetActive(false);
-            }
+			scoreCanvas = GameObject.Find ("ScoreCanvas").GetComponent<ScorePanel> ();
 			bgs = GameObject.Find ("GroundPlatform").GetComponentsInChildren<BGScroller> ();
 			GameObject obj = GameObject.Find ("TutorialText");
 			if (obj != null) {
 				tut = obj.GetComponent<Tutorial> ();
 			}
 
-            wt = GameObject.Find("WinText").GetComponent<Text>();
-            tutorialCount++;
-            GameObject.Find("Singletons").GetComponent<Bank>().MoneyThisRun = 0;
+			wt = GameObject.Find("WinText").GetComponent<Text>();
+			tutorialCount++;
+			GameObject.Find("Singletons").GetComponent<Bank>().MoneyThisRun = 0;
 		}
 		Debug.Log ("GameController level loaded");
 
@@ -159,7 +148,7 @@ public class GameController : MonoBehaviour
 		currentLevelTile = genATile ();
 		aTile = currentLevelTile;
 
-        numGens = 0;
+		numGens = 0;
 
 		if (SceneManager.GetActiveScene ().name.Equals ("Game")) {
 			tut.ShowTutorial (tutorialCount == 1);
@@ -171,23 +160,21 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        if(cam == null) {
-           OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
-        }
+		OnLevelWasLoaded (SceneManager.GetActiveScene ().buildIndex);
 		//levelTileMoved = true;
 
 	}
 	void LateUpdate()
-    {
-        if (VishnuStateController.instance.getCurrentAvatar() == VishnuStateController.Avatar.KALKI)
-        {
-            wt.text = "Congratulation! You reached Vishnu's FINAL FORM!";
-        }
-        else
-        {
-            wt.text = "";
-        }
-    }
+	{
+		if (VishnuStateController.instance.getCurrentAvatar() == VishnuStateController.Avatar.KALKI)
+		{
+			wt.text = "Congratulation! You reached Vishnu's FINAL FORM!";
+		}
+		else
+		{
+			wt.text = "";
+		}
+	}
 	// Update is called once per frame
 	void Update ()
 	{
@@ -227,7 +214,7 @@ public class GameController : MonoBehaviour
 			Vector3 newPos = new Vector3 (newPosX, newPosY);
 			bTile.transform.position = newPos;
 			//levelTileMoved = false;
-            
+
 			numGens++;
 
 			tileBUpdated = false;
@@ -236,11 +223,11 @@ public class GameController : MonoBehaviour
 
 	public LevelTile genATile ()
 	{
-        if (aTile != null)
-        {
-            aTile.remove();
-        }
-        
+		if (aTile != null)
+		{
+			aTile.remove();
+		}
+
 		aTile = levelGen.genLevelTile (true);
 		tileAUpdated = true;
 		//float aTileOffset = currentLevelTile.getWidth() * numGens;
@@ -259,10 +246,10 @@ public class GameController : MonoBehaviour
 
 	public LevelTile genBTile ()
 	{
-        if (bTile != null)
-        {
-            bTile.remove();
-        }
+		if (bTile != null)
+		{
+			bTile.remove();
+		}
 		bTile = levelGen.genLevelTile (false);
 		tileBUpdated = true;
 		isOnATile = true;
@@ -297,14 +284,8 @@ public class GameController : MonoBehaviour
 
 	}
 
-    //called on button press
-    public void disableScorePanel() {
-        scoreCanvas.gameObject.SetActive(false);
-    }
-
 	public void ShowScorePanel (float maxDist, float maxAltitude, float duration, float maxVelocity)
 	{
-        scoreCanvas.gameObject.SetActive(true);
 		scoreCanvas.SetValues (maxDist, maxAltitude, duration, maxVelocity);
 	}
 
