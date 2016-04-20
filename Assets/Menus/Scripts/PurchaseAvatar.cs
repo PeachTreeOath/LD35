@@ -19,6 +19,14 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 	private Inventory inventory;
 	private VishnuStateController.Avatar avatarEnum;
 	private string avatarString;
+	private float timeToUpdate = 0;
+	private float updateIntMs = 0.2f;
+	    private GameObject statLaunch;
+    private GameObject statBounce;
+    private GameObject statAir;
+    private GameObject statObs;
+    private GameObject statMagnet;
+    private GameObject activeDesc;
 	Dictionary<VishnuStateController.Avatar, AvatarPassiveStats> avatarPassives;
 	struct AvatarPassiveStats
 	{
@@ -35,6 +43,12 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 	}
 
 	void Start () {
+	        statLaunch = GameObject.Find("StatLaunch");
+        statBounce = GameObject.Find("StatBounce");
+        statAir = GameObject.Find("StatAir");
+        statObs = GameObject.Find("StatObs");
+        statMagnet = GameObject.Find("StatMagnet");
+        activeDesc = GameObject.Find("ActiveDescription");
 		avatarPassives = new Dictionary<VishnuStateController.Avatar, AvatarPassiveStats>();
 		avatarPassives[VishnuStateController.Avatar.MATSYA] = new AvatarPassiveStats("StatBounce", "StatObs", "Birds carry you");
 		avatarPassives[VishnuStateController.Avatar.KURMA] = new AvatarPassiveStats("StatAir", "StatObs", "Prevents momentum loss");
@@ -66,6 +80,8 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 	}
 
 	void LateUpdate () {
+	        if(Time.time > timeToUpdate) {
+            timeToUpdate = Time.time + updateIntMs; //no need to update text values at 120fps
 		if(cost == 0)
 			costText.text = @"";
 		else
@@ -73,15 +89,16 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 		amountText.text = string.Format(@"{0}", amount);
 		UpdateStats();
+		}
 	}
 
 	private void UpdateStats()
 	{
-		GameObject.Find("StatLaunch").GetComponent<Text>().text = @"Launch power: " + VishnuStateController.instance.GetLaunchPower().ToString();
-		GameObject.Find("StatBounce").GetComponent<Text>().text = @"Bounce: " + VishnuStateController.instance.GetBounciness().ToString();
-		GameObject.Find("StatAir").GetComponent<Text>().text = @"Air resistance: " + VishnuStateController.instance.GetDrag().ToString();
-		GameObject.Find("StatObs").GetComponent<Text>().text = @"Obstacle resistance: " + VishnuStateController.instance.GetMass().ToString();
-		GameObject.Find("StatMagnet").GetComponent<Text>().text = @"Rupee multiplier: +" + (VishnuStateController.instance.GetMoneyGain() * 10).ToString() + "%";
+		        statLaunch.GetComponent<Text>().text = @"Launch power: " + VishnuStateController.instance.GetLaunchPower().ToString();
+        statBounce.GetComponent<Text>().text = @"Bounce: " + VishnuStateController.instance.GetBounciness().ToString();
+        statAir.GetComponent<Text>().text = @"Air resistance: " + VishnuStateController.instance.GetDrag().ToString();
+        statObs.GetComponent<Text>().text = @"Obstacle resistance: " + VishnuStateController.instance.GetMass().ToString();
+        statMagnet.GetComponent<Text>().text = @"Rupee multiplier: +" + (VishnuStateController.instance.GetMoneyGain() * 10).ToString() + "%";
 	}
 
 	private void UpdateCost()
@@ -119,8 +136,8 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 		VishnuStateController.Avatar avatarHover = Utilities.EnumUtils<VishnuStateController.Avatar>.StringToEnum(gameObject.name.ToUpper());
 		try
 		{
-			GameObject.Find("ActiveDescription").GetComponent<Text>().text = "Description\n" + avatarPassives[avatarHover].desc;
-			GameObject.Find("ActiveDescription").GetComponent<Text>().color = Color.cyan;
+        activeDesc.GetComponent<Text>().text = "Description\n" + avatarPassives[avatarHover].desc;
+            activeDesc.GetComponent<Text>().color = Color.cyan;
 			transform.FindChild("Avatar").GetComponent<Text>().color = Color.cyan;
 			HighlightPower(avatarPassives[avatarHover].stat1, Color.cyan);
 			HighlightPower(avatarPassives[avatarHover].stat2, Color.cyan);
@@ -142,8 +159,8 @@ public class PurchaseAvatar : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 	public void OnPointerExit(PointerEventData dataName)
 	{
 		Debug.Log("Exiting " + gameObject.name);
-		GameObject.Find("ActiveDescription").GetComponent<Text>().text = "Description";
-		GameObject.Find("ActiveDescription").GetComponent<Text>().color = Color.black;
+        activeDesc.GetComponent<Text>().text = "Description";
+        activeDesc.GetComponent<Text>().color = Color.black;
 		HighlightPower("StatLaunch", Color.black);
 		HighlightPower("StatBounce", Color.black);
 		HighlightPower("StatAir", Color.black);
