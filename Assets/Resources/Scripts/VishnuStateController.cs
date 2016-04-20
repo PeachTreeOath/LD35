@@ -257,7 +257,7 @@ public class VishnuStateController : MonoBehaviour
 			Debug.Log ("Negative gravity detected!");
 		}
 		rb.gravityScale = gForce;
-		rb.mass = (a.mass * a.liftForceMult)*0.85f;
+		rb.mass = (a.mass * a.liftForceMult)*0.95f;
 		rb.drag = (1f/( 1 + a.drag)) * a.dragMult;
 
 		player.GetComponent<Greediness>().Value = a.magnetRange;
